@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>زياد | صانع محتوى إبداعي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- تأثير الجزيئات المتحركة -->
+    <div id="particles-js"></div>
+    
+    <!-- تأثير الخلفية الديناميكي -->
+    <div class="dynamic-background"></div>
+    
+    <!-- تأثير الخطوط المتقاطعة -->
+    <div class="grid-lines"></div>
+    
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <!-- الشعار -->
+            <a href="#" class="navbar-logo">
+                <i class="fas fa-video"></i>
+                <span class="logo-text" data-key="logo">زياد</span>
+            </a>
+            
+            <!-- قائمة التنقل -->
+            <ul class="navbar-menu" id="navbarMenu">
+                <li class="navbar-item">
+                    <a href="#" class="navbar-link active" data-page="home" data-key="navHome">
+                        <i class="fas fa-home"></i>
+                        <span>الرئيسية</span>
+                    </a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#" class="navbar-link" data-page="profile" data-key="navProfile">
+                        <i class="fas fa-user"></i>
+                        <span>حول</span>
+                    </a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#" class="navbar-link" data-page="services" data-key="navServices">
+                        <i class="fas fa-concierge-bell"></i>
+                        <span>الخدمات</span>
+                    </a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#" class="navbar-link" data-page="portfolio" data-key="navPortfolio">
+                        <i class="fas fa-photo-video"></i>
+                        <span>أعمالي</span>
+                    </a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#" class="navbar-link" data-page="skills" data-key="navSkills">
+                        <i class="fas fa-tools"></i>
+                        <span>المهارات</span>
+                    </a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#" class="navbar-link" data-page="contact" data-key="navContact">
+                        <i class="fas fa-envelope"></i>
+                        <span>اتصل</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <!-- عناصر الجانب الأيمن -->
+            <div class="navbar-right">
+                <!-- زر اللغة -->
+                <div class="language-switcher">
+                    <button class="language-btn" id="languageBtn">
+                        <span class="language-text" data-key="language">EN</span>
+                        <i class="fas fa-globe"></i>
+                    </button>
+                    <div class="language-dropdown" id="languageDropdown">
+                        <button class="language-option active" data-lang="ar">
+                            <i class="fas fa-check"></i>
+                            <span>العربية</span>
+                        </button>
+                        <button class="language-option" data-lang="en">
+                            <i class="fas fa-check"></i>
+                            <span>English</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- زر القائمة للموبايل -->
+                <button class="navbar-toggle" id="navbarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- زر الرجوع للصفحة الرئيسية -->
+    <button class="back-home-btn" id="backHomeBtn">
+        <i class="fas fa-home"></i>
+        <span>الرئيسية</span>
+    </button>
+    
+    <!-- الصفحة الرئيسية -->
+    <div class="page active" id="home">
+        <div class="hero">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span data-key="heroBadge">صانع محتوى إبداعي</span>
+                </div>
+                <h1 class="hero-title" data-key="heroTitle">
+                    <span class="hero-title-line">أحكي قصتك</span>
+                    <span class="hero-title-line">بصرياً</span>
+                </h1>
+                <p class="hero-description" data-key="heroDescription">
+                    أصنع محتوى مرئيًا مؤثرًا يجذب جمهورك ويحكي قصتك بطريقة لا تُنسى. أجمع بين الإبداع البصري والتسويق الرقمي لإنتاج محتوى يلهم ويؤثر.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="150">0</span>
+                        <span class="stat-label" data-key="statProjects">مشروع</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="50">0</span>
+                        <span class="stat-label" data-key="statClients">عميل</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="3">0</span>
+                        <span class="stat-label" data-key="statYears">سنوات خبرة</span>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary" data-page="portfolio" data-key="viewPortfolio">
+                        <i class="fas fa-play-circle"></i> شاهد أعمالي
+                    </a>
+                    <a href="#" class="btn btn-secondary" data-page="contact" data-key="contactMe">
+                        <i class="fas fa-comment-dots"></i> دعنا نتواصل
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="video-frame">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="video-wave"></div>
+                    <div class="video-grid"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- لماذا تختارني -->
+        <div class="why-choose">
+            <h2 class="section-title" data-key="whyChooseTitle">لماذا تختارني؟</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 data-key="feature1Title">إبداع لا حدود له</h3>
+                    <p data-key="feature1Desc">أبتكر أفكارًا فريدة تجعل محتواك مميزًا وتجذب انتباه جمهورك المستهدف</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 data-key="feature2Title">سرعة في التسليم</h3>
+                    <p data-key="feature2Desc">ألتزم بمواعيد التسليم مع الحفاظ على أعلى معايير الجودة والإبداع</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 data-key="feature3Title">تحليل أداء</h3>
+                    <p data-key="feature3Desc">أحلل أداء المحتوى وأقدم تقارير تفصيلية لتحسين استراتيجيتك الرقمية</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 data-key="feature4Title">تعاون مستمر</h3>
+                    <p data-key="feature4Desc">أعمل معك عن قرب لفهم رؤيتك وتحويلها إلى محتوى مؤثر وفعال</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ملخص الأقسام -->
+        <div class="sections-summary">
+            <h2 class="section-title" data-key="summaryTitle">استكشف محفظتي</h2>
+            <p class="section-subtitle" data-key="summarySubtitle">تصفح أقسامي المختلفة لاكتشاف مهاراتي وخبراتي في صناعة المحتوى</p>
+            
+            <div class="summary-grid">
+                <div class="summary-card" data-page="profile">
+                    <div class="summary-icon">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3 data-key="summaryProfileTitle">الملف الشخصي</h3>
+                        <p data-key="summaryProfileDesc">تعرف على مسيرتي المهنية وخبراتي في مجال صناعة المحتوى الرقمي والإبداع البصري</p>
+                        <a href="#" class="summary-link" data-page="profile">
+                            <span>استكشف المزيد</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                    <div class="summary-number">01</div>
+                </div>
+                
+                <div class="summary-card" data-page="services">
+                    <div class="summary-icon">
+                        <i class="fas fa-concierge-bell"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3 data-key="summaryServicesTitle">الخدمات</h3>
+                        <p data-key="summaryServicesDesc">اكتشف مجموعة الخدمات المتكاملة التي أقدمها في مجال صناعة المحتوى الرقمي</p>
+                        <a href="#" class="summary-link" data-page="services">
+                            <span>استكشف المزيد</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                    <div class="summary-number">02</div>
+                </div>
+                
+                <div class="summary-card" data-page="portfolio">
+                    <div class="summary-icon">
+                        <i class="fas fa-photo-video"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3 data-key="summaryPortfolioTitle">معرض الأعمال</h3>
+                        <p data-key="summaryPortfolioDesc">تصفح مجموعة من أبرز مشاريعي في إنتاج الفيديو والمحتوى البصري الإبداعي</p>
+                        <a href="#" class="summary-link" data-page="portfolio">
+                            <span>استكشف المزيد</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                    <div class="summary-number">03</div>
+                </div>
+                
+                <div class="summary-card" data-page="skills">
+                    <div class="summary-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3 data-key="summarySkillsTitle">المهارات</h3>
+                        <p data-key="summarySkillsDesc">تعرف على مهاراتي التقنية والإبداعية المتقدمة في مجال صناعة المحتوى</p>
+                        <a href="#" class="summary-link" data-page="skills">
+                            <span>استكشف المزيد</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                    <div class="summary-number">04</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- اقتباس ملهم -->
+        <div class="inspirational-quote">
+            <div class="quote-content">
+                <i class="fas fa-quote-left"></i>
+                <p data-key="quoteText">"المحتوى الجيد ليس مجرد رسالة، بل هو تجربة بصرية تترك أثرًا في الذاكرة"</p>
+                <div class="quote-author">
+                    <span data-key="quoteAuthor">- زياد، صانع محتوى</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- صفحة حول -->
+    <div class="page" id="profile">
+        <div class="page-header">
+            <h1 class="page-title" data-key="profileTitle">حول زياد</h1>
+            <p class="page-description" data-key="profileDescription">صانع محتوى إبداعي متخصص في إنتاج محتوى مرئي مؤثر يجمع بين الإبداع والتسويق الرقمي</p>
+        </div>
+        
+        <div class="profile-content">
+            <div class="about-grid">
+                <div class="about-image">
+                    <div class="image-container">
+                        <div class="image-frame"></div>
+                        <div class="image-overlay">
+                            <i class="fas fa-video"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-info">
+                    <h2 data-key="aboutTitle">شغفي هو صناعة المحتوى الذي يلهم</h2>
+                    <p data-key="aboutDescription">
+                        مع أكثر من 3 سنوات من الخبرة في صناعة المحتوى الرقمي، أساعد العلامات التجارية والأفراد على سرد قصصهم بشكل مرئي مؤثر. أؤمن أن كل علامة تجارية لها قصة فريدة تستحق أن تُحكى بطريقة إبداعية.
+                    </p>
+                    
+                    <div class="specialties">
+                        <h3 data-key="specialtiesTitle">تخصصاتي</h3>
+                        <div class="tags">
+                            <span class="tag">فيديوغرافيك</span>
+                            <span class="tag">مونتاج فيديو</span>
+                            <span class="tag">تصميم مرئي</span>
+                            <span class="tag">إدارة وسائل التواصل</span>
+                            <span class="tag">كتابة محتوى</span>
+                            <span class="tag">تصوير محتوى</span>
+                        </div>
+                    </div>
+                    
+                    <div class="social-connect">
+                        <h3 data-key="connectTitle">تواصل معي</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-link">
+                                <i class="fab fa-youtube"></i>
+                                <span>YouTube</span>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                                <span>Instagram</span>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-tiktok"></i>
+                                <span>TikTok</span>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- فلسفة العمل -->
+            <div class="philosophy">
+                <h2 data-key="philosophyTitle">فلسفتي في صناعة المحتوى</h2>
+                <div class="philosophy-grid">
+                    <div class="philosophy-card">
+                        <div class="philosophy-number">01</div>
+                        <h3 data-key="philosophy1Title">القصة أولاً</h3>
+                        <p data-key="philosophy1Desc">أبدأ دائمًا من القصة، لأن المحتوى الجيد يبدأ بقصة جيدة</p>
+                    </div>
+                    <div class="philosophy-card">
+                        <div class="philosophy-number">02</div>
+                        <h3 data-key="philosophy2Title">الجودة فوق الكمية</h3>
+                        <p data-key="philosophy2Desc">أفضل إنتاج محتوى عالي الجودة يؤثر على جمهور واحد بدلاً من محتوى ضعيف للجميع</p>
+                    </div>
+                    <div class="philosophy-card">
+                        <div class="philosophy-number">03</div>
+                        <h3 data-key="philosophy3Title">الابتكار المستمر</h3>
+                        <p data-key="philosophy3Desc">أتطور باستمرار لأواكب أحدث اتجاهات المحتوى وأساليب الإنتاج</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- صفحة الخدمات -->
+    <div class="page" id="services">
+        <div class="page-header">
+            <h1 class="page-title" data-key="servicesTitle">خدماتي</h1>
+            <p class="page-description" data-key="servicesDescription">أقدم مجموعة متكاملة من خدمات صناعة المحتوى لتلبية جميع احتياجاتك الرقمية</p>
+        </div>
+        
+        <div class="services-container">
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3 data-key="service1Title">إنتاج الفيديو</h3>
+                    <p data-key="service1Desc">تصوير ومونتاج فيديوهات احترافية للعلامات التجارية، المنتجات، والمحتوى الترويجي</p>
+                    <ul class="service-features">
+                        <li data-key="service1Feature1">فيديو سلو موشن</li>
+                        <li data-key="service1Feature2">فيديو موشن جرافيك</li>
+                        <li data-key="service1Feature3">فيديو المنتجات</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-pencil-alt"></i>
+                    </div>
+                    <h3 data-key="service2Title">كتابة المحتوى</h3>
+                    <p data-key="service2Desc">كتابة محتوى إبداعي وجذاب لمواقع التواصل الاجتماعي، المدونات، والمواقع الإلكترونية</p>
+                    <ul class="service-features">
+                        <li data-key="service2Feature1">نصوص وسائل التواصل</li>
+                        <li data-key="service2Feature2">مقالات المدونات</li>
+                        <li data-key="service2Feature3">سيناريوهات الفيديو</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3 data-key="service3Title">استراتيجية المحتوى</h3>
+                    <p data-key="service3Desc">تطوير خطط محتوى شاملة وتحليل أداء لتحقيق أهدافك الرقمية</p>
+                    <ul class="service-features">
+                        <li data-key="service3Feature1">تخطيط المحتوى</li>
+                        <li data-key="service3Feature2">تحليل المنافسة</li>
+                        <li data-key="service3Feature3">تقارير الأداء</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3 data-key="service4Title">التصوير الإبداعي</h3>
+                    <p data-key="service4Desc">تصوير محتوى مرئي عالي الجودة للاستخدام على مختلف المنصات الرقمية</p>
+                    <ul class="service-features">
+                        <li data-key="service4Feature1">تصوير المنتجات</li>
+                        <li data-key="service4Feature2">تصوير الأحداث</li>
+                        <li data-key="service4Feature3">صور المحتوى</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- عملية العمل -->
+            <div class="work-process">
+                <h2 data-key="processTitle">كيف أعمل؟</h2>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3 data-key="step1Title">التشاور</h3>
+                            <p data-key="step1Desc">نناقش رؤيتك وأهدافك لفهم احتياجاتك بشكل دقيق</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3 data-key="step2Title">التخطيط</h3>
+                            <p data-key="step2Desc">أطور خطة محتوى واستراتيجية تنفيذ مخصصة لك</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3 data-key="step3Title">الإنتاج</h3>
+                            <p data-key="step3Desc">أبدأ في إنتاج المحتوى مع تحديثات مستمرة لك</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3 data-key="step4Title">التسليم</h3>
+                            <p data-key="step4Desc">أسلّم المحتوى النهائي مع تقرير الأداء والتوصيات</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- صفحة أعمالي -->
+    <div class="page" id="portfolio">
+        <div class="page-header">
+            <h1 class="page-title" data-key="portfolioTitle">معرض أعمالي</h1>
+            <p class="page-description" data-key="portfolioDescription">مجموعة مختارة من مشاريع المحتوى التي نفذتها لعلامات تجارية مختلفة</p>
+        </div>
+        
+        <div class="portfolio-filter">
+            <button class="filter-btn active" data-filter="all">الكل</button>
+            <button class="filter-btn" data-filter="video">الفيديو</button>
+            <button class="filter-btn" data-filter="photo">التصوير</button>
+            <button class="filter-btn" data-filter="social">وسائل التواصل</button>
+        </div>
+        
+        <div class="portfolio-grid">
+            <div class="portfolio-item" data-category="video">
+                <div class="portfolio-image">
+                    <div class="play-overlay">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h3 data-key="project1Title">حملة فيديو لعلامة تجارية</h3>
+                    <p data-key="project1Desc">إنتاج سلسلة فيديوهات ترويجية لعلامة تجارية في قطاع الأزياء</p>
+                    <div class="portfolio-tags">
+                        <span>فيديوغرافيك</span>
+                        <span>مونتاج</span>
+                        <span>إخراج</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="portfolio-item" data-category="social">
+                <div class="portfolio-image">
+                    <div class="social-overlay">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h3 data-key="project2Title">إدارة محتوى وسائل التواصل</h3>
+                    <p data-key="project2Desc">تخطيط وتنفيذ استراتيجية محتوى لمدة 3 أشهر لعلامة تجارية</p>
+                    <div class="portfolio-tags">
+                        <span>تخطيط</span>
+                        <span>كتابة</span>
+                        <span>تحليل</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="portfolio-item" data-category="photo">
+                <div class="portfolio-image">
+                    <div class="photo-overlay">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h3 data-key="project3Title">جلسة تصوير لمنتج</h3>
+                    <p data-key="project3Desc">تصوير محترف لمنتجات إلكترونية جديدة لاستخدامها في التسويق</p>
+                    <div class="portfolio-tags">
+                        <span>تصوير</span>
+                        <span>إضاءة</span>
+                        <span>تعديل</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="portfolio-item" data-category="video">
+                <div class="portfolio-image">
+                    <div class="play-overlay">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h3 data-key="project4Title">فيديو موشن جرافيك</h3>
+                    <p data-key="project4Desc">إنتاج فيديو موشن جرافيك لشركة ناشئة في مجال التكنولوجيا</p>
+                    <div class="portfolio-tags">
+                        <span>رسوم متحركة</span>
+                        <span>جرافيك</span>
+                        <span>صوت</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="portfolio-item" data-category="social">
+                <div class="portfolio-image">
+                    <div class="social-overlay">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h3 data-key="project5Title">محتوى تيك توك</h3>
+                    <p data-key="project5Desc">إنشاء محتوى تيك توك يومي لعلامة تجارية لمدة شهر</p>
+                    <div class="portfolio-tags">
+                        <span>تيك توك</span>
+                        <span>محتوى قصير</span>
+                        <span>تريند</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="portfolio-item" data-category="photo">
+                <div class="portfolio-image">
+                    <div class="photo-overlay">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h3 data-key="project6Title">تصوير حدث</h3>
+                    <p data-key="project6Desc">توثيق وتصوير حدث إطلاق منتج لشركة تقنية</p>
+                    <div class="portfolio-tags">
+                        <span>تصوير حدث</span>
+                        <span>توثيق</span>
+                        <span>قصصية</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- صفحة المهارات -->
+    <div class="page" id="skills">
+        <div class="page-header">
+            <h1 class="page-title" data-key="skillsTitle">مهاراتي</h1>
+            <p class="page-description" data-key="skillsDescription">مجموعة من المهارات التقنية والإبداعية التي أتمتع بها في مجال صناعة المحتوى</p>
+        </div>
+        
+        <div class="skills-container">
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3 data-key="creativeSkills">المهارات الإبداعية</h3>
+                    <div class="skill-item">
+                        <span class="skill-name" data-key="skillVideo">إنتاج الفيديو والمونتاج</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="95"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name" data-key="skillWriting">كتابة المحتوى الإبداعي</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="90"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name" data-key="skillPhoto">التصوير الفوتوغرافي</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="85"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name" data-key="skillDesign">التصميم البصري</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="80"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3 data-key="technicalSkills">المهارات التقنية</h3>
+                    <div class="skill-item">
+                        <span class="skill-name" data-key="skillPremiere">Adobe Premiere Pro</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="95"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name" data-key="skillAfter">Adobe After Effects</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="88"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name" data-key="skillPhotoshop">Adobe Photoshop</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="85"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name" data-key="skillAnalytics">تحليل البيانات</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="82"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3 data-key="softSkills">المهارات الشخصية</h3>
+                    <div class="skill-item">
+                        <span class="skill-name" data-key="skillCommunication">التواصل الفعال</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="92"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name" data-key="skillTime">إدارة الوقت</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="90"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name" data-key="skillProblem">حل المشكلات</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="87"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name" data-key="skillTeam">العمل الجماعي</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="85"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- الأدوات -->
+            <div class="tools-section">
+                <h3 data-key="toolsTitle">الأدوات التي أستخدمها</h3>
+                <div class="tools-grid">
+                    <div class="tool-item">
+                        <i class="fab fa-adobe"></i>
+                        <span>Adobe Creative Suite</span>
+                    </div>
+                    <div class="tool-item">
+                        <i class="fas fa-video"></i>
+                        <span>Final Cut Pro</span>
+                    </div>
+                    <div class="tool-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Google Analytics</span>
+                    </div>
+                    <div class="tool-item">
+                        <i class="fab fa-figma"></i>
+                        <span>Figma</span>
+                    </div>
+                    <div class="tool-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Asana/Trello</span>
+                    </div>
+                    <div class="tool-item">
+                        <i class="fas fa-camera"></i>
+                        <span>Adobe Lightroom</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- صفحة الاتصال -->
+    <div class="page" id="contact">
+        <div class="page-header">
+            <h1 class="page-title" data-key="contactTitle">لنعمل معًا</h1>
+            <p class="page-description" data-key="contactDescription">أهلاً بك! دعنا نناقش مشروعك القادم ونحول أفكارك إلى محتوى إبداعي مؤثر</p>
+        </div>
+        
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-content">
+                        <h3 data-key="emailTitle">البريد الإلكتروني</h3>
+                        <p>ziad@contentcreator.com</p>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-content">
+                        <h3 data-key="phoneTitle">الهاتف</h3>
+                        <p>+966 55 123 4567</p>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-content">
+                        <h3 data-key="locationTitle">الموقع</h3>
+                        <p data-key="locationText">الرياض، المملكة العربية السعودية</p>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="contact-content">
+                        <h3 data-key="hoursTitle">ساعات العمل</h3>
+                        <p data-key="hoursText">الأحد - الخميس: 9 ص - 6 م</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name" data-key="formName">الاسم *</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" data-key="formEmail">البريد الإلكتروني *</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject" data-key="formSubject">نوع المشروع *</label>
+                        <select id="subject" class="form-control" required>
+                            <option value="">اختر نوع المشروع</option>
+                            <option value="video">إنتاج فيديو</option>
+                            <option value="content">كتابة محتوى</option>
+                            <option value="photo">التصوير</option>
+                            <option value="strategy">استراتيجية محتوى</option>
+                            <option value="other">أخرى</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message" data-key="formMessage">تفاصيل المشروع *</label>
+                        <textarea id="message" class="form-control" required placeholder="أخبرني عن مشروعك وأهدافك..." data-key="formMessagePlaceholder"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" data-key="formSubmit">
+                        <i class="fas fa-paper-plane"></i> أرسل الرسالة
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- التذييل -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-video"></i>
+                    <span>زياد</span>
+                </div>
+                <p class="footer-text" data-key="footerText">صانع محتوى إبداعي متخصص في إنتاج محتوى مرئي مؤثر يجمع بين الإبداع والتسويق الرقمي</p>
+                
+                <div class="footer-social">
+                    <a href="#" class="footer-social-link">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" class="footer-social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="footer-social-link">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="#" class="footer-social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+                
+                <p class="copyright">© 2024 زياد. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
