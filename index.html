@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elyra | Abstract Digital Artist & Designer</title>
-    <meta name="description" content="Elyra - Abstract Digital Artist & Designer specializing in minimalist visual identity and artistic direction. Creating serene digital experiences.">
+    <title>Aseel | Content Creator & Digital Storyteller</title>
+    <meta name="description" content="Aseel - Content Creator specializing in digital storytelling, brand content strategy, and social media content. Creating compelling digital narratives.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📱</text></svg>">
     
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
@@ -25,24 +25,24 @@
     <div class="abstract-element abstract-element-1"></div>
     <div class="abstract-element abstract-element-2"></div>
     <div class="abstract-element abstract-element-3"></div>
-    <div class="abstract-element abstract-element-4"></div>
-    <div class="abstract-element abstract-element-5"></div>
 
     <!-- Navigation -->
     <header class="header" id="header">
         <nav class="nav container">
             <a href="#hero" class="nav__logo">
-                <span class="nav__logo-text">Elyra</span>
-                <span class="nav__logo-sub" data-i18n="nav.designer">Abstract Artist</span>
+                <div class="logo-container">
+                    <span class="nav__logo-text">Aseel</span>
+                    <span class="nav__logo-sub" data-i18n="nav.creator">Content Creator</span>
+                </div>
             </a>
             
             <div class="nav__menu" id="navMenu">
                 <ul class="nav__list">
                     <li><a href="#hero" class="nav__link active" data-i18n="nav.home">Home</a></li>
-                    <li><a href="#about" class="nav__link" data-i18n="nav.about">Artistry</a></li>
-                    <li><a href="#projects" class="nav__link" data-i18n="nav.work">Works</a></li>
+                    <li><a href="#about" class="nav__link" data-i18n="nav.about">About</a></li>
                     <li><a href="#services" class="nav__link" data-i18n="nav.services">Services</a></li>
-                    <li><a href="#gallery" class="nav__link" data-i18n="nav.gallery">Gallery</a></li>
+                    <li><a href="#portfolio" class="nav__link" data-i18n="nav.portfolio">Portfolio</a></li>
+                    <li><a href="#testimonials" class="nav__link" data-i18n="nav.testimonials">Testimonials</a></li>
                     <li><a href="#contact" class="nav__link" data-i18n="nav.contact">Contact</a></li>
                 </ul>
             </div>
@@ -70,31 +70,31 @@
         
         <div class="hero__content container">
             <div class="hero__text fade-in-up">
-                <div class="hero__label" data-i18n="hero.subtitle">Abstract Artistry</div>
+                <div class="hero__label" data-i18n="hero.subtitle">Digital Storytelling</div>
                 <h1 class="hero__title">
-                    <span class="hero__title-line hero__title-line--1 fade-in-up" style="animation-delay: 0.1s">Elyra</span>
-                    <span class="hero__title-line hero__title-line--2 fade-in-up" style="animation-delay: 0.2s" data-i18n="hero.title">Abstract Digital Artist</span>
+                    <span class="hero__title-line hero__title-line--1 fade-in-up" style="animation-delay: 0.1s">Aseel</span>
+                    <span class="hero__title-line hero__title-line--2 fade-in-up" style="animation-delay: 0.2s" data-i18n="hero.title">Content Creator</span>
                 </h1>
                 
                 <p class="hero__subtitle fade-in-up" style="animation-delay: 0.3s" data-i18n="hero.description">
-                    Crafting serene visual experiences that blend minimalism, abstract forms, and emotional depth.
+                    Crafting compelling narratives and engaging content that connects brands with their audiences.
                 </p>
                 
                 <div class="hero__actions fade-in-up" style="animation-delay: 0.4s">
-                    <a href="#projects" class="btn btn--primary btn--large">
-                        <span class="btn__text" data-i18n="hero.viewPortfolio">View Artworks</span>
+                    <a href="#portfolio" class="btn btn--primary btn--large">
+                        <span class="btn__text" data-i18n="hero.viewWork">View My Work</span>
                         <i class="btn__icon fas fa-arrow-down"></i>
                     </a>
                     <a href="#contact" class="btn btn--outline btn--large">
-                        <span class="btn__text" data-i18n="hero.startProject">Commission Art</span>
-                        <i class="btn__icon fas fa-palette"></i>
+                        <span class="btn__text" data-i18n="hero.contactMe">Let's Collaborate</span>
+                        <i class="btn__icon fas fa-comments"></i>
                     </a>
                 </div>
             </div>
         </div>
         
         <a href="#about" class="hero__scroll fade-in" style="animation-delay: 0.8s">
-            <span class="hero__scroll-text" data-i18n="hero.explore">Discover</span>
+            <span class="hero__scroll-text" data-i18n="hero.explore">Learn More</span>
             <div class="hero__scroll-line"></div>
         </a>
     </section>
@@ -105,9 +105,9 @@
             <div class="section__header fade-in-up">
                 <h2 class="section__title">
                     <span class="section__title-number">01</span>
-                    <span class="section__title-text" data-i18n="about.title">Artistic Vision</span>
+                    <span class="section__title-text" data-i18n="about.title">About Me</span>
                 </h2>
-                <p class="section__subtitle" data-i18n="about.subtitle">Where abstraction meets emotion in digital form</p>
+                <p class="section__subtitle" data-i18n="about.subtitle">Crafting stories that resonate and engage</p>
             </div>
             
             <div class="about__content">
@@ -115,119 +115,37 @@
                     <div class="image-frame">
                         <div class="image-frame__inner">
                             <div class="image-placeholder">
-                                <i class="image-placeholder__icon fas fa-brush"></i>
-                                <span class="image-placeholder__text" data-i18n="about.imageText">Visual Poet</span>
+                                <i class="image-placeholder__icon fas fa-video"></i>
+                                <span class="image-placeholder__text" data-i18n="about.imageText">Content Creator</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="about__text fade-in-right">
-                    <h3 class="about__heading" data-i18n="about.heading">Art with Intention</h3>
+                    <h3 class="about__heading" data-i18n="about.heading">My Story</h3>
                     
                     <div class="about__description">
-                        <p data-i18n="about.description1">I specialize in creating abstract digital art that evokes emotion and invites contemplation. My work explores the balance between form and emptiness, color and space.</p>
+                        <p data-i18n="about.description1">I'm Aseel, a passionate content creator with over 5 years of experience in digital storytelling. I specialize in creating engaging content across multiple platforms that helps brands connect authentically with their audience.</p>
                         
-                        <p data-i18n="about.description2">With over 6 years in digital artistry, I've collaborated with galleries and collectors worldwide to create pieces that transform spaces and inspire moments of reflection.</p>
+                        <p data-i18n="about.description2">My journey began with a simple smartphone and a passion for storytelling. Today, I collaborate with brands and businesses to create compelling content strategies that drive engagement and build communities.</p>
                     </div>
                     
-                    <div class="about__signature">
-                        <div class="signature">
-                            <span class="signature__name">Elyra</span>
-                            <span class="signature__title" data-i18n="about.designerTitle">Abstract Artist</span>
+                    <div class="about__stats">
+                        <div class="stat">
+                            <span class="stat__number" data-i18n="about.stats.projects">150+</span>
+                            <span class="stat__label" data-i18n="about.stats.projectsLabel">Projects</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat__number" data-i18n="about.stats.clients">50+</span>
+                            <span class="stat__label" data-i18n="about.stats.clientsLabel">Happy Clients</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat__number" data-i18n="about.stats.platforms">8+</span>
+                            <span class="stat__label" data-i18n="about.stats.platformsLabel">Platforms</span>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="section section--projects" id="projects">
-        <div class="container">
-            <div class="section__header fade-in-up">
-                <h2 class="section__title">
-                    <span class="section__title-number">02</span>
-                    <span class="section__title-text" data-i18n="projects.title">Selected Works</span>
-                </h2>
-                <p class="section__subtitle" data-i18n="projects.subtitle">Curated pieces showcasing abstract expression</p>
-            </div>
-            
-            <div class="projects__grid">
-                <article class="project-card fade-in-up" data-project="1" style="animation-delay: 0.1s">
-                    <div class="project-card__image project-card__image--1">
-                        <div class="project-card__overlay">
-                            <span class="project-card__category" data-i18n="projects.project1.category">Digital Series</span>
-                            <span class="project-card__year">2024</span>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card__content">
-                        <h3 class="project-card__title" data-i18n="projects.project1.title">Ethereal Forms</h3>
-                        <p class="project-card__description" data-i18n="projects.project1.description">A study in fluid abstraction and organic digital textures</p>
-                        
-                        <div class="project-card__tags">
-                            <span class="tag" data-i18n="projects.tags.abstract">Abstract</span>
-                            <span class="tag" data-i18n="projects.tags.digital">Digital</span>
-                            <span class="tag" data-i18n="projects.tags.texture">Texture</span>
-                        </div>
-                        
-                        <button class="project-card__link project-view-btn" data-project="1">
-                            <span data-i18n="projects.viewCase">View Series</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </article>
-                
-                <article class="project-card project-card--featured fade-in-up" data-project="2" style="animation-delay: 0.2s">
-                    <div class="project-card__image project-card__image--2">
-                        <div class="project-card__overlay">
-                            <span class="project-card__category" data-i18n="projects.project2.category">Gallery Installation</span>
-                            <span class="project-card__year">2024</span>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card__content">
-                        <h3 class="project-card__title" data-i18n="projects.project2.title">Silent Dialogue</h3>
-                        <p class="project-card__description" data-i18n="projects.project2.description">Interactive digital installation exploring space and perception</p>
-                        
-                        <div class="project-card__tags">
-                            <span class="tag" data-i18n="projects.tags.installation">Installation</span>
-                            <span class="tag" data-i18n="projects.tags.interactive">Interactive</span>
-                            <span class="tag" data-i18n="projects.tags.space">Space</span>
-                        </div>
-                        
-                        <button class="project-card__link project-view-btn" data-project="2">
-                            <span data-i18n="projects.viewCase">View Installation</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </article>
-                
-                <article class="project-card fade-in-up" data-project="3" style="animation-delay: 0.3s">
-                    <div class="project-card__image project-card__image--3">
-                        <div class="project-card__overlay">
-                            <span class="project-card__category" data-i18n="projects.project3.category">Private Collection</span>
-                            <span class="project-card__year">2023</span>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card__content">
-                        <h3 class="project-card__title" data-i18n="projects.project3.title">Whispering Canvas</h3>
-                        <p class="project-card__description" data-i18n="projects.project3.description">Large-scale digital pieces for private residences</p>
-                        
-                        <div class="project-card__tags">
-                            <span class="tag" data-i18n="projects.tags.collection">Collection</span>
-                            <span class="tag" data-i18n="projects.tags.large">Large Scale</span>
-                            <span class="tag" data-i18n="projects.tags.canvas">Canvas</span>
-                        </div>
-                        
-                        <button class="project-card__link project-view-btn" data-project="3">
-                            <span data-i18n="projects.viewCase">View Collection</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </article>
             </div>
         </div>
     </section>
@@ -237,119 +155,253 @@
         <div class="container">
             <div class="section__header fade-in-up">
                 <h2 class="section__title">
-                    <span class="section__title-number">03</span>
-                    <span class="section__title-text" data-i18n="services.title">Art Services</span>
+                    <span class="section__title-number">02</span>
+                    <span class="section__title-text" data-i18n="services.title">Services</span>
                 </h2>
-                <p class="section__subtitle" data-i18n="services.subtitle">Transforming spaces through abstract expression</p>
+                <p class="section__subtitle" data-i18n="services.subtitle">How I can help you grow</p>
             </div>
             
             <div class="services__grid">
                 <div class="service-card fade-in-up" style="animation-delay: 0.1s">
                     <div class="service-card__header">
                         <div class="service-card__icon">
-                            <i class="fas fa-paint-brush"></i>
+                            <i class="fas fa-video"></i>
                         </div>
-                        <h3 class="service-card__title" data-i18n="services.service1.title">Commissioned Art</h3>
+                        <h3 class="service-card__title" data-i18n="services.service1.title">Video Content</h3>
                     </div>
                     
                     <div class="service-card__body">
                         <p class="service-card__description" data-i18n="services.service1.description">
-                            Bespoke abstract pieces created specifically for your space, considering light, texture, and emotional resonance.
+                            Engaging video content for social media, YouTube, and websites. From short-form reels to long-form documentaries.
                         </p>
+                        <ul class="service-card__list">
+                            <li data-i18n="services.service1.list1">Social Media Videos</li>
+                            <li data-i18n="services.service1.list2">YouTube Content</li>
+                            <li data-i18n="services.service1.list3">Explainer Videos</li>
+                        </ul>
                     </div>
                 </div>
                 
                 <div class="service-card service-card--highlight fade-in-up" style="animation-delay: 0.2s">
                     <div class="service-card__header">
                         <div class="service-card__icon">
-                            <i class="fas fa-expand-alt"></i>
+                            <i class="fas fa-camera-retro"></i>
                         </div>
-                        <h3 class="service-card__title" data-i18n="services.service2.title">Digital Installations</h3>
+                        <h3 class="service-card__title" data-i18n="services.service2.title">Social Media</h3>
                     </div>
                     
                     <div class="service-card__body">
                         <p class="service-card__description" data-i18n="services.service2.description">
-                            Immersive digital experiences for galleries, corporate spaces, and private collections.
+                            Complete social media management and content creation across all major platforms.
                         </p>
+                        <ul class="service-card__list">
+                            <li data-i18n="services.service2.list1">Content Strategy</li>
+                            <li data-i18n="services.service2.list2">Platform Management</li>
+                            <li data-i18n="services.service2.list3">Engagement Growth</li>
+                        </ul>
                     </div>
                 </div>
                 
                 <div class="service-card fade-in-up" style="animation-delay: 0.3s">
                     <div class="service-card__header">
                         <div class="service-card__icon">
-                            <i class="fas fa-cube"></i>
+                            <i class="fas fa-pen-nib"></i>
                         </div>
-                        <h3 class="service-card__title" data-i18n="services.service3.title">Art Direction</h3>
+                        <h3 class="service-card__title" data-i18n="services.service3.title">Content Strategy</h3>
                     </div>
                     
                     <div class="service-card__body">
                         <p class="service-card__description" data-i18n="services.service3.description">
-                            Curating and directing artistic projects that blend digital innovation with timeless aesthetic principles.
+                            Strategic planning and execution of content campaigns that drive results and build brand loyalty.
                         </p>
+                        <ul class="service-card__list">
+                            <li data-i18n="services.service3.list1">Brand Storytelling</li>
+                            <li data-i18n="services.service3.list2">Campaign Planning</li>
+                            <li data-i18n="services.service3.list3">Analytics & Reporting</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="section section--gallery" id="gallery">
+    <!-- Portfolio Section -->
+    <section class="section section--portfolio" id="portfolio">
+        <div class="container">
+            <div class="section__header fade-in-up">
+                <h2 class="section__title">
+                    <span class="section__title-number">03</span>
+                    <span class="section__title-text" data-i18n="portfolio.title">Portfolio</span>
+                </h2>
+                <p class="section__subtitle" data-i18n="portfolio.subtitle">Recent projects and collaborations</p>
+            </div>
+            
+            <div class="portfolio__grid">
+                <article class="portfolio-card fade-in-up" style="animation-delay: 0.1s">
+                    <div class="portfolio-card__image portfolio-card__image--1">
+                        <div class="portfolio-card__overlay">
+                            <span class="portfolio-card__category" data-i18n="portfolio.project1.category">Brand Campaign</span>
+                            <span class="portfolio-card__year">2024</span>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-card__content">
+                        <h3 class="portfolio-card__title" data-i18n="portfolio.project1.title">Lifestyle Brand Series</h3>
+                        <p class="portfolio-card__description" data-i18n="portfolio.project1.description">Complete social media content strategy and video series for a wellness brand</p>
+                        
+                        <div class="portfolio-card__tags">
+                            <span class="tag" data-i18n="portfolio.tags.video">Video</span>
+                            <span class="tag" data-i18n="portfolio.tags.social">Social Media</span>
+                            <span class="tag" data-i18n="portfolio.tags.strategy">Strategy</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="portfolio-card fade-in-up" style="animation-delay: 0.2s">
+                    <div class="portfolio-card__image portfolio-card__image--2">
+                        <div class="portfolio-card__overlay">
+                            <span class="portfolio-card__category" data-i18n="portfolio.project2.category">Educational Series</span>
+                            <span class="portfolio-card__year">2024</span>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-card__content">
+                        <h3 class="portfolio-card__title" data-i18n="portfolio.project2.title">Tech Tutorial Series</h3>
+                        <p class="portfolio-card__description" data-i18n="portfolio.project2.description">YouTube series explaining complex tech concepts in simple terms</p>
+                        
+                        <div class="portfolio-card__tags">
+                            <span class="tag" data-i18n="portfolio.tags.youtube">YouTube</span>
+                            <span class="tag" data-i18n="portfolio.tags.education">Education</span>
+                            <span class="tag" data-i18n="portfolio.tags.animation">Animation</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="portfolio-card fade-in-up" style="animation-delay: 0.3s">
+                    <div class="portfolio-card__image portfolio-card__image--3">
+                        <div class="portfolio-card__overlay">
+                            <span class="portfolio-card__category" data-i18n="portfolio.project3.category">Social Media</span>
+                            <span class="portfolio-card__year">2023</span>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-card__content">
+                        <h3 class="portfolio-card__title" data-i18n="portfolio.project3.title">Fashion Brand Launch</h3>
+                        <p class="portfolio-card__description" data-i18n="portfolio.project3.description">Social media campaign for a sustainable fashion brand launch</p>
+                        
+                        <div class="portfolio-card__tags">
+                            <span class="tag" data-i18n="portfolio.tags.campaign">Campaign</span>
+                            <span class="tag" data-i18n="portfolio.tags.fashion">Fashion</span>
+                            <span class="tag" data-i18n="portfolio.tags.instagram">Instagram</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="portfolio__cta fade-in-up" style="animation-delay: 0.4s">
+                <a href="#contact" class="btn btn--outline">
+                    <span data-i18n="portfolio.seeMore">See More Projects</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section section--testimonials" id="testimonials">
         <div class="container">
             <div class="section__header fade-in-up">
                 <h2 class="section__title">
                     <span class="section__title-number">04</span>
-                    <span class="section__title-text" data-i18n="gallery.title">Abstract Gallery</span>
+                    <span class="section__title-text" data-i18n="testimonials.title">Client Testimonials</span>
                 </h2>
-                <p class="section__subtitle" data-i18n="gallery.subtitle">A meditation on form, color, and space</p>
+                <p class="section__subtitle" data-i18n="testimonials.subtitle">What my clients say about working together</p>
             </div>
             
-            <div class="gallery__grid">
-                <div class="gallery-item fade-in-scale" style="animation-delay: 0.1s">
-                    <div class="gallery-item__image gallery-item__image--1">
-                        <div class="gallery-item__overlay">
-                            <span class="gallery-item__title" data-i18n="gallery.item1">Fluid Forms</span>
+            <div class="testimonials__slider">
+                <div class="testimonials__track">
+                    <div class="testimonial-card fade-in-up" style="animation-delay: 0.1s">
+                        <div class="testimonial-card__content">
+                            <div class="testimonial-card__rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-card__text" data-i18n="testimonials.testimonial1.text">
+                                "Working with Aseel transformed our brand's online presence. Her content strategy increased our engagement by 200% in just three months. Professional, creative, and always delivers beyond expectations."
+                            </p>
+                        </div>
+                        
+                        <div class="testimonial-card__author">
+                            <div class="testimonial-card__avatar testimonial-card__avatar--1"></div>
+                            <div class="testimonial-card__info">
+                                <h4 class="testimonial-card__name" data-i18n="testimonials.testimonial1.name">Sarah Johnson</h4>
+                                <p class="testimonial-card__role" data-i18n="testimonials.testimonial1.role">Marketing Director, TechFlow</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card fade-in-up" style="animation-delay: 0.2s">
+                        <div class="testimonial-card__content">
+                            <div class="testimonial-card__rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-card__text" data-i18n="testimonials.testimonial2.text">
+                                "Aseel's video content for our product launch was exceptional. She understood our brand perfectly and created content that resonated with our target audience. The results exceeded all our KPIs."
+                            </p>
+                        </div>
+                        
+                        <div class="testimonial-card__author">
+                            <div class="testimonial-card__avatar testimonial-card__avatar--2"></div>
+                            <div class="testimonial-card__info">
+                                <h4 class="testimonial-card__name" data-i18n="testimonials.testimonial2.name">Ahmed Hassan</h4>
+                                <p class="testimonial-card__role" data-i18n="testimonials.testimonial2.role">CEO, Bloom Cosmetics</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card fade-in-up" style="animation-delay: 0.3s">
+                        <div class="testimonial-card__content">
+                            <div class="testimonial-card__rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-card__text" data-i18n="testimonials.testimonial3.text">
+                                "As a startup, we needed someone who could wear multiple hats. Aseel delivered amazing content across all our social platforms while staying true to our brand voice. She's more than a content creator - she's a partner."
+                            </p>
+                        </div>
+                        
+                        <div class="testimonial-card__author">
+                            <div class="testimonial-card__avatar testimonial-card__avatar--3"></div>
+                            <div class="testimonial-card__info">
+                                <h4 class="testimonial-card__name" data-i18n="testimonials.testimonial3.name">Layla Mohammed</h4>
+                                <p class="testimonial-card__role" data-i18n="testimonials.testimonial3.role">Founder, Nomad Coffee Co.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="gallery-item fade-in-scale" style="animation-delay: 0.15s">
-                    <div class="gallery-item__image gallery-item__image--2">
-                        <div class="gallery-item__overlay">
-                            <span class="gallery-item__title" data-i18n="gallery.item2">Subtle Gradients</span>
-                        </div>
+                <div class="testimonials__controls">
+                    <button class="testimonials__control testimonials__control--prev" aria-label="Previous testimonial">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="testimonials__dots">
+                        <button class="testimonials__dot active" aria-label="Go to testimonial 1"></button>
+                        <button class="testimonials__dot" aria-label="Go to testimonial 2"></button>
+                        <button class="testimonials__dot" aria-label="Go to testimonial 3"></button>
                     </div>
-                </div>
-                
-                <div class="gallery-item fade-in-scale" style="animation-delay: 0.2s">
-                    <div class="gallery-item__image gallery-item__image--3">
-                        <div class="gallery-item__overlay">
-                            <span class="gallery-item__title" data-i18n="gallery.item3">Organic Textures</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in-scale" style="animation-delay: 0.25s">
-                    <div class="gallery-item__image gallery-item__image--4">
-                        <div class="gallery-item__overlay">
-                            <span class="gallery-item__title" data-i18n="gallery.item4">Geometric Balance</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in-scale" style="animation-delay: 0.3s">
-                    <div class="gallery-item__image gallery-item__image--5">
-                        <div class="gallery-item__overlay">
-                            <span class="gallery-item__title" data-i18n="gallery.item5">Minimalist Space</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in-scale" style="animation-delay: 0.35s">
-                    <div class="gallery-item__image gallery-item__image--6">
-                        <div class="gallery-item__overlay">
-                            <span class="gallery-item__title" data-i18n="gallery.item6">Emotional Color</span>
-                        </div>
-                    </div>
+                    <button class="testimonials__control testimonials__control--next" aria-label="Next testimonial">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -361,16 +413,16 @@
             <div class="section__header fade-in-up">
                 <h2 class="section__title">
                     <span class="section__title-number">05</span>
-                    <span class="section__title-text" data-i18n="contact.title">Let's Create</span>
+                    <span class="section__title-text" data-i18n="contact.title">Let's Work Together</span>
                 </h2>
-                <p class="section__subtitle" data-i18n="contact.subtitle">Ready to transform your space with art?</p>
+                <p class="section__subtitle" data-i18n="contact.subtitle">Ready to create amazing content?</p>
             </div>
             
             <div class="contact__grid">
                 <div class="contact__info fade-in-left">
-                    <h3 class="contact__heading" data-i18n="contact.heading">Commission Art</h3>
+                    <h3 class="contact__heading" data-i18n="contact.heading">Get In Touch</h3>
                     <p class="contact__description" data-i18n="contact.description">
-                        Interested in a custom piece? I'd love to discuss your vision and create something truly unique for your space.
+                        Have a project in mind? I'd love to hear about it. Let's discuss how we can create content that tells your brand's story and connects with your audience.
                     </p>
                     
                     <div class="contact__methods">
@@ -380,7 +432,17 @@
                             </div>
                             <div class="contact-method__content">
                                 <h4 data-i18n="contact.emailTitle">Email</h4>
-                                <a href="mailto:studio@elyra.art" class="contact-method__link">studio@elyra.art</a>
+                                <a href="mailto:hello@aseelcontent.com" class="contact-method__link">hello@aseelcontent.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-method__icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-method__content">
+                                <h4 data-i18n="contact.phoneTitle">Phone</h4>
+                                <a href="tel:+966555555555" class="contact-method__link">+966 55 555 5555</a>
                             </div>
                         </div>
                         
@@ -389,18 +451,8 @@
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
                             <div class="contact-method__content">
-                                <h4 data-i18n="contact.locationTitle">Studio</h4>
-                                <span class="contact-method__text" data-i18n="contact.location">Global Commissions</span>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-method">
-                            <div class="contact-method__icon">
-                                <i class="fas fa-calendar-alt"></i>
-                            </div>
-                            <div class="contact-method__content">
-                                <h4 data-i18n="contact.availabilityTitle">Availability</h4>
-                                <span class="contact-method__text" data-i18n="contact.availability">Limited Commissions Open</span>
+                                <h4 data-i18n="contact.locationTitle">Location</h4>
+                                <span class="contact-method__text" data-i18n="contact.location">Available for remote work worldwide</span>
                             </div>
                         </div>
                     </div>
@@ -419,36 +471,47 @@
                         </div>
                         
                         <div class="form-group">
+                            <select id="service" name="service" required>
+                                <option value="" disabled selected></option>
+                                <option value="video" data-i18n="contact.form.options.video">Video Content</option>
+                                <option value="social" data-i18n="contact.form.options.social">Social Media</option>
+                                <option value="strategy" data-i18n="contact.form.options.strategy">Content Strategy</option>
+                                <option value="other" data-i18n="contact.form.options.other">Other</option>
+                            </select>
+                            <label for="service" data-i18n="contact.form.service">Service Needed</label>
+                        </div>
+                        
+                        <div class="form-group">
                             <textarea id="message" name="message" rows="4" required placeholder=" "></textarea>
-                            <label for="message" data-i18n="contact.form.message">Project Vision</label>
+                            <label for="message" data-i18n="contact.form.message">Project Details</label>
                         </div>
                         
                         <button type="submit" class="btn btn--primary btn--full">
-                            <span class="btn__text" data-i18n="contact.form.submit">Discuss Commission</span>
-                            <i class="btn__icon fas fa-palette"></i>
+                            <span class="btn__text" data-i18n="contact.form.submit">Send Message</span>
+                            <i class="btn__icon fas fa-paper-plane"></i>
                         </button>
                     </form>
                 </div>
             </div>
             
             <div class="contact__social fade-in-up">
-                <h4 class="contact__social-title" data-i18n="contact.socialTitle">Follow the Journey</h4>
+                <h4 class="contact__social-title" data-i18n="contact.socialTitle">Follow My Content</h4>
                 <div class="social-links">
                     <a href="https://instagram.com" class="social-link fade-in-up" target="_blank" aria-label="Instagram" style="animation-delay: 0.1s">
                         <i class="fab fa-instagram"></i>
                         <span class="social-link__text">Instagram</span>
                     </a>
-                    <a href="https://artsy.net" class="social-link fade-in-up" target="_blank" aria-label="Artsy" style="animation-delay: 0.15s">
-                        <i class="fas fa-palette"></i>
-                        <span class="social-link__text">Artsy</span>
+                    <a href="https://youtube.com" class="social-link fade-in-up" target="_blank" aria-label="YouTube" style="animation-delay: 0.15s">
+                        <i class="fab fa-youtube"></i>
+                        <span class="social-link__text">YouTube</span>
                     </a>
-                    <a href="https://pinterest.com" class="social-link fade-in-up" target="_blank" aria-label="Pinterest" style="animation-delay: 0.2s">
-                        <i class="fab fa-pinterest"></i>
-                        <span class="social-link__text">Pinterest</span>
+                    <a href="https://tiktok.com" class="social-link fade-in-up" target="_blank" aria-label="TikTok" style="animation-delay: 0.2s">
+                        <i class="fab fa-tiktok"></i>
+                        <span class="social-link__text">TikTok</span>
                     </a>
-                    <a href="https://behance.net" class="social-link fade-in-up" target="_blank" aria-label="Behance" style="animation-delay: 0.25s">
-                        <i class="fab fa-behance"></i>
-                        <span class="social-link__text">Behance</span>
+                    <a href="https://linkedin.com" class="social-link fade-in-up" target="_blank" aria-label="LinkedIn" style="animation-delay: 0.25s">
+                        <i class="fab fa-linkedin-in"></i>
+                        <span class="social-link__text">LinkedIn</span>
                     </a>
                 </div>
             </div>
@@ -459,49 +522,10 @@
     <footer class="footer">
         <div class="container">
             <div class="footer__content">
-                <p class="footer__copyright">© <span id="currentYear"></span> Elyra Studio. <span data-i18n="footer.rights">All rights reserved</span>.</p>
+                <p class="footer__copyright">© <span id="currentYear"></span> Aseel Content. <span data-i18n="footer.rights">All rights reserved</span>.</p>
             </div>
         </div>
     </footer>
-
-    <!-- Project Modal -->
-    <div class="modal" id="projectModal">
-        <div class="modal__overlay"></div>
-        <div class="modal__content">
-            <button class="modal__close" id="modalClose">
-                <i class="fas fa-times"></i>
-            </button>
-            
-            <div class="modal__header">
-                <span class="modal__category" id="modalCategory">Digital Series</span>
-                <h2 class="modal__title" id="modalTitle">Ethereal Forms</h2>
-                <span class="modal__year" id="modalYear">2024</span>
-            </div>
-            
-            <div class="modal__body">
-                <div class="modal__image" id="modalImage"></div>
-                
-                <div class="modal__info">
-                    <div class="modal__section">
-                        <h3 data-i18n="modal.overview">Artistic Statement</h3>
-                        <p id="modalDescription">A study in fluid abstraction and organic digital textures exploring the space between form and emptiness.</p>
-                    </div>
-                    
-                    <div class="modal__section">
-                        <h3 data-i18n="modal.techniques">Techniques Used</h3>
-                        <div class="modal__tags" id="modalTags"></div>
-                    </div>
-                    
-                    <div class="modal__footer">
-                        <a href="#contact" class="btn btn--primary">
-                            <span data-i18n="modal.startProject">Commission Similar</span>
-                            <i class="fas fa-palette"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Scripts -->
     <script src="script.js"></script>
