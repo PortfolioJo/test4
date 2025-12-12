@@ -1,5 +1,5 @@
 // ===========================================
-// Main Application - بورتفوليو الفن التجريدي
+// Main Application - بورتفوليو صانعة محتوى
 // ===========================================
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -9,10 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
     initCurrentYear();
     initScrollAnimations();
     initHoverEffects();
-    initProjectModal();
+    initTestimonialsSlider();
     initContactForm();
     initScrollProgress();
-    initAbstractEffects();
 });
 
 // ===========================================
@@ -137,7 +136,7 @@ function initThemeSwitcher() {
     const themeIcon = themeToggle.querySelector('.theme-toggle__icon');
     
     // الحصول على الثيم المحفوظ أو استخدام الافتراضي
-    const savedTheme = localStorage.getItem('elyra-theme') || 'light';
+    const savedTheme = localStorage.getItem('aseel-theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
     updateThemeIcon(savedTheme);
     
@@ -152,7 +151,7 @@ function initThemeSwitcher() {
         // تحديث الثيم بعد تأخير بسيط للأنيميشن
         setTimeout(() => {
             document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('elyra-theme', newTheme);
+            localStorage.setItem('aseel-theme', newTheme);
             updateThemeIcon(newTheme);
             this.style.animation = '';
         }, 250);
@@ -178,7 +177,7 @@ function initLanguageSwitcher() {
     const langTexts = document.querySelectorAll('.language-toggle__text');
     
     // الحصول على اللغة المحفوظة أو استخدام الافتراضي
-    const savedLang = localStorage.getItem('elyra-lang') || 'en';
+    const savedLang = localStorage.getItem('aseel-lang') || 'en';
     setLanguage(savedLang);
     updateLangToggle(savedLang);
     
@@ -193,7 +192,7 @@ function initLanguageSwitcher() {
         setTimeout(() => {
             setLanguage(newLang);
             updateLangToggle(newLang);
-            localStorage.setItem('elyra-lang', newLang);
+            localStorage.setItem('aseel-lang', newLang);
             this.style.animation = '';
         }, 250);
     });
@@ -275,7 +274,7 @@ function initScrollAnimations() {
 
 function initHoverEffects() {
     // تأثيرات Hover للبطاقات
-    const cards = document.querySelectorAll('.project-card, .service-card, .gallery-item');
+    const cards = document.querySelectorAll('.service-card, .portfolio-card, .testimonial-card');
     
     cards.forEach(card => {
         card.addEventListener('mouseenter', function() {
@@ -317,126 +316,130 @@ function initHoverEffects() {
 }
 
 // ===========================================
-// Abstract Effects
+// Testimonials Slider
 // ===========================================
 
-function initAbstractEffects() {
-    // تحريك العناصر التجريدية
-    const abstractElements = document.querySelectorAll('.abstract-element');
-    abstractElements.forEach((element, index) => {
-        element.style.animationDelay = `${index * -3}s`;
-    });
+function initTestimonialsSlider() {
+    const track = document.querySelector('.testimonials__track');
+    const dots = document.querySelectorAll('.testimonials__dot');
+    const prevBtn = document.querySelector('.testimonials__control--prev');
+    const nextBtn = document.querySelector('.testimonials__control--next');
     
-    // تأثير النسيج على التمرير
-    window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
-        const rate = scrolled * -0.3;
-        document.body.style.backgroundPosition = `0px ${rate}px`;
-    });
+    if (!track) return;
     
-    // تأثيرات عشوائية للعناصر التجريدية
-    setInterval(() => {
-        abstractElements.forEach(element => {
-            const randomOpacity = 0.05 + Math.random() * 0.1;
-            element.style.opacity = randomOpacity;
+    const cards = document.querySelectorAll('.testimonial-card');
+    const cardWidth = cards[0].offsetWidth + parseInt(getComputedStyle(track).gap);
+    let currentIndex = 0;
+    
+    function updateSlider() {
+        track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+        
+        // تحديث النقاط النشطة
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
         });
-    }, 3000);
-}
-
-// ===========================================
-// Project Modal
-// ===========================================
-
-function initProjectModal() {
-    const modal = document.getElementById('projectModal');
-    const modalClose = document.getElementById('modalClose');
-    const projectViewBtns = document.querySelectorAll('.project-view-btn');
-    
-    // بيانات المشاريع
-    const projects = {
-        1: {
-            category: 'Digital Series',
-            title: 'Ethereal Forms',
-            year: '2024',
-            description: 'A study in fluid abstraction and organic digital textures exploring the space between form and emptiness. This series examines the delicate balance of negative space and subtle color transitions.',
-            tags: ['Digital Painting', 'Texture Mapping', 'Color Theory', 'Abstract Composition'],
-            imageClass: 'project-card__image--1'
-        },
-        2: {
-            category: 'Gallery Installation',
-            title: 'Silent Dialogue',
-            year: '2024',
-            description: 'Interactive digital installation exploring space and perception through abstract forms. Viewers engage with shifting perspectives and changing light conditions.',
-            tags: ['Interactive Art', 'Digital Projection', 'Spatial Design', 'Light Art'],
-            imageClass: 'project-card__image--2'
-        },
-        3: {
-            category: 'Private Collection',
-            title: 'Whispering Canvas',
-            year: '2023',
-            description: 'Large-scale digital pieces created for private residences, focusing on creating meditative spaces through abstract art that evolves with changing light throughout the day.',
-            tags: ['Large Format', 'Site Specific', 'Light Interaction', 'Meditative Art'],
-            imageClass: 'project-card__image--3'
-        }
-    };
-    
-    // فتح المودال عند النقر على زر المشروع
-    projectViewBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const projectId = this.getAttribute('data-project');
-            openProjectModal(projectId);
-        });
-    });
-    
-    // إغلاق المودال
-    modalClose.addEventListener('click', closeModal);
-    modal.querySelector('.modal__overlay').addEventListener('click', closeModal);
-    
-    // إغلاق المودال بمفتاح Escape
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
-            closeModal();
-        }
-    });
-    
-    function openProjectModal(projectId) {
-        const project = projects[projectId];
-        const currentLang = document.documentElement.getAttribute('lang') || 'en';
-        
-        if (!project) return;
-        
-        // تحديث محتوى المودال
-        document.getElementById('modalCategory').textContent = project.category;
-        document.getElementById('modalTitle').textContent = project.title;
-        document.getElementById('modalYear').textContent = project.year;
-        document.getElementById('modalDescription').textContent = project.description;
-        
-        // تحديث الوسوم
-        const tagsContainer = document.getElementById('modalTags');
-        tagsContainer.innerHTML = '';
-        project.tags.forEach(tag => {
-            const tagElement = document.createElement('span');
-            tagElement.className = 'tag';
-            tagElement.textContent = tag;
-            tagElement.style.animation = 'fadeInScale 0.3s ease backwards';
-            tagElement.style.animationDelay = `${Math.random() * 0.3}s`;
-            tagsContainer.appendChild(tagElement);
-        });
-        
-        // تحديث الصورة
-        const modalImage = document.getElementById('modalImage');
-        modalImage.className = 'modal__image';
-        modalImage.classList.add(project.imageClass);
-        
-        // عرض المودال
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
     }
     
-    function closeModal() {
-        const modal = document.getElementById('projectModal');
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
+    // الأزرار السابقة والتالية
+    if (prevBtn) {
+        prevBtn.addEventListener('click', function() {
+            currentIndex = currentIndex > 0 ? currentIndex - 1 : cards.length - 1;
+            updateSlider();
+        });
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', function() {
+            currentIndex = currentIndex < cards.length - 1 ? currentIndex + 1 : 0;
+            updateSlider();
+        });
+    }
+    
+    // النقاط
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', function() {
+            currentIndex = index;
+            updateSlider();
+        });
+    });
+    
+    // التمرير التلقائي
+    let autoSlide = setInterval(() => {
+        currentIndex = currentIndex < cards.length - 1 ? currentIndex + 1 : 0;
+        updateSlider();
+    }, 5000);
+    
+    // إيقاف التمرير التلقائي عند التفاعل
+    const sliderContainer = track.parentElement;
+    sliderContainer.addEventListener('mouseenter', () => clearInterval(autoSlide));
+    sliderContainer.addEventListener('mouseleave', () => {
+        autoSlide = setInterval(() => {
+            currentIndex = currentIndex < cards.length - 1 ? currentIndex + 1 : 0;
+            updateSlider();
+        }, 5000);
+    });
+    
+    // دعم السحب على الهاتف
+    let isDragging = false;
+    let startPosition = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    
+    cards.forEach(card => {
+        // منع سلوك السحب الافتراضي للصور
+        card.addEventListener('dragstart', (e) => e.preventDefault());
+    });
+    
+    track.addEventListener('mousedown', startDrag);
+    track.addEventListener('touchstart', startDrag);
+    
+    function startDrag(event) {
+        isDragging = true;
+        startPosition = getPositionX(event);
+        track.style.cursor = 'grabbing';
+        
+        // إيقاف التمرير التلقائي
+        clearInterval(autoSlide);
+        
+        window.addEventListener('mousemove', drag);
+        window.addEventListener('touchmove', drag);
+        window.addEventListener('mouseup', endDrag);
+        window.addEventListener('touchend', endDrag);
+    }
+    
+    function drag(event) {
+        if (!isDragging) return;
+        event.preventDefault();
+        
+        const currentPosition = getPositionX(event);
+        currentTranslate = prevTranslate + currentPosition - startPosition;
+        
+        // تحديث الموضع
+        track.style.transform = `translateX(${currentTranslate - (currentIndex * cardWidth)}px)`;
+    }
+    
+    function endDrag() {
+        if (!isDragging) return;
+        isDragging = false;
+        track.style.cursor = 'grab';
+        
+        const movedBy = currentTranslate - prevTranslate;
+        
+        // إذا تم السحب بما يكفي، انتقل للشريحة التالية أو السابقة
+        if (movedBy < -100 && currentIndex < cards.length - 1) currentIndex++;
+        if (movedBy > 100 && currentIndex > 0) currentIndex--;
+        
+        updateSlider();
+        prevTranslate = currentIndex * -cardWidth;
+        
+        window.removeEventListener('mousemove', drag);
+        window.removeEventListener('touchmove', drag);
+        window.removeEventListener('mouseup', endDrag);
+        window.removeEventListener('touchend', endDrag);
+    }
+    
+    function getPositionX(event) {
+        return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
     }
 }
 
@@ -462,7 +465,7 @@ function initContactForm() {
             // محاكاة الإرسال (في الواقع ستقوم بإرسال البيانات لخادم)
             setTimeout(() => {
                 // عرض رسالة النجاح
-                alert('Thank you for your interest in a commission! I will review your vision and get back to you within 48 hours.');
+                alert('Thank you for your message! I will get back to you within 24 hours.');
                 this.reset();
                 submitBtn.style.animation = '';
                 
@@ -470,11 +473,19 @@ function initContactForm() {
                 const labels = this.querySelectorAll('label');
                 labels.forEach(label => {
                     const input = this.querySelector(`#${label.getAttribute('for')}`);
-                    if (input && !input.value) {
+                    if (input && !input.value && input.tagName !== 'SELECT') {
                         label.style.top = '0.75rem';
                         label.style.fontSize = '1rem';
                     }
                 });
+                
+                // إعادة تعيين التسميات للـ select
+                const select = this.querySelector('select');
+                const selectLabel = this.querySelector('label[for="service"]');
+                if (select && selectLabel) {
+                    selectLabel.style.top = '0.75rem';
+                    selectLabel.style.fontSize = '1rem';
+                }
             }, 1000);
         });
     }
@@ -482,7 +493,7 @@ function initContactForm() {
     // أنيميشن لتسميات النموذج
     const formGroups = document.querySelectorAll('.form-group');
     formGroups.forEach(group => {
-        const input = group.querySelector('input, textarea');
+        const input = group.querySelector('input, select, textarea');
         const label = group.querySelector('label');
         
         if (input && label) {
@@ -493,7 +504,13 @@ function initContactForm() {
             });
             
             input.addEventListener('blur', function() {
-                if (!this.value) {
+                if (this.tagName === 'SELECT') {
+                    if (!this.value) {
+                        label.style.top = '0.75rem';
+                        label.style.fontSize = '1rem';
+                        label.style.color = 'var(--color-text-tertiary)';
+                    }
+                } else if (!this.value) {
                     label.style.top = '0.75rem';
                     label.style.fontSize = '1rem';
                     label.style.color = 'var(--color-text-tertiary)';
@@ -505,6 +522,17 @@ function initContactForm() {
                 label.style.top = '-0.5rem';
                 label.style.fontSize = '0.875rem';
                 label.style.color = 'var(--color-accent-primary)';
+            }
+            
+            // معالجة الـ select
+            if (input.tagName === 'SELECT') {
+                input.addEventListener('change', function() {
+                    if (this.value) {
+                        label.style.top = '-0.5rem';
+                        label.style.fontSize = '0.875rem';
+                        label.style.color = 'var(--color-accent-primary)';
+                    }
+                });
             }
         }
     });
@@ -562,163 +590,197 @@ function initScrollProgress() {
 
 const translations = {
     en: {
-        'nav.designer': 'Abstract Artist',
+        'nav.creator': 'Content Creator',
         'nav.home': 'Home',
-        'nav.about': 'Artistry',
-        'nav.work': 'Works',
+        'nav.about': 'About',
         'nav.services': 'Services',
-        'nav.gallery': 'Gallery',
+        'nav.portfolio': 'Portfolio',
+        'nav.testimonials': 'Testimonials',
         'nav.contact': 'Contact',
         'lang.en': 'EN',
         'lang.ar': 'AR',
-        'hero.subtitle': 'Abstract Artistry',
-        'hero.title': 'Abstract Digital Artist',
-        'hero.description': 'Crafting serene visual experiences that blend minimalism, abstract forms, and emotional depth.',
-        'hero.viewPortfolio': 'View Artworks',
-        'hero.startProject': 'Commission Art',
-        'hero.explore': 'Discover',
-        'about.title': 'Artistic Vision',
-        'about.subtitle': 'Where abstraction meets emotion in digital form',
-        'about.imageText': 'Visual Poet',
-        'about.heading': 'Art with Intention',
-        'about.description1': 'I specialize in creating abstract digital art that evokes emotion and invites contemplation. My work explores the balance between form and emptiness, color and space.',
-        'about.description2': 'With over 6 years in digital artistry, I\'ve collaborated with galleries and collectors worldwide to create pieces that transform spaces and inspire moments of reflection.',
-        'about.designerTitle': 'Abstract Artist',
-        'projects.title': 'Selected Works',
-        'projects.subtitle': 'Curated pieces showcasing abstract expression',
-        'projects.project1.category': 'Digital Series',
-        'projects.project1.title': 'Ethereal Forms',
-        'projects.project1.description': 'A study in fluid abstraction and organic digital textures',
-        'projects.project2.category': 'Gallery Installation',
-        'projects.project2.title': 'Silent Dialogue',
-        'projects.project2.description': 'Interactive digital installation exploring space and perception',
-        'projects.project3.category': 'Private Collection',
-        'projects.project3.title': 'Whispering Canvas',
-        'projects.project3.description': 'Large-scale digital pieces for private residences',
-        'projects.tags.abstract': 'Abstract',
-        'projects.tags.digital': 'Digital',
-        'projects.tags.texture': 'Texture',
-        'projects.tags.installation': 'Installation',
-        'projects.tags.interactive': 'Interactive',
-        'projects.tags.space': 'Space',
-        'projects.tags.collection': 'Collection',
-        'projects.tags.large': 'Large Scale',
-        'projects.tags.canvas': 'Canvas',
-        'projects.viewCase': 'View Series',
-        'services.title': 'Art Services',
-        'services.subtitle': 'Transforming spaces through abstract expression',
-        'services.service1.title': 'Commissioned Art',
-        'services.service1.description': 'Bespoke abstract pieces created specifically for your space, considering light, texture, and emotional resonance.',
-        'services.service2.title': 'Digital Installations',
-        'services.service2.description': 'Immersive digital experiences for galleries, corporate spaces, and private collections.',
-        'services.service3.title': 'Art Direction',
-        'services.service3.description': 'Curating and directing artistic projects that blend digital innovation with timeless aesthetic principles.',
-        'gallery.title': 'Abstract Gallery',
-        'gallery.subtitle': 'A meditation on form, color, and space',
-        'gallery.item1': 'Fluid Forms',
-        'gallery.item2': 'Subtle Gradients',
-        'gallery.item3': 'Organic Textures',
-        'gallery.item4': 'Geometric Balance',
-        'gallery.item5': 'Minimalist Space',
-        'gallery.item6': 'Emotional Color',
-        'contact.title': 'Let\'s Create',
-        'contact.subtitle': 'Ready to transform your space with art?',
-        'contact.heading': 'Commission Art',
-        'contact.description': 'Interested in a custom piece? I\'d love to discuss your vision and create something truly unique for your space.',
+        'hero.subtitle': 'Digital Storytelling',
+        'hero.title': 'Content Creator',
+        'hero.description': 'Crafting compelling narratives and engaging content that connects brands with their audiences.',
+        'hero.viewWork': 'View My Work',
+        'hero.contactMe': 'Let\'s Collaborate',
+        'hero.explore': 'Learn More',
+        'about.title': 'About Me',
+        'about.subtitle': 'Crafting stories that resonate and engage',
+        'about.imageText': 'Content Creator',
+        'about.heading': 'My Story',
+        'about.description1': 'I\'m Aseel, a passionate content creator with over 5 years of experience in digital storytelling. I specialize in creating engaging content across multiple platforms that helps brands connect authentically with their audience.',
+        'about.description2': 'My journey began with a simple smartphone and a passion for storytelling. Today, I collaborate with brands and businesses to create compelling content strategies that drive engagement and build communities.',
+        'about.stats.projects': '150+',
+        'about.stats.projectsLabel': 'Projects',
+        'about.stats.clients': '50+',
+        'about.stats.clientsLabel': 'Happy Clients',
+        'about.stats.platforms': '8+',
+        'about.stats.platformsLabel': 'Platforms',
+        'services.title': 'Services',
+        'services.subtitle': 'How I can help you grow',
+        'services.service1.title': 'Video Content',
+        'services.service1.description': 'Engaging video content for social media, YouTube, and websites. From short-form reels to long-form documentaries.',
+        'services.service1.list1': 'Social Media Videos',
+        'services.service1.list2': 'YouTube Content',
+        'services.service1.list3': 'Explainer Videos',
+        'services.service2.title': 'Social Media',
+        'services.service2.description': 'Complete social media management and content creation across all major platforms.',
+        'services.service2.list1': 'Content Strategy',
+        'services.service2.list2': 'Platform Management',
+        'services.service2.list3': 'Engagement Growth',
+        'services.service3.title': 'Content Strategy',
+        'services.service3.description': 'Strategic planning and execution of content campaigns that drive results and build brand loyalty.',
+        'services.service3.list1': 'Brand Storytelling',
+        'services.service3.list2': 'Campaign Planning',
+        'services.service3.list3': 'Analytics & Reporting',
+        'portfolio.title': 'Portfolio',
+        'portfolio.subtitle': 'Recent projects and collaborations',
+        'portfolio.project1.category': 'Brand Campaign',
+        'portfolio.project1.title': 'Lifestyle Brand Series',
+        'portfolio.project1.description': 'Complete social media content strategy and video series for a wellness brand',
+        'portfolio.project2.category': 'Educational Series',
+        'portfolio.project2.title': 'Tech Tutorial Series',
+        'portfolio.project2.description': 'YouTube series explaining complex tech concepts in simple terms',
+        'portfolio.project3.category': 'Social Media',
+        'portfolio.project3.title': 'Fashion Brand Launch',
+        'portfolio.project3.description': 'Social media campaign for a sustainable fashion brand launch',
+        'portfolio.tags.video': 'Video',
+        'portfolio.tags.social': 'Social Media',
+        'portfolio.tags.strategy': 'Strategy',
+        'portfolio.tags.youtube': 'YouTube',
+        'portfolio.tags.education': 'Education',
+        'portfolio.tags.animation': 'Animation',
+        'portfolio.tags.campaign': 'Campaign',
+        'portfolio.tags.fashion': 'Fashion',
+        'portfolio.tags.instagram': 'Instagram',
+        'portfolio.seeMore': 'See More Projects',
+        'testimonials.title': 'Client Testimonials',
+        'testimonials.subtitle': 'What my clients say about working together',
+        'testimonials.testimonial1.text': '"Working with Aseel transformed our brand\'s online presence. Her content strategy increased our engagement by 200% in just three months. Professional, creative, and always delivers beyond expectations."',
+        'testimonials.testimonial1.name': 'Sarah Johnson',
+        'testimonials.testimonial1.role': 'Marketing Director, TechFlow',
+        'testimonials.testimonial2.text': '"Aseel\'s video content for our product launch was exceptional. She understood our brand perfectly and created content that resonated with our target audience. The results exceeded all our KPIs."',
+        'testimonials.testimonial2.name': 'Ahmed Hassan',
+        'testimonials.testimonial2.role': 'CEO, Bloom Cosmetics',
+        'testimonials.testimonial3.text': '"As a startup, we needed someone who could wear multiple hats. Aseel delivered amazing content across all our social platforms while staying true to our brand voice. She\'s more than a content creator - she\'s a partner."',
+        'testimonials.testimonial3.name': 'Layla Mohammed',
+        'testimonials.testimonial3.role': 'Founder, Nomad Coffee Co.',
+        'contact.title': 'Let\'s Work Together',
+        'contact.subtitle': 'Ready to create amazing content?',
+        'contact.heading': 'Get In Touch',
+        'contact.description': 'Have a project in mind? I\'d love to hear about it. Let\'s discuss how we can create content that tells your brand\'s story and connects with your audience.',
         'contact.emailTitle': 'Email',
         'contact.phoneTitle': 'Phone',
-        'contact.locationTitle': 'Studio',
-        'contact.location': 'Global Commissions',
-        'contact.availabilityTitle': 'Availability',
-        'contact.availability': 'Limited Commissions Open',
+        'contact.locationTitle': 'Location',
+        'contact.location': 'Available for remote work worldwide',
         'contact.form.name': 'Your Name',
         'contact.form.email': 'Email Address',
-        'contact.form.message': 'Project Vision',
-        'contact.form.submit': 'Discuss Commission',
-        'contact.socialTitle': 'Follow the Journey',
-        'modal.overview': 'Artistic Statement',
-        'modal.techniques': 'Techniques Used',
-        'modal.startProject': 'Commission Similar',
+        'contact.form.service': 'Service Needed',
+        'contact.form.options.video': 'Video Content',
+        'contact.form.options.social': 'Social Media',
+        'contact.form.options.strategy': 'Content Strategy',
+        'contact.form.options.other': 'Other',
+        'contact.form.message': 'Project Details',
+        'contact.form.submit': 'Send Message',
+        'contact.socialTitle': 'Follow My Content',
         'footer.rights': 'All rights reserved'
     },
     ar: {
-        'nav.designer': 'فنانة تجريدية',
+        'nav.creator': 'صانعة محتوى',
         'nav.home': 'الرئيسية',
-        'nav.about': 'الفن',
-        'nav.work': 'الأعمال',
+        'nav.about': 'عنّي',
         'nav.services': 'الخدمات',
-        'nav.gallery': 'المعرض',
+        'nav.portfolio': 'الأعمال',
+        'nav.testimonials': 'آراء العملاء',
         'nav.contact': 'اتصل',
         'lang.en': 'EN',
         'lang.ar': 'AR',
-        'hero.subtitle': 'فن تجريدي',
-        'hero.title': 'فنانة رقمية تجريدية',
-        'hero.description': 'أصمم تجارب بصرية هادئة تجمع بين البساطة والأشكال التجريدية والعمق العاطفي.',
-        'hero.viewPortfolio': 'عرض الأعمال',
-        'hero.startProject': 'طلب عمل فني',
-        'hero.explore': 'استكشف',
-        'about.title': 'الرؤية الفنية',
-        'about.subtitle': 'حيث يلتقي التجريد بالعاطفة في الشكل الرقمي',
-        'about.imageText': 'شاعرة بصرية',
-        'about.heading': 'فن بقصد',
-        'about.description1': 'أتخصص في إنشاء فن رقمي تجريدي يثير المشاعر ويدعو للتأمل. يستكشف عملي التوازن بين الشكل والفراغ، اللون والفضاء.',
-        'about.description2': 'مع أكثر من 6 سنوات في الفن الرقمي، تعاونت مع معارض وجامعي تحف حول العالم لإنشاء قطع فنية تحول المساحات وتلهم لحظات تأمل.',
-        'about.designerTitle': 'فنانة تجريدية',
-        'projects.title': 'أعمال مختارة',
-        'projects.subtitle': 'قطع فنية مختارة تعرض التعبير التجريدي',
-        'projects.project1.category': 'سلسلة رقمية',
-        'projects.project1.title': 'أشكال خيالية',
-        'projects.project1.description': 'دراسة في التجريد السائل والأنسجة الرقمية العضوية',
-        'projects.project2.category': 'تركيب معرض',
-        'projects.project2.title': 'حوار صامت',
-        'projects.project2.description': 'تركيب رقمي تفاعلي يستكشف الفضاء والإدراك',
-        'projects.project3.category': 'مجموعة خاصة',
-        'projects.project3.title': 'لوحات همسية',
-        'projects.project3.description': 'قطع رقمية كبيرة الحجم للمساكن الخاصة',
-        'projects.tags.abstract': 'تجريدي',
-        'projects.tags.digital': 'رقمي',
-        'projects.tags.texture': 'نسيج',
-        'projects.tags.installation': 'تركيب',
-        'projects.tags.interactive': 'تفاعلي',
-        'projects.tags.space': 'فضاء',
-        'projects.tags.collection': 'مجموعة',
-        'projects.tags.large': 'كبير الحجم',
-        'projects.tags.canvas': 'لوحة',
-        'projects.viewCase': 'عرض السلسلة',
-        'services.title': 'خدمات فنية',
-        'services.subtitle': 'تحويل المساحات عبر التعبير التجريدي',
-        'services.service1.title': 'أعمال فنية مطلوبة',
-        'services.service1.description': 'قطع تجريدية مصممة خصيصاً لمساحتك، مع مراعاة الضوء والنسيج والرنين العاطفي.',
-        'services.service2.title': 'التركيبات الرقمية',
-        'services.service2.description': 'تجارب رقمية غامرة للمعارض والمساحات المؤسسية والمجموعات الخاصة.',
-        'services.service3.title': 'الإخراج الفني',
-        'services.service3.description': 'تنظيم وتوجيه المشاريع الفنية التي تدمج بين الابتكار الرقمي والمبادئ الجمالية الخالدة.',
-        'gallery.title': 'المعرض التجريدي',
-        'gallery.subtitle': 'تأمل في الشكل واللون والفضاء',
-        'gallery.item1': 'أشكال سائلة',
-        'gallery.item2': 'تدرجات لونية خفية',
-        'gallery.item3': 'أنسجة عضوية',
-        'gallery.item4': 'توازن هندسي',
-        'gallery.item5': 'فضاء بسيط',
-        'gallery.item6': 'لون عاطفي',
-        'contact.title': 'لنخلق معاً',
-        'contact.subtitle': 'مستعد لتحويل مساحتك بالفن؟',
-        'contact.heading': 'طلب عمل فني',
-        'contact.description': 'مهتم بقطعة مخصصة؟ يسعدني مناقشة رؤيتك وإنشاء شيء فريد حقاً لمساحتك.',
+        'hero.subtitle': 'سرد قصص رقمي',
+        'hero.title': 'صانعة محتوى',
+        'hero.description': 'أصمم قصصًا مؤثرة ومحتوى جذابًا يربط العلامات التجارية بجماهيرها.',
+        'hero.viewWork': 'شاهد أعمالي',
+        'hero.contactMe': 'لنعمل معًا',
+        'hero.explore': 'اعرف المزيد',
+        'about.title': 'عنّي',
+        'about.subtitle': 'صياغة قصص تلقى صدى وتجذب',
+        'about.imageText': 'صانعة محتوى',
+        'about.heading': 'قصتي',
+        'about.description1': 'أنا أسيل، صانعة محتوى شغوفة بخبرة تزيد عن 5 سنوات في السرد القصصي الرقمي. أتخصص في إنشاء محتوى جذاب عبر منصات متعددة يساعد العلامات التجارية على التواصل بصدق مع جمهورها.',
+        'about.description2': 'بدأت رحلتي بهاتف ذكي بسيط وشغف بسرد القصص. اليوم، أتعاون مع العلامات التجارية والشركات لإنشاء استراتيجيات محتوى مقنعة تدفع المشاركة وتبني المجتمعات.',
+        'about.stats.projects': '١٥٠+',
+        'about.stats.projectsLabel': 'مشروع',
+        'about.stats.clients': '٥٠+',
+        'about.stats.clientsLabel': 'عميل سعيد',
+        'about.stats.platforms': '٨+',
+        'about.stats.platformsLabel': 'منصة',
+        'services.title': 'الخدمات',
+        'services.subtitle': 'كيف يمكنني مساعدتك على النمو',
+        'services.service1.title': 'محتوى فيديو',
+        'services.service1.description': 'محتوى فيديو جذاب لوسائل التواصل الاجتماعي ويوتيوب والمواقع الإلكترونية. من الريلز القصيرة إلى الأفلام الوثائقية الطويلة.',
+        'services.service1.list1': 'فيديوهات وسائل التواصل',
+        'services.service1.list2': 'محتوى يوتيوب',
+        'services.service1.list3': 'فيديوهات توضيحية',
+        'services.service2.title': 'وسائل التواصل الاجتماعي',
+        'services.service2.description': 'إدارة كاملة لوسائل التواصل الاجتماعي وإنشاء محتوى عبر جميع المنصات الرئيسية.',
+        'services.service2.list1': 'استراتيجية المحتوى',
+        'services.service2.list2': 'إدارة المنصات',
+        'services.service2.list3': 'نمو المشاركة',
+        'services.service3.title': 'استراتيجية المحتوى',
+        'services.service3.description': 'التخطيط الاستراتيجي وتنفيذ حملات المحتوى التي تحقق النتائج وتبني ولاء العلامة التجارية.',
+        'services.service3.list1': 'سرد قصص العلامة التجارية',
+        'services.service3.list2': 'تخطيط الحملات',
+        'services.service3.list3': 'التحليلات والتقارير',
+        'portfolio.title': 'الأعمال',
+        'portfolio.subtitle': 'المشاريع والتعاونات الحديثة',
+        'portfolio.project1.category': 'حملة علامة تجارية',
+        'portfolio.project1.title': 'سلسلة علامة أسلوب حياة',
+        'portfolio.project1.description': 'استراتيجية محتوى كاملة لوسائل التواصل الاجتماعي وسلسلة فيديو لعلامة تجارية للعافية',
+        'portfolio.project2.category': 'سلسلة تعليمية',
+        'portfolio.project2.title': 'سلسلة دروس تقنية',
+        'portfolio.project2.description': 'سلسلة يوتيوب تشرح مفاهيم تقنية معقدة بمصطلحات بسيطة',
+        'portfolio.project3.category': 'وسائل التواصل الاجتماعي',
+        'portfolio.project3.title': 'إطلاق علامة أزياء',
+        'portfolio.project3.description': 'حملة وسائل التواصل الاجتماعي لإطلاق علامة أزياء مستدامة',
+        'portfolio.tags.video': 'فيديو',
+        'portfolio.tags.social': 'وسائل تواصل',
+        'portfolio.tags.strategy': 'استراتيجية',
+        'portfolio.tags.youtube': 'يوتيوب',
+        'portfolio.tags.education': 'تعليم',
+        'portfolio.tags.animation': 'رسوم متحركة',
+        'portfolio.tags.campaign': 'حملة',
+        'portfolio.tags.fashion': 'أزياء',
+        'portfolio.tags.instagram': 'إنستغرام',
+        'portfolio.seeMore': 'شاهد المزيد من المشاريع',
+        'testimonials.title': 'آراء العملاء',
+        'testimonials.subtitle': 'ما يقوله عملائي عن العمل معًا',
+        'testimonials.testimonial1.text': '"عملت أسيل على تحويل وجود علامتنا التجارية عبر الإنترنت. زادت استراتيجيتها للمحتوى من مشاركتنا بنسبة 200٪ في ثلاثة أشهر فقط. محترفة، مبدعة، وتتجاوز التوقعات دائمًا."',
+        'testimonials.testimonial1.name': 'سارة جونسون',
+        'testimonials.testimonial1.role': 'مديرة التسويق، تك فلو',
+        'testimonials.testimonial2.text': '"كان محتوى الفيديو الذي قدمته أسيل لإطلاق منتجنا استثنائيًا. فهمت علامتنا التجارية تمامًا وأنشأت محتوى لقي صدى لدى جمهورنا المستهدف. تجاوزت النتائج جميع مؤشرات الأداء الرئيسية لدينا."',
+        'testimonials.testimonial2.name': 'أحمد حسن',
+        'testimonials.testimonial2.role': 'الرئيس التنفيذي، بلوم كوزمتكس',
+        'testimonials.testimonial3.text': '"كشركة ناشئة، كنا بحاجة إلى شخص يمكنه أداء عدة أدوار في وقت واحد. قدمت أسيل محتوى مذهلاً عبر جميع منصات التواصل الاجتماعي الخاصة بنا مع الحفاظ على صوت علامتنا التجارية. إنها أكثر من مجرد صانعة محتوى - إنها شريك."',
+        'testimonials.testimonial3.name': 'ليلى محمد',
+        'testimonials.testimonial3.role': 'المؤسسة، نوماد كوفي',
+        'contact.title': 'لنعمل معًا',
+        'contact.subtitle': 'مستعد لإنشاء محتوى رائع؟',
+        'contact.heading': 'تواصل معي',
+        'contact.description': 'هل لديك مشروع في ذهنك؟ يسعدني سماع أفكارك. لنتناقش حول كيفية إنشاء محتوى يحكي قصة علامتك التجارية ويتواصل مع جمهورك.',
         'contact.emailTitle': 'البريد الإلكتروني',
         'contact.phoneTitle': 'الهاتف',
-        'contact.locationTitle': 'الاستوديو',
-        'contact.location': 'طلبات عالمية',
-        'contact.availabilityTitle': 'التوافر',
-        'contact.availability': 'طلبات محدودة متاحة',
+        'contact.locationTitle': 'الموقع',
+        'contact.location': 'متاحة للعمل عن بعد في جميع أنحاء العالم',
         'contact.form.name': 'اسمك',
         'contact.form.email': 'البريد الإلكتروني',
-        'contact.form.message': 'رؤية المشروع',
-        'contact.form.submit': 'مناقشة الطلب',
-        'contact.socialTitle': 'تابع الرحلة',
-        'modal.overview': 'بيان فني',
-        'modal.techniques': 'التقنيات المستخدمة',
-        'modal.startProject': 'طلب عمل مماثل',
+        'contact.form.service': 'الخدمة المطلوبة',
+        'contact.form.options.video': 'محتوى فيديو',
+        'contact.form.options.social': 'وسائل التواصل الاجتماعي',
+        'contact.form.options.strategy': 'استراتيجية المحتوى',
+        'contact.form.options.other': 'أخرى',
+        'contact.form.message': 'تفاصيل المشروع',
+        'contact.form.submit': 'إرسال الرسالة',
+        'contact.socialTitle': 'تابع محتواي',
         'footer.rights': 'جميع الحقوق محفوظة'
     }
 };
@@ -729,6 +791,15 @@ function updateTexts(lang) {
         const key = element.getAttribute('data-i18n');
         if (translations[lang] && translations[lang][key]) {
             element.textContent = translations[lang][key];
+        }
+    });
+    
+    // تحديث خيارات الـ select
+    const selectOptions = document.querySelectorAll('option[data-i18n]');
+    selectOptions.forEach(option => {
+        const key = option.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+            option.textContent = translations[lang][key];
         }
     });
 }
