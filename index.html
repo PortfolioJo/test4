@@ -3,858 +3,1272 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aseel | Creative Content Architect</title>
-    <meta name="description" content="Turning feelings into content. A creative journey through the mind of a content creator.">
+    <title>Aseel | Creative Web Designer - Bold Digital Experiences</title>
+    <meta name="description" content="We craft web stories that pop. Creative web design, unique UX, and bold digital experiences.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=Archivo+Black&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
     
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%2300D4AA%22>✦</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%23FF4D8D%22>✦</text></svg>">
 </head>
 <body>
-    <!-- Section 0: Identity Snapshot -->
-    <div class="identity-snapshot">
-        <div class="snapshot-container">
-            <div class="snapshot-card">
-                <div class="snapshot-header">
-                    <span class="snapshot-name">Aseel</span>
-                    <div class="snapshot-status">
-                        <div class="status-dot"></div>
-                        <span class="status-text">Creator Mode: ON</span>
-                    </div>
-                </div>
-                <div class="snapshot-tags">
-                    <span class="snapshot-tag">Empathetic</span>
-                    <span class="snapshot-tag">Strategic</span>
-                    <span class="snapshot-tag">Unpredictable</span>
-                </div>
-                <div class="snapshot-footer">
-                    <span class="snapshot-date">Est. 2019</span>
-                    <span class="snapshot-type">Creative Director</span>
-                </div>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="brand-logo">A</span>
+                <span class="brand-text">aseel<span class="brand-dot">.</span></span>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="#process" class="nav-link">Process</a>
+                <a href="#portfolio" class="nav-link">Work</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#behind" class="nav-link">Studio</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-palette"></i>
+                </button>
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
-    </div>
+    </nav>
 
-    <!-- Section 1: Story Intro -->
-    <section class="story-intro">
-        <div class="intro-container">
-            <div class="intro-text">
-                <div class="intro-quote">"</div>
-                <h1 class="intro-headline">
-                    <span class="headline-line">Once I asked myself:</span>
-                    <span class="headline-line accent">"Why can't content feel more like</span>
-                    <span class="headline-line accent">an emotion than just a video?"</span>
-                    <span class="headline-line">That's where it all began.</span>
+    <!-- Section 1: Hero -->
+    <section class="hero-section">
+        <div class="hero-video">
+            <video autoplay muted loop playsinline>
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-close-up-of-a-computer-screen-with-code-8642-large.mp4" type="video/mp4">
+            </video>
+            <div class="video-overlay"></div>
+        </div>
+        
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-sparkles"></i>
+                    <span>Creative Web Designer</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    <span class="title-line">We Craft</span>
+                    <span class="title-line accent">Web Stories</span>
+                    <span class="title-line">That Pop</span>
                 </h1>
                 
-                <div class="intro-cta">
-                    <a href="#creative-map" class="story-btn">
-                        <span class="btn-text">See What I Create</span>
-                        <div class="btn-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </a>
-                    <div class="cta-hint">
-                        <span>Scroll to explore my creative mind</span>
-                        <div class="hint-line"></div>
+                <p class="hero-subtitle">
+                    Creative Web Design | Unique UX | Bold Experiences
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Projects</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label">Client Satisfaction</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Handcrafted</span>
                     </div>
                 </div>
+                
+                <a href="#portfolio" class="hero-cta">
+                    <span class="cta-text">View My Work</span>
+                    <div class="cta-line"></div>
+                    <div class="signature-mark">
+                        <svg width="40" height="20" viewBox="0 0 40 20">
+                            <path d="M0,10 Q10,0 20,10 T40,10" stroke="currentColor" fill="none" stroke-width="2"/>
+                        </svg>
+                    </div>
+                </a>
             </div>
             
-            <div class="intro-canvas">
-                <div class="canvas-grid">
-                    <div class="grid-cell"></div>
-                    <div class="grid-cell"></div>
-                    <div class="grid-cell"></div>
-                    <div class="grid-cell active"></div>
-                    <div class="grid-cell"></div>
-                    <div class="grid-cell"></div>
-                    <div class="grid-cell"></div>
-                    <div class="grid-cell"></div>
-                    <div class="grid-cell"></div>
+            <div class="hero-scroll">
+                <span>Explore the journey</span>
+                <div class="scroll-indicator">
+                    <div class="scroll-dot"></div>
                 </div>
-                <div class="canvas-text">Content Architecture</div>
             </div>
         </div>
     </section>
 
-    <!-- Section 2: Creative Map -->
-    <section class="creative-map" id="creative-map">
-        <div class="map-container">
-            <div class="map-header">
-                <h2 class="map-title">The Creative Map</h2>
-                <p class="map-subtitle">Navigating the journey from spark to screen</p>
+    <!-- Section 2: Process -->
+    <section class="process-section" id="process">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-label">Process</span>
+                <h2 class="section-title">How I Work</h2>
+                <p class="section-subtitle">From idea to impact — every step matters</p>
             </div>
             
-            <div class="zigzag-timeline">
-                <!-- Point 1 -->
-                <div class="timeline-point" data-step="1">
-                    <div class="point-circle">
-                        <div class="point-icon">
-                            <i class="fas fa-bolt"></i>
-                        </div>
-                    </div>
-                    <div class="point-content">
-                        <h3 class="point-title">Sparks</h3>
-                        <p class="point-description">The raw moment of inspiration</p>
-                    </div>
-                    <div class="point-video">
-                        <div class="video-preview">
-                            <div class="preview-play">
-                                <i class="fas fa-play"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Point 2 -->
-                <div class="timeline-point" data-step="2">
-                    <div class="point-circle">
-                        <div class="point-icon">
-                            <i class="fas fa-pen"></i>
-                        </div>
-                    </div>
-                    <div class="point-content">
-                        <h3 class="point-title">Draft</h3>
-                        <p class="point-description">Quick script, pure instinct</p>
-                    </div>
-                    <div class="point-video">
-                        <div class="video-preview">
-                            <div class="preview-play">
-                                <i class="fas fa-play"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Point 3 -->
-                <div class="timeline-point" data-step="3">
-                    <div class="point-circle">
-                        <div class="point-icon">
-                            <i class="fas fa-palette"></i>
-                        </div>
-                    </div>
-                    <div class="point-content">
-                        <h3 class="point-title">Mood</h3>
-                        <p class="point-description">Colors, rhythm, and vibe selection</p>
-                    </div>
-                    <div class="point-video">
-                        <div class="video-preview">
-                            <div class="preview-play">
-                                <i class="fas fa-play"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Point 4 -->
-                <div class="timeline-point" data-step="4">
-                    <div class="point-circle">
-                        <div class="point-icon">
-                            <i class="fas fa-camera"></i>
-                        </div>
-                    </div>
-                    <div class="point-content">
-                        <h3 class="point-title">Capture</h3>
-                        <p class="point-description">Intentional framing and moments</p>
-                    </div>
-                    <div class="point-video">
-                        <div class="video-preview">
-                            <div class="preview-play">
-                                <i class="fas fa-play"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Point 5 -->
-                <div class="timeline-point" data-step="5">
-                    <div class="point-circle">
-                        <div class="point-icon">
-                            <i class="fas fa-cut"></i>
-                        </div>
-                    </div>
-                    <div class="point-content">
-                        <h3 class="point-title">Edit</h3>
-                        <p class="point-description">Finding the final breath</p>
-                    </div>
-                    <div class="point-video">
-                        <div class="video-preview">
-                            <div class="preview-play">
-                                <i class="fas fa-play"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Point 6 -->
-                <div class="timeline-point" data-step="6">
-                    <div class="point-circle">
-                        <div class="point-icon">
-                            <i class="fas fa-paper-plane"></i>
-                        </div>
-                    </div>
-                    <div class="point-content">
-                        <h3 class="point-title">Deliver</h3>
-                        <p class="point-description">Ready to create impact</p>
-                    </div>
-                    <div class="point-video">
-                        <div class="video-preview">
-                            <div class="preview-play">
-                                <i class="fas fa-play"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="map-footer">
-                <p class="map-note">Each point reveals a 3-second glimpse of that creative phase.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 3: Impact Gallery -->
-    <section class="impact-gallery">
-        <div class="gallery-container">
-            <div class="gallery-header">
-                <h2 class="gallery-title">Impact Gallery</h2>
-                <p class="gallery-subtitle">Cinematic moments that created waves</p>
-            </div>
-            
-            <div class="cinema-carousel">
-                <div class="carousel-track">
-                    <!-- Project 1 -->
-                    <div class="cinema-frame">
-                        <div class="frame-screen">
-                            <div class="screen-video">
-                                <div class="video-overlay">
-                                    <i class="fas fa-expand-alt"></i>
-                                </div>
-                            </div>
-                            <div class="screen-info">
-                                <h3 class="screen-title">Urban Morning Stories</h3>
-                                <div class="screen-stats">
-                                    <span class="stat">250K Views</span>
-                                    <span class="stat">12K Saves</span>
-                                    <span class="stat">89% Retention</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="frame-details">
-                            <div class="detail">
-                                <h4>The Idea</h4>
-                                <p>Capturing authentic city mornings through raw documentary style</p>
-                            </div>
-                            <div class="detail">
-                                <h4>The Result</h4>
-                                <p>Brand awareness increased by 156% in 30 days</p>
-                            </div>
-                            <div class="detail">
-                                <h4>The Feeling</h4>
-                                <p>Nostalgic, raw, intimate connection</p>
-                            </div>
+            <div class="timeline">
+                <!-- Step 1 -->
+                <div class="timeline-step">
+                    <div class="step-circle">
+                        <div class="step-number">01</div>
+                        <div class="step-icon">
+                            <i class="fas fa-search"></i>
                         </div>
                     </div>
                     
-                    <!-- Project 2 -->
-                    <div class="cinema-frame">
-                        <div class="frame-screen">
-                            <div class="screen-video">
-                                <div class="video-overlay">
-                                    <i class="fas fa-expand-alt"></i>
+                    <div class="step-content">
+                        <h3 class="step-title">Discovery</h3>
+                        <p class="step-description">Understanding your vision, audience, and goals through in-depth research.</p>
+                        
+                        <div class="step-preview">
+                            <div class="preview-image">
+                                <div class="image-placeholder">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%231a1a2e'/%3E%3Cpath d='M50,100 Q150,50 250,100' stroke='%23FF4D8D' fill='none' stroke-width='2'/%3E%3Ccircle cx='50' cy='100' r='8' fill='%23FF4D8D'/%3E%3Ccircle cx='150' cy='50' r='8' fill='%23FF4D8D'/%3E%3Ccircle cx='250' cy='100' r='8' fill='%23FF4D8D'/%3E%3C/svg%3E" 
+                                         alt="Discovery research chart">
+                                </div>
+                                <div class="preview-overlay">
+                                    <i class="fas fa-play"></i>
                                 </div>
                             </div>
-                            <div class="screen-info">
-                                <h3 class="screen-title">Tech Unboxed</h3>
-                                <div class="screen-stats">
-                                    <span class="stat">1.2M Views</span>
-                                    <span class="stat">45K Shares</span>
-                                    <span class="stat">8.5% Rate</span>
-                                </div>
+                            <div class="preview-note">
+                                <i class="fas fa-sticky-note"></i>
+                                <span>"Key questions to uncover real needs"</span>
                             </div>
                         </div>
-                        <div class="frame-details">
-                            <div class="detail">
-                                <h4>The Idea</h4>
-                                <p>Turning product launch into emotional experience</p>
-                            </div>
-                            <div class="detail">
-                                <h4>The Result</h4>
-                                <p>4500+ pre-orders in first 48 hours</p>
-                            </div>
-                            <div class="detail">
-                                <h4>The Feeling</h4>
-                                <p>Exciting, modern, premium anticipation</p>
-                            </div>
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="timeline-step reverse">
+                    <div class="step-circle">
+                        <div class="step-number">02</div>
+                        <div class="step-icon">
+                            <i class="fas fa-pencil-alt"></i>
                         </div>
                     </div>
                     
-                    <!-- Project 3 -->
-                    <div class="cinema-frame">
-                        <div class="frame-screen">
-                            <div class="screen-video">
-                                <div class="video-overlay">
+                    <div class="step-content">
+                        <h3 class="step-title">Wireframes</h3>
+                        <p class="step-description">Structuring the user journey with hand-drawn sketches and digital blueprints.</p>
+                        
+                        <div class="step-preview">
+                            <div class="preview-image">
+                                <div class="image-placeholder">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%231a1a2e'/%3E%3Crect x='20' y='20' width='260' height='40' fill='none' stroke='%2300D4FF' stroke-width='2'/%3E%3Crect x='20' y='80' width='120' height='100' fill='none' stroke='%2300D4FF' stroke-width='2'/%3E%3Crect x='160' y='80' width='120' height='100' fill='none' stroke='%2300D4FF' stroke-width='2'/%3E%3Ccircle cx='50' cy='40' r='8' fill='%2300D4FF'/%3E%3Ccircle cx='150' cy='40' r='8' fill='%2300D4FF'/%3E%3Ccircle cx='250' cy='40' r='8' fill='%2300D4FF'/%3E%3C/svg%3E" 
+                                         alt="Wireframe layout">
+                                </div>
+                                <div class="preview-overlay">
                                     <i class="fas fa-expand-alt"></i>
                                 </div>
                             </div>
-                            <div class="screen-info">
-                                <h3 class="screen-title">Silent Poetry</h3>
-                                <div class="screen-stats">
-                                    <span class="stat">89K Engagement</span>
-                                    <span class="stat">5.7K Comments</span>
-                                    <span class="stat">300% Growth</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="frame-details">
-                            <div class="detail">
-                                <h4>The Idea</h4>
-                                <p>Visual poetry for a fashion brand's silent collection</p>
-                            </div>
-                            <div class="detail">
-                                <h4>The Result</h4>
-                                <p>Highest engagement rate in brand history</p>
-                            </div>
-                            <div class="detail">
-                                <h4>The Feeling</h4>
-                                <p>Elegant, artistic, profound simplicity</p>
+                            <div class="preview-note">
+                                <i class="fas fa-sticky-note"></i>
+                                <span>"Focus on user flow here"</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="carousel-controls">
-                    <button class="control-btn prev-btn">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <div class="carousel-dots">
-                        <span class="dot active"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                    </div>
-                    <button class="control-btn next-btn">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 4: The Ingredients -->
-    <section class="ingredients-section">
-        <div class="ingredients-container">
-            <div class="ingredients-header">
-                <h2 class="ingredients-title">The Ingredients</h2>
-                <p class="ingredients-subtitle">What makes your content taste different</p>
-            </div>
-            
-            <div class="ingredients-grid">
-                <!-- Ingredient 1 -->
-                <div class="ingredient-card">
-                    <div class="ingredient-header">
-                        <h3 class="ingredient-name">Creative Salt</h3>
-                        <div class="ingredient-icon">
-                            <i class="fas fa-atom"></i>
-                        </div>
-                    </div>
-                    <p class="ingredient-description">The essential flavor that makes content unique</p>
-                    <div class="ingredient-example">
-                        <div class="example-video">
-                            <div class="video-thumb">
-                                <i class="fas fa-play"></i>
-                            </div>
-                        </div>
-                        <p class="example-text">See how salt transforms ordinary into memorable</p>
-                    </div>
-                </div>
-                
-                <!-- Ingredient 2 -->
-                <div class="ingredient-card">
-                    <div class="ingredient-header">
-                        <h3 class="ingredient-name">Fresh Angles</h3>
-                        <div class="ingredient-icon">
-                            <i class="fas fa-cube"></i>
-                        </div>
-                    </div>
-                    <p class="ingredient-description">New perspectives on familiar stories</p>
-                    <div class="ingredient-example">
-                        <div class="example-video">
-                            <div class="video-thumb">
-                                <i class="fas fa-play"></i>
-                            </div>
-                        </div>
-                        <p class="example-text">Witness perspective shift in action</p>
-                    </div>
-                </div>
-                
-                <!-- Ingredient 3 -->
-                <div class="ingredient-card">
-                    <div class="ingredient-header">
-                        <h3 class="ingredient-name">Emotional Sounds</h3>
-                        <div class="ingredient-icon">
-                            <i class="fas fa-wave-square"></i>
-                        </div>
-                    </div>
-                    <p class="ingredient-description">Audio that touches before visuals do</p>
-                    <div class="ingredient-example">
-                        <div class="example-video">
-                            <div class="video-thumb">
-                                <i class="fas fa-play"></i>
-                            </div>
-                        </div>
-                        <p class="example-text">Listen to sound design that creates feeling</p>
-                    </div>
-                </div>
-                
-                <!-- Ingredient 4 -->
-                <div class="ingredient-card">
-                    <div class="ingredient-header">
-                        <h3 class="ingredient-name">Smart Hooks</h3>
-                        <div class="ingredient-icon">
-                            <i class="fas fa-fish"></i>
-                        </div>
-                    </div>
-                    <p class="ingredient-description">First 3 seconds that demand attention</p>
-                    <div class="ingredient-example">
-                        <div class="example-video">
-                            <div class="video-thumb">
-                                <i class="fas fa-play"></i>
-                            </div>
-                        </div>
-                        <p class="example-text">Experience hooks that instantly grab</p>
-                    </div>
-                </div>
-                
-                <!-- Ingredient 5 -->
-                <div class="ingredient-card">
-                    <div class="ingredient-header">
-                        <h3 class="ingredient-name">Clean Cuts</h3>
-                        <div class="ingredient-icon">
-                            <i class="fas fa-cut"></i>
-                        </div>
-                    </div>
-                    <p class="ingredient-description">Editing that breathes with intention</p>
-                    <div class="ingredient-example">
-                        <div class="example-video">
-                            <div class="video-thumb">
-                                <i class="fas fa-play"></i>
-                            </div>
-                        </div>
-                        <p class="example-text">Watch rhythm transform storytelling</p>
-                    </div>
-                </div>
-                
-                <!-- Ingredient 6 -->
-                <div class="ingredient-card">
-                    <div class="ingredient-header">
-                        <h3 class="ingredient-name">Brand Flavor</h3>
-                        <div class="ingredient-icon">
+                <!-- Step 3 -->
+                <div class="timeline-step">
+                    <div class="step-circle">
+                        <div class="step-number">03</div>
+                        <div class="step-icon">
                             <i class="fas fa-palette"></i>
                         </div>
                     </div>
-                    <p class="ingredient-description">Distinct taste that becomes recognizable</p>
-                    <div class="ingredient-example">
-                        <div class="example-video">
-                            <div class="video-thumb">
-                                <i class="fas fa-play"></i>
+                    
+                    <div class="step-content">
+                        <h3 class="step-title">Moodboard</h3>
+                        <p class="step-description">Curating colors, typography, and visual elements that tell your story.</p>
+                        
+                        <div class="step-preview">
+                            <div class="preview-image">
+                                <div class="image-placeholder">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%231a1a2e'/%3E%3Crect x='20' y='20' width='80' height='80' fill='%23FF4D8D'/%3E%3Crect x='120' y='20' width='80' height='80' fill='%2300D4FF'/%3E%3Crect x='220' y='20' width='80' height='80' fill='%239CFF2E'/%3E%3Crect x='20' y='120' width='80' height='80' fill='%238A2BE2'/%3E%3Crect x='120' y='120' width='80' height='80' fill='%23FF8E53'/%3E%3Crect x='220' y='120' width='80' height='80' fill='%23FFFFFF'/%3E%3C/svg%3E" 
+                                         alt="Color moodboard">
+                                </div>
+                                <div class="preview-overlay">
+                                    <i class="fas fa-eye-dropper"></i>
+                                </div>
+                            </div>
+                            <div class="preview-note">
+                                <i class="fas fa-sticky-note"></i>
+                                <span>"Color psychology for brand identity"</span>
                             </div>
                         </div>
-                        <p class="example-text">See identity woven into every frame</p>
+                    </div>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="timeline-step reverse">
+                    <div class="step-circle">
+                        <div class="step-number">04</div>
+                        <div class="step-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="step-content">
+                        <h3 class="step-title">Design</h3>
+                        <p class="step-description">Bringing everything to life with pixel-perfect layouts and interactions.</p>
+                        
+                        <div class="step-preview">
+                            <div class="preview-image">
+                                <div class="image-placeholder">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%231a1a2e'/%3E%3Crect x='20' y='20' width='260' height='160' rx='10' fill='%230a0a0f'/%3E%3Crect x='40' y='40' width='100' height='30' fill='%23FF4D8D'/%3E%3Crect x='160' y='40' width='100' height='30' fill='%2300D4FF'/%3E%3Crect x='40' y='90' width='220' height='20' fill='%23333'/%3E%3Crect x='40' y='120' width='180' height='20' fill='%23333'/%3E%3Crect x='40' y='150' width='150' height='20' fill='%23333'/%3E%3C/svg%3E" 
+                                         alt="Design layout">
+                                </div>
+                                <div class="preview-overlay">
+                                    <i class="fas fa-laptop"></i>
+                                </div>
+                            </div>
+                            <div class="preview-note">
+                                <i class="fas fa-sticky-note"></i>
+                                <span>"Micro-interactions matter most"</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Step 5 -->
+                <div class="timeline-step">
+                    <div class="step-circle">
+                        <div class="step-number">05</div>
+                        <div class="step-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="step-content">
+                        <h3 class="step-title">Prototype</h3>
+                        <p class="step-description">Creating interactive prototypes to test and refine the user experience.</p>
+                        
+                        <div class="step-preview">
+                            <div class="preview-image">
+                                <div class="image-placeholder">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%231a1a2e'/%3E%3Crect x='50' y='30' width='200' height='140' rx='15' fill='%230a0a0f'/%3E%3Crect x='70' y='50' width='160' height='30' fill='%239CFF2E'/%3E%3Crect x='70' y='90' width='80' height='20' fill='%23333'/%3E%3Crect x='160' y='90' width='70' height='20' fill='%238A2BE2'/%3E%3Crect x='70' y='120' width='160' height='40' fill='%23333'/%3E%3Ccircle cx='250' cy='100' r='15' fill='%23FF8E53'/%3E%3C/svg%3E" 
+                                         alt="Interactive prototype">
+                                </div>
+                                <div class="preview-overlay">
+                                    <i class="fas fa-hand-pointer"></i>
+                                </div>
+                            </div>
+                            <div class="preview-note">
+                                <i class="fas fa-sticky-note"></i>
+                                <span>"Test, iterate, perfect"</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Step 6 -->
+                <div class="timeline-step reverse">
+                    <div class="step-circle">
+                        <div class="step-number">06</div>
+                        <div class="step-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="step-content">
+                        <h3 class="step-title">Launch</h3>
+                        <p class="step-description">Going live and monitoring performance to ensure success.</p>
+                        
+                        <div class="step-preview">
+                            <div class="preview-image">
+                                <div class="image-placeholder">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%231a1a2e'/%3E%3Crect x='50' y='50' width='200' height='100' fill='%230a0a0f'/%3E%3Cpath d='M100,80 L150,50 L200,80' stroke='%2300D4FF' fill='none' stroke-width='3'/%3E%3Cpath d='M100,120 L150,90 L200,120' stroke='%23FF4D8D' fill='none' stroke-width='3'/%3E%3Cpath d='M100,150 L150,120 L200,150' stroke='%239CFF2E' fill='none' stroke-width='3'/%3E%3C/svg%3E" 
+                                         alt="Performance metrics">
+                                </div>
+                                <div class="preview-overlay">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                            </div>
+                            <div class="preview-note">
+                                <i class="fas fa-sticky-note"></i>
+                                <span>"Track, optimize, celebrate"</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Section 5: Before & After Wall -->
-    <section class="comparison-wall">
-        <div class="comparison-container">
-            <div class="comparison-header">
-                <h2 class="comparison-title">Before & After Reel Wall</h2>
-                <p class="comparison-subtitle">Witness the transformation</p>
+    <!-- Section 3: Portfolio -->
+    <section class="portfolio-section" id="portfolio">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-label">Portfolio</span>
+                <h2 class="section-title">Impact Gallery</h2>
+                <p class="section-subtitle">Bold projects that made waves</p>
             </div>
             
-            <div class="wall-container">
-                <div class="wall-screen left-screen">
-                    <div class="screen-label">Before</div>
-                    <div class="screen-content">
-                        <div class="content-video">
-                            <div class="video-overlay">
-                                <span class="video-tag">Raw Footage</span>
+            <div class="portfolio-carousel">
+                <div class="carousel-container">
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            <!-- Project 1 -->
+                            <div class="swiper-slide">
+                                <div class="project-card" data-color="#FF4D8D">
+                                    <div class="project-media">
+                                        <div class="comparison-slider">
+                                            <div class="comparison-before">
+                                                <div class="before-label">Wireframe</div>
+                                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%231a1a2e'/%3E%3Crect x='50' y='50' width='300' height='200' fill='%230a0a0f'/%3E%3Crect x='80' y='80' width='100' height='40' fill='%23333'/%3E%3Crect x='220' y='80' width='100' height='40' fill='%23333'/%3E%3Crect x='80' y='140' width='240' height='60' fill='%23333'/%3E%3Crect x='80' y='220' width='120' height='20' fill='%23333'/%3E%3Crect x='220' y='220' width='100' height='20' fill='%23333'/%3E%3C/svg%3E" 
+                                                     alt="Wireframe">
+                                            </div>
+                                            <div class="comparison-after">
+                                                <div class="after-label">Final Design</div>
+                                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%231a1a2e'/%3E%3Crect x='50' y='50' width='300' height='200' rx='15' fill='%230a0a0f'/%3E%3Crect x='80' y='80' width='100' height='40' rx='8' fill='%23FF4D8D'/%3E%3Crect x='220' y='80' width='100' height='40' rx='8' fill='%2300D4FF'/%3E%3Crect x='80' y='140' width='240' height='60' rx='8' fill='%23222'/%3E%3Crect x='80' y='220' width='120' height='20' rx='4' fill='%23333'/%3E%3Crect x='220' y='220' width='100' height='20' rx='4' fill='%239CFF2E'/%3E%3C/svg%3E" 
+                                                     alt="Final design">
+                                            </div>
+                                            <div class="slider-handle">
+                                                <i class="fas fa-arrows-alt-h"></i>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="project-facts">
+                                            <div class="fact">
+                                                <h4>Challenge</h4>
+                                                <p>Increase e-commerce conversions by 40%</p>
+                                            </div>
+                                            <div class="fact">
+                                                <h4>Solution</h4>
+                                                <p>Interactive product showcase with AR preview</p>
+                                            </div>
+                                            <div class="fact">
+                                                <h4>Result</h4>
+                                                <p>+65% conversion rate, 3x engagement</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="project-info">
+                                        <h3 class="project-title">Nexus Fashion E-commerce</h3>
+                                        <div class="project-meta">
+                                            <span class="tag">Figma</span>
+                                            <span class="tag">React</span>
+                                            <span class="tag">GSAP</span>
+                                            <span class="duration">8 weeks</span>
+                                        </div>
+                                        
+                                        <div class="handwritten-notes">
+                                            <div class="note" style="transform: rotate(-2deg);">
+                                                <i class="fas fa-pen"></i>
+                                                "Focused on micro-interactions here"
+                                            </div>
+                                            <div class="note" style="transform: rotate(1deg);">
+                                                <i class="fas fa-lightbulb"></i>
+                                                "Client loved this animation!"
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Project 2 -->
+                            <div class="swiper-slide">
+                                <div class="project-card" data-color="#00D4FF">
+                                    <div class="project-media">
+                                        <div class="comparison-slider">
+                                            <div class="comparison-before">
+                                                <div class="before-label">Concept</div>
+                                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%231a1a2e'/%3E%3Crect x='100' y='80' width='200' height='140' fill='%230a0a0f'/%3E%3Ccircle cx='200' cy='110' r='30' fill='%23333'/%3E%3Crect x='150' y='160' width='100' height='40' fill='%23333'/%3E%3C/svg%3E" 
+                                                     alt="Concept sketch">
+                                            </div>
+                                            <div class="comparison-after">
+                                                <div class="after-label">Final</div>
+                                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%231a1a2e'/%3E%3Crect x='100' y='80' width='200' height='140' rx='20' fill='%230a0a0f'/%3E%3Ccircle cx='200' cy='110' r='30' fill='%2300D4FF'/%3E%3Crect x='150' y='160' width='100' height='40' rx='8' fill='%23FF4D8D'/%3E%3Cpath d='M180,130 L200,150 L220,130' stroke='%239CFF2E' fill='none' stroke-width='3'/%3E%3C/svg%3E" 
+                                                     alt="Final dashboard">
+                                            </div>
+                                            <div class="slider-handle">
+                                                <i class="fas fa-arrows-alt-h"></i>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="project-facts">
+                                            <div class="fact">
+                                                <h4>Challenge</h4>
+                                                <p>Simplify complex data visualization</p>
+                                            </div>
+                                            <div class="fact">
+                                                <h4>Solution</h4>
+                                                <p>Interactive dashboard with real-time updates</p>
+                                            </div>
+                                            <div class="fact">
+                                                <h4>Result</h4>
+                                                <p>User comprehension increased by 75%</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="project-info">
+                                        <h3 class="project-title">DataFlow Analytics Dashboard</h3>
+                                        <div class="project-meta">
+                                            <span class="tag">Vue.js</span>
+                                            <span class="tag">D3.js</span>
+                                            <span class="tag">WebGL</span>
+                                            <span class="duration">6 weeks</span>
+                                        </div>
+                                        
+                                        <div class="handwritten-notes">
+                                            <div class="note" style="transform: rotate(-1deg);">
+                                                <i class="fas fa-pen"></i>
+                                                "Data should tell a story"
+                                            </div>
+                                            <div class="note" style="transform: rotate(2deg);">
+                                                <i class="fas fa-lightbulb"></i>
+                                                "Real-time updates key here"
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Project 3 -->
+                            <div class="swiper-slide">
+                                <div class="project-card" data-color="#9CFF2E">
+                                    <div class="project-media">
+                                        <div class="comparison-slider">
+                                            <div class="comparison-before">
+                                                <div class="before-label">Sketch</div>
+                                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%231a1a2e'/%3E%3Crect x='50' y='50' width='300' height='200' fill='%230a0a0f'/%3E%3Crect x='80' y='80' width='240' height='140' fill='none' stroke='%23333' stroke-width='2'/%3E%3Crect x='100' y='100' width='60' height='60' fill='%23333'/%3E%3Crect x='180' y='100' width='60' height='60' fill='%23333'/%3E%3Crect x='260' y='100' width='40' height='60' fill='%23333'/%3E%3C/svg%3E" 
+                                                     alt="Mobile app sketch">
+                                            </div>
+                                            <div class="comparison-after">
+                                                <div class="after-label">Final App</div>
+                                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%231a1a2e'/%3E%3Crect x='50' y='50' width='300' height='200' rx='25' fill='%230a0a0f'/%3E%3Crect x='80' y='80' width='240' height='140' rx='15' fill='%23222'/%3E%3Crect x='100' y='100' width='60' height='60' rx='12' fill='%239CFF2E'/%3E%3Crect x='180' y='100' width='60' height='60' rx='12' fill='%238A2BE2'/%3E%3Crect x='260' y='100' width='40' height='60' rx='8' fill='%23FF8E53'/%3E%3Ccircle cx='320' cy='200' r='15' fill='%2300D4FF'/%3E%3C/svg%3E" 
+                                                     alt="Final mobile app">
+                                            </div>
+                                            <div class="slider-handle">
+                                                <i class="fas fa-arrows-alt-h"></i>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="project-facts">
+                                            <div class="fact">
+                                                <h4>Challenge</h4>
+                                                <p>Create addictive user habit formation</p>
+                                            </div>
+                                            <div class="fact">
+                                                <h4>Solution</h4>
+                                                <p>Gamified wellness tracking with social features</p>
+                                            </div>
+                                            <div class="fact">
+                                                <h4>Result</h4>
+                                                <p>3.8 App Store rating, 40k+ downloads</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="project-info">
+                                        <h3 class="project-title">VitaTrack Wellness App</h3>
+                                        <div class="project-meta">
+                                            <span class="tag">React Native</span>
+                                            <span class="tag">Firebase</span>
+                                            <span class="tag">Lottie</span>
+                                            <span class="duration">10 weeks</span>
+                                        </div>
+                                        
+                                        <div class="handwritten-notes">
+                                            <div class="note" style="transform: rotate(-3deg);">
+                                                <i class="fas fa-pen"></i>
+                                                "Gamification drives engagement"
+                                            </div>
+                                            <div class="note" style="transform: rotate(1deg);">
+                                                <i class="fas fa-lightbulb"></i>
+                                                "Social proof increased retention"
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="content-info">
-                            <h4>Unedited Reality</h4>
-                            <p>Raw moments, unfiltered, waiting for direction</p>
+                        
+                        <div class="swiper-pagination"></div>
+                        
+                        <div class="swiper-button-prev">
+                            <i class="fas fa-chevron-left"></i>
                         </div>
-                    </div>
-                </div>
-                
-                <div class="wall-divider">
-                    <div class="divider-line"></div>
-                    <div class="divider-text">→ Transformation →</div>
-                </div>
-                
-                <div class="wall-screen right-screen">
-                    <div class="screen-label">After</div>
-                    <div class="screen-content">
-                        <div class="content-video">
-                            <div class="video-overlay">
-                                <span class="video-tag">Final Cut</span>
-                            </div>
+                        <div class="swiper-button-next">
+                            <i class="fas fa-chevron-right"></i>
                         </div>
-                        <div class="content-info">
-                            <h4>Artful Story</h4>
-                            <p>Same moment, now with intention and emotion</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="comparison-grid">
-                <div class="comparison-item">
-                    <div class="item-before">
-                        <span class="item-label">Flat Lighting</span>
-                    </div>
-                    <div class="item-after">
-                        <span class="item-label">Mood Lighting</span>
-                    </div>
-                </div>
-                <div class="comparison-item">
-                    <div class="item-before">
-                        <span class="item-label">Random Sounds</span>
-                    </div>
-                    <div class="item-after">
-                        <span class="item-label">Emotional Score</span>
-                    </div>
-                </div>
-                <div class="comparison-item">
-                    <div class="item-before">
-                        <span class="item-label">Slow Pace</span>
-                    </div>
-                    <div class="item-after">
-                        <span class="item-label">Rhythmic Cuts</span>
-                    </div>
-                </div>
-                <div class="comparison-item">
-                    <div class="item-before">
-                        <span class="item-label">No Hook</span>
-                    </div>
-                    <div class="item-after">
-                        <span class="item-label">3-Second Grab</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Section 6: Collab Simulator -->
-    <section class="collab-simulator">
-        <div class="simulator-container">
-            <div class="simulator-header">
-                <h2 class="simulator-title">The Collab Simulator</h2>
-                <p class="simulator-subtitle">Let's craft your unique content recipe</p>
+    <!-- Section 4: Services -->
+    <section class="services-section" id="services">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-label">Services</span>
+                <h2 class="section-title">The Ingredients</h2>
+                <p class="section-subtitle">What makes your digital experience unforgettable</p>
             </div>
             
-            <div class="simulator-wizard">
-                <div class="wizard-step active" data-step="1">
-                    <h3 class="step-question">What's your content type?</h3>
-                    <div class="step-options">
-                        <button class="option-btn" data-value="brand-story">
-                            <i class="fas fa-landmark"></i>
-                            <span>Brand Story</span>
-                        </button>
-                        <button class="option-btn" data-value="product-showcase">
-                            <i class="fas fa-box-open"></i>
-                            <span>Product Showcase</span>
-                        </button>
-                        <button class="option-btn" data-value="behind-scenes">
-                            <i class="fas fa-theater-masks"></i>
-                            <span>Behind Scenes</span>
-                        </button>
-                        <button class="option-btn" data-value="educational">
-                            <i class="fas fa-graduation-cap"></i>
-                            <span>Educational</span>
-                        </button>
+            <div class="services-strips">
+                <!-- Service 1 -->
+                <div class="service-strip" data-color="#FF4D8D">
+                    <div class="strip-header">
+                        <div class="service-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="service-title">
+                            <h3>Web Design</h3>
+                            <p>Layout + Interactions</p>
+                        </div>
+                    </div>
+                    
+                    <div class="strip-content">
+                        <p>Creating visually stunning interfaces that not only look amazing but work perfectly across all devices.</p>
+                        
+                        <div class="service-example">
+                            <div class="example-preview">
+                                <div class="preview-gif">
+                                    <div class="gif-placeholder">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                </div>
+                                <p class="example-text">See interaction design in action</p>
+                            </div>
+                            
+                            <ul class="service-features">
+                                <li>Responsive Design</li>
+                                <li>Interaction Design</li>
+                                <li>Visual Hierarchy</li>
+                                <li>Accessibility</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="wizard-step" data-step="2">
-                    <h3 class="step-question">Choose your pace</h3>
-                    <div class="step-options">
-                        <button class="option-btn" data-value="fast-paced">
+                <!-- Service 2 -->
+                <div class="service-strip" data-color="#00D4FF">
+                    <div class="strip-header">
+                        <div class="service-icon">
+                            <i class="fas fa-sitemap"></i>
+                        </div>
+                        <div class="service-title">
+                            <h3>UX/UI Strategy</h3>
+                            <p>Wireframes + Prototype</p>
+                        </div>
+                    </div>
+                    
+                    <div class="strip-content">
+                        <p>Mapping user journeys and creating intuitive flows that make complex tasks feel simple and enjoyable.</p>
+                        
+                        <div class="service-example">
+                            <div class="example-preview">
+                                <div class="preview-gif">
+                                    <div class="gif-placeholder">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                </div>
+                                <p class="example-text">Watch user flow optimization</p>
+                            </div>
+                            
+                            <ul class="service-features">
+                                <li>User Research</li>
+                                <li>Information Architecture</li>
+                                <li>Wireframing</li>
+                                <li>Prototyping</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-strip" data-color="#9CFF2E">
+                    <div class="strip-header">
+                        <div class="service-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div class="service-title">
+                            <h3>Branding & Moodboard</h3>
+                            <p>Colors + Typography</p>
+                        </div>
+                    </div>
+                    
+                    <div class="strip-content">
+                        <p>Developing cohesive visual identities that communicate your brand's essence across every touchpoint.</p>
+                        
+                        <div class="service-example">
+                            <div class="example-preview">
+                                <div class="preview-gif">
+                                    <div class="gif-placeholder">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                </div>
+                                <p class="example-text">See brand evolution process</p>
+                            </div>
+                            
+                            <ul class="service-features">
+                                <li>Color Psychology</li>
+                                <li>Typography Systems</li>
+                                <li>Visual Language</li>
+                                <li>Brand Guidelines</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-strip" data-color="#8A2BE2">
+                    <div class="strip-header">
+                        <div class="service-icon">
                             <i class="fas fa-bolt"></i>
-                            <span>Fast & Energetic</span>
-                        </button>
-                        <button class="option-btn" data-value="slow-calm">
-                            <i class="fas fa-wind"></i>
-                            <span>Slow & Calm</span>
-                        </button>
-                        <button class="option-btn" data-value="rhythmic">
-                            <i class="fas fa-music"></i>
-                            <span>Rhythmic Flow</span>
-                        </button>
-                        <button class="option-btn" data-value="mixed">
-                            <i class="fas fa-random"></i>
-                            <span>Mixed Emotions</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="wizard-step" data-step="3">
-                    <h3 class="step-question">Select duration</h3>
-                    <div class="step-options">
-                        <button class="option-btn" data-value="15s">
-                            <span>15 Seconds</span>
-                            <small>Quick impact</small>
-                        </button>
-                        <button class="option-btn" data-value="30s">
-                            <span>30 Seconds</span>
-                            <small>Story depth</small>
-                        </button>
-                        <button class="option-btn" data-value="60s">
-                            <span>60 Seconds</span>
-                            <small>Full narrative</small>
-                        </button>
-                        <button class="option-btn" data-value="series">
-                            <span>Series</span>
-                            <small>Multiple parts</small>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="wizard-step" data-step="4">
-                    <h3 class="step-question">Pick your mood</h3>
-                    <div class="step-options">
-                        <button class="option-btn" data-value="minimal">
-                            <div class="mood-color" style="background: #f8f9fa;"></div>
-                            <span>Minimal & Clean</span>
-                        </button>
-                        <button class="option-btn" data-value="vibrant">
-                            <div class="mood-color" style="background: #ff6b6b;"></div>
-                            <span>Vibrant & Bold</span>
-                        </button>
-                        <button class="option-btn" data-value="moody">
-                            <div class="mood-color" style="background: #343a40;"></div>
-                            <span>Moody & Deep</span>
-                        </button>
-                        <button class="option-btn" data-value="warm">
-                            <div class="mood-color" style="background: #ffd166;"></div>
-                            <span>Warm & Cozy</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="simulator-result">
-                <div class="result-placeholder">
-                    <i class="fas fa-magic"></i>
-                    <p>Complete the questions to generate your content recipe</p>
-                </div>
-                <div class="result-content hidden">
-                    <h3 class="result-title">Your Content Recipe</h3>
-                    <div class="result-grid">
-                        <div class="result-ingredient">
-                            <span class="ingredient-name">Type</span>
-                            <span class="ingredient-value" id="result-type">—</span>
                         </div>
-                        <div class="result-ingredient">
-                            <span class="ingredient-name">Pace</span>
-                            <span class="ingredient-value" id="result-pace">—</span>
-                        </div>
-                        <div class="result-ingredient">
-                            <span class="ingredient-name">Duration</span>
-                            <span class="ingredient-value" id="result-duration">—</span>
-                        </div>
-                        <div class="result-ingredient">
-                            <span class="ingredient-name">Mood</span>
-                            <span class="ingredient-value" id="result-mood">—</span>
+                        <div class="service-title">
+                            <h3>Motion & Interaction</h3>
+                            <p>Micro-animations</p>
                         </div>
                     </div>
-                    <div class="result-cta">
-                        <p class="result-note">Ready to cook this up together?</p>
-                        <a href="#contact" class="result-btn">Let's Create It</a>
+                    
+                    <div class="strip-content">
+                        <p>Adding life and personality through subtle animations that guide users and create memorable experiences.</p>
+                        
+                        <div class="service-example">
+                            <div class="example-preview">
+                                <div class="preview-gif">
+                                    <div class="gif-placeholder">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                </div>
+                                <p class="example-text">Watch micro-interactions demo</p>
+                            </div>
+                            
+                            <ul class="service-features">
+                                <li>Loading Animations</li>
+                                <li>Transition Effects</li>
+                                <li>Interactive Elements</li>
+                                <li>Scroll Animations</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="simulator-controls">
-                <button class="control-btn prev-step" disabled>
-                    <i class="fas fa-chevron-left"></i> Back
-                </button>
-                <div class="step-indicator">
-                    <span class="step-dot active"></span>
-                    <span class="step-dot"></span>
-                    <span class="step-dot"></span>
-                    <span class="step-dot"></span>
-                </div>
-                <button class="control-btn next-step">
-                    Next <i class="fas fa-chevron-right"></i>
-                </button>
             </div>
         </div>
     </section>
 
-    <!-- Section 7: Social Proof Lounge -->
-    <section class="social-proof">
-        <div class="proof-container">
-            <div class="proof-header">
-                <h2 class="proof-title">Social Proof Lounge</h2>
-                <p class="proof-subtitle">Real words from real collaborations</p>
+    <!-- Section 5: Behind the Scenes -->
+    <section class="behind-section" id="behind">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-label">Studio</span>
+                <h2 class="section-title">Behind the Scenes</h2>
+                <p class="section-subtitle">The journey from sketch to screen</p>
+            </div>
+            
+            <div class="process-slider">
+                <div class="slider-stages">
+                    <div class="stage-nav">
+                        <button class="stage-btn active" data-stage="1">
+                            <span class="stage-label">Sketch</span>
+                            <span class="stage-dot"></span>
+                        </button>
+                        <button class="stage-btn" data-stage="2">
+                            <span class="stage-label">Wireframe</span>
+                            <span class="stage-dot"></span>
+                        </button>
+                        <button class="stage-btn" data-stage="3">
+                            <span class="stage-label">Mockup</span>
+                            <span class="stage-dot"></span>
+                        </button>
+                        <button class="stage-btn" data-stage="4">
+                            <span class="stage-label">Final</span>
+                            <span class="stage-dot"></span>
+                        </button>
+                    </div>
+                    
+                    <div class="slider-content">
+                        <div class="stage-content active" data-stage="1">
+                            <div class="stage-visual">
+                                <div class="visual-image">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%231a1a2e'/%3E%3Crect x='50' y='50' width='300' height='200' fill='%23f5f5f5'/%3E%3Cpath d='M80,80 L120,120 L100,160 L60,120 Z' fill='none' stroke='%23000' stroke-width='2'/%3E%3Ccircle cx='200' cy='150' r='40' fill='none' stroke='%23000' stroke-width='2'/%3E%3Crect x='260' y='100' width='60' height='100' fill='none' stroke='%23000' stroke-width='2'/%3E%3Ctext x='200' y='250' font-family='Caveat' font-size='24' fill='%23FF4D8D' text-anchor='middle'%3EInitial ideas on paper%3C/text%3E%3C/svg%3E" 
+                                         alt="Hand-drawn sketch">
+                                </div>
+                                <div class="visual-notes">
+                                    <div class="sticky-note" style="top: 20px; left: 30px; transform: rotate(-3deg);">
+                                        <i class="fas fa-pen"></i>
+                                        "Focus on user flow here"
+                                    </div>
+                                    <div class="sticky-note" style="top: 180px; right: 40px; transform: rotate(2deg);">
+                                        <i class="fas fa-lightbulb"></i>
+                                        "Keep navigation simple"
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="stage-info">
+                                <h3>Sketch Phase</h3>
+                                <p>Raw ideas on paper, focusing on user flow and core functionality before any digital constraints.</p>
+                                <div class="stage-tools">
+                                    <span class="tool">Paper & Pen</span>
+                                    <span class="tool">Whiteboard</span>
+                                    <span class="tool">iPad Pro</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stage-content" data-stage="2">
+                            <div class="stage-visual">
+                                <div class="visual-image">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%231a1a2e'/%3E%3Crect x='50' y='50' width='300' height='200' fill='%23ffffff'/%3E%3Crect x='70' y='70' width='100' height='40' fill='%23e0e0e0'/%3E%3Crect x='190' y='70' width='140' height='40' fill='%23e0e0e0'/%3E%3Crect x='70' y='130' width='260' height='80' fill='%23f0f0f0'/%3E%3Crect x='70' y='230' width='120' height='10' fill='%23e0e0e0'/%3E%3Crect x='210' y='230' width='120' height='10' fill='%23e0e0e0'/%3E%3Ctext x='200' y='280' font-family='Inter' font-size='14' fill='%2300D4FF' text-anchor='middle'%3EDigital wireframe in Figma%3C/text%3E%3C/svg%3E" 
+                                         alt="Digital wireframe">
+                                </div>
+                                <div class="visual-notes">
+                                    <div class="sticky-note" style="top: 60px; right: 20px; transform: rotate(1deg);">
+                                        <i class="fas fa-pen"></i>
+                                        "Simplify navigation"
+                                    </div>
+                                    <div class="sticky-note" style="top: 180px; left: 20px; transform: rotate(-2deg);">
+                                        <i class="fas fa-lightbulb"></i>
+                                        "Add search functionality"
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="stage-info">
+                                <h3>Wireframe Phase</h3>
+                                <p>Structuring the layout and user journey with clean, focused wireframes that prioritize usability.</p>
+                                <div class="stage-tools">
+                                    <span class="tool">Figma</span>
+                                    <span class="tool">Adobe XD</span>
+                                    <span class="tool">Sketch</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stage-content" data-stage="3">
+                            <div class="stage-visual">
+                                <div class="visual-image">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%231a1a2e'/%3E%3Crect x='50' y='50' width='300' height='200' rx='10' fill='%23222'/%3E%3Crect x='80' y='80' width='100' height='40' rx='8' fill='%23FF4D8D'/%3E%3Crect x='200' y='80' width='120' height='40' rx='8' fill='%2300D4FF'/%3E%3Crect x='80' y='140' width='240' height='80' rx='8' fill='%23333'/%3E%3Crect x='80' y='240' width='100' height='20' rx='4' fill='%239CFF2E'/%3E%3Crect x='200' y='240' width='120' height='20' rx='4' fill='%238A2BE2'/%3E%3Ctext x='200' y='280' font-family='Inter' font-size='14' fill='%239CFF2E' text-anchor='middle'%3EHigh-fidelity mockup%3C/text%3E%3C/svg%3E" 
+                                         alt="High-fidelity mockup">
+                                </div>
+                                <div class="visual-notes">
+                                    <div class="sticky-note" style="top: 100px; left: 30px; transform: rotate(-1deg);">
+                                        <i class="fas fa-pen"></i>
+                                        "Color contrast check"
+                                    </div>
+                                    <div class="sticky-note" style="top: 200px; right: 30px; transform: rotate(2deg);">
+                                        <i class="fas fa-lightbulb"></i>
+                                        "Add hover states"
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="stage-info">
+                                <h3>Mockup Phase</h3>
+                                <p>Adding colors, typography, and visual elements to create a complete design system and aesthetic.</p>
+                                <div class="stage-tools">
+                                    <span class="tool">Photoshop</span>
+                                    <span class="tool">Illustrator</span>
+                                    <span class="tool">After Effects</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stage-content" data-stage="4">
+                            <div class="stage-visual">
+                                <div class="visual-image">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%231a1a2e'/%3E%3Crect x='50' y='50' width='300' height='200' rx='15' fill='%230a0a0f'/%3E%3Crect x='80' y='80' width='100' height='40' rx='8' fill='%23FF4D8D'/%3E%3Crect x='200' y='80' width='120' height='40' rx='8' fill='%2300D4FF'/%3E%3Crect x='80' y='140' width='240' height='80' rx='8' fill='%23222'/%3E%3Crect x='80' y='240' width='100' height='20' rx='4' fill='%239CFF2E' opacity='0.8'/%3E%3Crect x='200' y='240' width='120' height='20' rx='4' fill='%238A2BE2' opacity='0.8'/%3E%3Ccircle cx='340' cy='150' r='20' fill='%23FF8E53'/%3E%3Ctext x='200' y='280' font-family='Inter' font-size='14' fill='%23FF8E53' text-anchor='middle'%3EFinal interactive design%3C/text%3E%3C/svg%3E" 
+                                         alt="Final interactive design">
+                                </div>
+                                <div class="visual-notes">
+                                    <div class="sticky-note" style="top: 150px; left: 20px; transform: rotate(-2deg);">
+                                        <i class="fas fa-pen"></i>
+                                        "Polish animations"
+                                    </div>
+                                    <div class="sticky-note" style="top: 80px; right: 20px; transform: rotate(1deg);">
+                                        <i class="fas fa-lightbulb"></i>
+                                        "Ready for development!"
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="stage-info">
+                                <h3>Final Phase</h3>
+                                <p>Polished, interactive design ready for development, with all specifications and assets prepared.</p>
+                                <div class="stage-tools">
+                                    <span class="tool">Figma Dev Mode</span>
+                                    <span class="tool">Zeplin</span>
+                                    <span class="tool">InVision</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Interactive Signature -->
+    <section class="signature-section">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-label">Playground</span>
+                <h2 class="section-title">Interactive Signature</h2>
+                <p class="section-subtitle">Customize your viewing experience</p>
+            </div>
+            
+            <div class="signature-content">
+                <div class="theme-picker">
+                    <h3 class="picker-title">Choose Your Vibe</h3>
+                    <p class="picker-subtitle">Pick a color theme that matches your mood</p>
+                    
+                    <div class="color-options">
+                        <button class="color-option active" data-theme="neon-pink">
+                            <div class="color-preview" style="background: #FF4D8D;"></div>
+                            <span class="color-name">Neon Pink</span>
+                        </button>
+                        <button class="color-option" data-theme="electric-blue">
+                            <div class="color-preview" style="background: #00D4FF;"></div>
+                            <span class="color-name">Electric Blue</span>
+                        </button>
+                        <button class="color-option" data-theme="lime-green">
+                            <div class="color-preview" style="background: #9CFF2E;"></div>
+                            <span class="color-name">Lime Green</span>
+                        </button>
+                        <button class="color-option" data-theme="purple">
+                            <div class="color-preview" style="background: #8A2BE2;"></div>
+                            <span class="color-name">Purple</span>
+                        </button>
+                        <button class="color-option" data-theme="orange">
+                            <div class="color-preview" style="background: #FF8E53;"></div>
+                            <span class="color-name">Orange</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="signature-canvas">
+                    <div class="canvas-header">
+                        <h3>Draw My Signature</h3>
+                        <p>Try drawing my signature style</p>
+                    </div>
+                    
+                    <div class="canvas-container">
+                        <canvas id="signatureCanvas" width="400" height="200"></canvas>
+                        <div class="canvas-controls">
+                            <button class="canvas-btn clear-btn">
+                                <i class="fas fa-eraser"></i>
+                                Clear
+                            </button>
+                            <button class="canvas-btn undo-btn">
+                                <i class="fas fa-undo"></i>
+                                Undo
+                            </button>
+                            <button class="canvas-btn save-btn">
+                                <i class="fas fa-download"></i>
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="signature-preview">
+                        <div class="preview-original">
+                            <h4>Original Signature</h4>
+                            <div class="original-sig">Aseel</div>
+                        </div>
+                        <div class="preview-your">
+                            <h4>Your Version</h4>
+                            <div class="your-sig" id="yourSignature">...</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="interactive-tips">
+                    <h3>Interactive Elements</h3>
+                    <p>Try hovering over these elements</p>
+                    
+                    <div class="tip-grid">
+                        <div class="tip-item" data-tip="Every project starts with research">
+                            <div class="tip-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <span>Discovery</span>
+                        </div>
+                        <div class="tip-item" data-tip="I sketch ideas before going digital">
+                            <div class="tip-icon">
+                                <i class="fas fa-pencil-alt"></i>
+                            </div>
+                            <span>Sketching</span>
+                        </div>
+                        <div class="tip-item" data-tip="Colors set the mood and emotion">
+                            <div class="tip-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <span>Color Theory</span>
+                        </div>
+                        <div class="tip-item" data-tip="Micro-interactions make experiences memorable">
+                            <div class="tip-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <span>Animations</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Testimonials -->
+    <section class="testimonials-section">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-label">Testimonials</span>
+                <h2 class="section-title">Social Proof Lounge</h2>
+                <p class="section-subtitle">Real stories from real collaborations</p>
             </div>
             
             <div class="polaroid-grid">
-                <div class="polaroid-card">
-                    <div class="polaroid-image">
-                        <div class="image-placeholder">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                    </div>
-                    <div class="polaroid-content">
-                        <p class="polaroid-text">"Working with Aseel feels like having a creative partner who reads your mind. The content she created had soul."</p>
-                        <div class="polaroid-footer">
-                            <span class="client-name">Sarah M.</span>
-                            <span class="client-role">Creative Director @BrandHouse</span>
-                        </div>
-                    </div>
-                    <div class="polaroid-tape"></div>
-                </div>
-                
-                <div class="polaroid-card tilted">
+                <!-- Testimonial 1 -->
+                <div class="polaroid-card" style="transform: rotate(-1deg);">
                     <div class="polaroid-image">
                         <div class="image-placeholder">
                             <i class="fas fa-chart-line"></i>
                         </div>
+                        <button class="audio-play" data-audio="client1">
+                            <i class="fas fa-play"></i>
+                        </button>
                     </div>
+                    
                     <div class="polaroid-content">
-                        <p class="polaroid-text">"The strategic approach to our content changed everything. Results exceeded expectations by 300%."</p>
-                        <div class="polaroid-footer">
-                            <span class="client-name">James L.</span>
-                            <span class="client-role">Marketing Lead @TechStart</span>
+                        <p class="testimonial-text">
+                            "The attention to detail was incredible. Every interaction felt intentional and purposeful."
+                        </p>
+                        
+                        <div class="client-info">
+                            <span class="client-name">Sarah Johnson</span>
+                            <span class="client-role">Product Director @TechFlow</span>
+                        </div>
+                        
+                        <div class="project-stats">
+                            <div class="stat">
+                                <span class="stat-value">+65%</span>
+                                <span class="stat-label">Conversion</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">3.8</span>
+                                <span class="stat-label">App Rating</span>
+                            </div>
                         </div>
                     </div>
+                    
                     <div class="polaroid-tape"></div>
                 </div>
                 
-                <div class="polaroid-card tilted-alt">
+                <!-- Testimonial 2 -->
+                <div class="polaroid-card tilted" style="transform: rotate(2deg);">
+                    <div class="polaroid-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <button class="audio-play" data-audio="client2">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="polaroid-content">
+                        <p class="testimonial-text">
+                            "Working with Aseel transformed our e-commerce platform. The results speak for themselves."
+                        </p>
+                        
+                        <div class="client-info">
+                            <span class="client-name">Michael Chen</span>
+                            <span class="client-role">CEO @ShopNexus</span>
+                        </div>
+                        
+                        <div class="project-stats">
+                            <div class="stat">
+                                <span class="stat-value">40k+</span>
+                                <span class="stat-label">Downloads</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">98%</span>
+                                <span class="stat-label">Satisfaction</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="polaroid-tape"></div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="polaroid-card" style="transform: rotate(-2deg);">
                     <div class="polaroid-image">
                         <div class="image-placeholder">
                             <i class="fas fa-users"></i>
                         </div>
+                        <button class="audio-play" data-audio="client3">
+                            <i class="fas fa-play"></i>
+                        </button>
                     </div>
+                    
                     <div class="polaroid-content">
-                        <p class="polaroid-text">"Authentic, fast, and incredibly effective. Our engagement rates have never been this high."</p>
-                        <div class="polaroid-footer">
-                            <span class="client-name">Lena K.</span>
-                            <span class="client-role">Founder @UrbanStyle</span>
+                        <p class="testimonial-text">
+                            "A true partner in the creative process. The strategic approach made all the difference."
+                        </p>
+                        
+                        <div class="client-info">
+                            <span class="client-name">Lisa Rodriguez</span>
+                            <span class="client-role">Marketing Lead @DataFlow</span>
+                        </div>
+                        
+                        <div class="project-stats">
+                            <div class="stat">
+                                <span class="stat-value">75%</span>
+                                <span class="stat-label">Engagement</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">2.5x</span>
+                                <span class="stat-label">Retention</span>
+                            </div>
                         </div>
                     </div>
+                    
                     <div class="polaroid-tape"></div>
                 </div>
                 
-                <div class="polaroid-card">
+                <!-- Testimonial 4 -->
+                <div class="polaroid-card tilted" style="transform: rotate(1deg);">
                     <div class="polaroid-image">
                         <div class="image-placeholder">
-                            <i class="fas fa-lightbulb"></i>
+                            <i class="fas fa-mobile-alt"></i>
                         </div>
+                        <button class="audio-play" data-audio="client4">
+                            <i class="fas fa-play"></i>
+                        </button>
                     </div>
+                    
                     <div class="polaroid-content">
-                        <p class="polaroid-text">"She doesn't just create content; she architects emotional experiences that people remember."</p>
-                        <div class="polaroid-footer">
-                            <span class="client-name">Alex T.</span>
-                            <span class="client-role">CEO @MindfulCo</span>
+                        <p class="testimonial-text">
+                            "The user experience was so intuitive. Our customers actually enjoy using our app now."
+                        </p>
+                        
+                        <div class="client-info">
+                            <span class="client-name">David Park</span>
+                            <span class="client-role">Founder @VitaTrack</span>
+                        </div>
+                        
+                        <div class="project-stats">
+                            <div class="stat">
+                                <span class="stat-value">10/10</span>
+                                <span class="stat-label">NPS Score</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">4.7</span>
+                                <span class="stat-label">Play Store</span>
+                            </div>
                         </div>
                     </div>
+                    
                     <div class="polaroid-tape"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Section 8: Let's Create Your Story -->
-    <section class="create-story" id="contact">
-        <div class="create-container">
-            <div class="create-content">
-                <div class="create-header">
-                    <h2 class="create-title">Ready to write your brand's next chapter?</h2>
-                    <p class="create-subtitle">Let's create content that people feel, not just watch</p>
-                </div>
-                
-                <div class="create-actions">
-                    <a href="https://wa.me/1234567890" class="action-btn whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i>
-                        <span>Chat on WhatsApp</span>
+    <!-- Section 8: Contact -->
+    <section class="contact-section" id="contact">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-label">Contact</span>
+                <h2 class="section-title">Ready to Break the Web</h2>
+                <p class="section-subtitle accent">With Your Brand?</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-options">
+                    <!-- WhatsApp -->
+                    <a href="https://wa.me/1234567890" class="contact-option whatsapp">
+                        <div class="option-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="option-content">
+                            <h4>Chat Now</h4>
+                            <p>Fast response, casual conversation</p>
+                            <div class="option-status">
+                                <i class="fas fa-circle"></i>
+                                <span>Online now</span>
+                            </div>
+                        </div>
+                        <div class="option-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
                     </a>
                     
-                    <a href="mailto:hello@aseelcreative.com" class="action-btn email-btn">
-                        <i class="fas fa-envelope"></i>
-                        <span>Send an Email</span>
+                    <!-- Email -->
+                    <a href="mailto:hello@aseel.design" class="contact-option email">
+                        <div class="option-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="option-content">
+                            <h4>Send Email</h4>
+                            <p>Detailed project discussions</p>
+                            <div class="option-status">
+                                <i class="fas fa-clock"></i>
+                                <span>Reply within 4 hours</span>
+                            </div>
+                        </div>
+                        <div class="option-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+                    
+                    <!-- Calendar -->
+                    <a href="https://calendly.com/aseel" class="contact-option calendar">
+                        <div class="option-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="option-content">
+                            <h4>Schedule Call</h4>
+                            <p>30-minute strategy session</p>
+                            <div class="option-status">
+                                <i class="fas fa-video"></i>
+                                <span>Video call available</span>
+                            </div>
+                        </div>
+                        <div class="option-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
                     </a>
                 </div>
                 
-                <div class="create-form">
-                    <div class="form-intro">
-                        <h3>Tell me about your project</h3>
-                        <p>What story do you want to tell?</p>
+                <div class="quick-contact">
+                    <div class="quick-form">
+                        <h4>Or drop a quick note</h4>
+                        <textarea 
+                            id="quickMessage" 
+                            placeholder="Tell me about your project, timeline, or just say hi... ✨"
+                            rows="3"></textarea>
+                        
+                        <div class="form-actions">
+                            <button class="send-btn" id="sendMessage">
+                                <span>Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                            <div class="form-hint">
+                                <i class="fas fa-info-circle"></i>
+                                <span>No spam, ever. Just real conversations.</span>
+                            </div>
+                        </div>
                     </div>
                     
-                    <textarea 
-                        class="project-input" 
-                        placeholder="Describe your vision, goals, or just say hi... ✨"
-                        rows="3"></textarea>
-                    
-                    <button class="submit-story">
-                        <span>Start Our Story</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
+                    <div class="personal-note">
+                        <div class="note-icon">
+                            <i class="fas fa-hand-sparkles"></i>
+                        </div>
+                        <div class="note-content">
+                            <h4>100% Human Crafted</h4>
+                            <p>
+                                <strong>Every project is personal.</strong> 
+                                I work directly with you from discovery to launch — 
+                                no AI, no templates, no middlemen. Just pure creative collaboration.
+                            </p>
+                            <div class="note-tags">
+                                <span class="tag">Hand-coded</span>
+                                <span class="tag">Custom Design</span>
+                                <span class="tag">Personal Collaboration</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="create-footer">
-                    <div class="footer-note">
-                        <i class="fas fa-clock"></i>
-                        <span>Typically reply within 2 hours</span>
-                    </div>
+                <div class="contact-footer">
                     <div class="footer-social">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-dribbble"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-behance"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
                         <a href="#" class="social-link">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-tiktok"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
+                    </div>
+                    
+                    <div class="footer-info">
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Available for remote work worldwide</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Mon-Fri: 9AM-6PM GMT+3</span>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="create-visual">
-                <div class="visual-grid">
-                    <div class="grid-item"></div>
-                    <div class="grid-item"></div>
-                    <div class="grid-item"></div>
-                    <div class="grid-item"></div>
-                    <div class="grid-item active"></div>
-                    <div class="grid-item"></div>
-                    <div class="grid-item"></div>
-                    <div class="grid-item"></div>
-                    <div class="grid-item"></div>
-                </div>
-                <div class="visual-text">Let's create something memorable.</div>
-            </div>
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <span class="logo-symbol">A</span>
+                    <span class="logo-text">aseel</span>
+                    <span class="logo-dot">.</span>
+                </div>
+                <p class="footer-tagline">Creating digital experiences that pop since 2019.</p>
+            </div>
+            
+            <div class="footer-links">
+                <a href="#process" class="footer-link">Process</a>
+                <a href="#portfolio" class="footer-link">Work</a>
+                <a href="#services" class="footer-link">Services</a>
+                <a href="#behind" class="footer-link">Studio</a>
+                <a href="#contact" class="footer-link">Contact</a>
+            </div>
+            
+            <div class="footer-copyright">
+                <p>© 2023 Aseel. All rights reserved.</p>
+                <p class="footer-note">Crafted with ❤️ and too much coffee.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Audio Player (Hidden) -->
+    <div class="audio-player" id="audioPlayer">
+        <audio id="testimonialAudio"></audio>
+        <div class="player-controls">
+            <button class="player-btn" id="playPause">
+                <i class="fas fa-play"></i>
+            </button>
+            <div class="player-progress">
+                <div class="progress-bar"></div>
+            </div>
+            <button class="player-btn close-btn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
 
     <!-- JavaScript -->
     <script src="script.js"></script>
