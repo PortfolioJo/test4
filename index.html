@@ -9,7 +9,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -21,6 +21,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Floating Sketch Elements -->
+    <div class="sketch-element sketch-element-1"></div>
+    <div class="sketch-element sketch-element-2"></div>
+    <div class="sketch-floating sketch-floating-1"></div>
+    <div class="sketch-floating sketch-floating-2"></div>
+    <div class="sketch-floating sketch-floating-3"></div>
+
     <!-- Navigation -->
     <header class="header" id="header">
         <nav class="nav container">
@@ -34,10 +41,8 @@
                     <li><a href="#hero" class="nav__link active" data-i18n="nav.home">Home</a></li>
                     <li><a href="#about" class="nav__link" data-i18n="nav.about">About</a></li>
                     <li><a href="#projects" class="nav__link" data-i18n="nav.work">Work</a></li>
-                    <li><a href="#skills" class="nav__link" data-i18n="nav.skills">Skills</a></li>
                     <li><a href="#services" class="nav__link" data-i18n="nav.services">Services</a></li>
                     <li><a href="#gallery" class="nav__link" data-i18n="nav.gallery">Gallery</a></li>
-                    <li><a href="#testimonials" class="nav__link" data-i18n="nav.testimonials">Testimonials</a></li>
                     <li><a href="#contact" class="nav__link" data-i18n="nav.contact">Contact</a></li>
                 </ul>
             </div>
@@ -105,10 +110,10 @@
                 <p class="section__subtitle" data-i18n="about.subtitle">Where art meets purpose in digital form</p>
             </div>
             
-            <div class="about__content asymmetrical-grid">
+            <div class="about__content">
                 <div class="about__image fade-in-left">
-                    <div class="image-frame image-frame--gold perspective-container">
-                        <div class="image-frame__inner card-3d">
+                    <div class="image-frame image-frame--gold">
+                        <div class="image-frame__inner">
                             <div class="image-placeholder">
                                 <i class="image-placeholder__icon fas fa-palette"></i>
                                 <span class="image-placeholder__text" data-i18n="about.imageText">Visual Storyteller</span>
@@ -148,15 +153,8 @@
                 <p class="section__subtitle" data-i18n="projects.subtitle">Selected projects showcasing design excellence</p>
             </div>
             
-            <div class="filter-bar fade-in-up">
-                <button class="filter-btn active" data-filter="all" data-i18n="projects.filter.all">All</button>
-                <button class="filter-btn" data-filter="branding" data-i18n="projects.filter.branding">Branding</button>
-                <button class="filter-btn" data-filter="web" data-i18n="projects.filter.web">Web</button>
-                <button class="filter-btn" data-filter="advertising" data-i18n="projects.filter.advertising">Advertising</button>
-            </div>
-            
-            <div class="projects__grid masonry-grid">
-                <article class="project-card filter-item fade-in-up" data-project="1" data-category="branding" style="animation-delay: 0.1s">
+            <div class="projects__grid">
+                <article class="project-card fade-in-up" data-project="1" style="animation-delay: 0.1s">
                     <div class="project-card__image project-card__image--1">
                         <div class="project-card__overlay">
                             <span class="project-card__category" data-i18n="projects.project1.category">Brand Identity</span>
@@ -181,7 +179,7 @@
                     </div>
                 </article>
                 
-                <article class="project-card project-card--featured filter-item fade-in-up" data-project="2" data-category="web" style="animation-delay: 0.2s">
+                <article class="project-card project-card--featured fade-in-up" data-project="2" style="animation-delay: 0.2s">
                     <div class="project-card__image project-card__image--2">
                         <div class="project-card__overlay">
                             <span class="project-card__category" data-i18n="projects.project2.category">Web Design</span>
@@ -206,7 +204,7 @@
                     </div>
                 </article>
                 
-                <article class="project-card filter-item fade-in-up" data-project="3" data-category="advertising" style="animation-delay: 0.3s">
+                <article class="project-card fade-in-up" data-project="3" style="animation-delay: 0.3s">
                     <div class="project-card__image project-card__image--3">
                         <div class="project-card__overlay">
                             <span class="project-card__category" data-i18n="projects.project3.category">Advertising</span>
@@ -230,117 +228,6 @@
                         </button>
                     </div>
                 </article>
-                
-                <!-- Additional project for masonry effect -->
-                <article class="project-card filter-item fade-in-up" data-project="4" data-category="branding" style="animation-delay: 0.4s; height: 380px;">
-                    <div class="project-card__image project-card__image--4" style="background: linear-gradient(135deg, #2A2A2A 0%, #1A1A1A 100%); height: 220px;">
-                        <div class="project-card__overlay">
-                            <span class="project-card__category" data-i18n="projects.project4.category">Packaging</span>
-                            <span class="project-card__year">2024</span>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card__content">
-                        <h3 class="project-card__title" data-i18n="projects.project4.title">Organic Skincare Line</h3>
-                        <p class="project-card__description" data-i18n="projects.project4.description">Sustainable packaging design with natural elements and eco-friendly materials</p>
-                        
-                        <div class="project-card__tags">
-                            <span class="tag" data-i18n="projects.tags.packaging">Packaging</span>
-                            <span class="tag" data-i18n="projects.tags.sustainability">Sustainability</span>
-                            <span class="tag" data-i18n="projects.tags.illustration">Illustration</span>
-                        </div>
-                        
-                        <button class="project-card__link project-view-btn" data-project="4">
-                            <span data-i18n="projects.viewCase">View Case Study</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </article>
-                
-                <!-- Video preview project -->
-                <article class="project-card filter-item fade-in-up" data-project="5" data-category="web" style="animation-delay: 0.5s; height: 350px;">
-                    <div class="video-preview" data-video="https://assets.mixkit.co/videos/preview/mixkit-close-up-of-a-blue-eye-12392-large.mp4">
-                        <div class="project-card__image project-card__image--5" style="background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%);">
-                            <div class="project-card__overlay">
-                                <span class="project-card__category" data-i18n="projects.project5.category">Motion Design</span>
-                                <span class="project-card__year">2024</span>
-                            </div>
-                            <div class="video-preview__play">
-                                <i class="fas fa-play"></i>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card__content">
-                        <h3 class="project-card__title" data-i18n="projects.project5.title">Animated Brand Story</h3>
-                        <p class="project-card__description" data-i18n="projects.project5.description">Motion graphics and animation for brand storytelling campaign</p>
-                        
-                        <div class="project-card__tags">
-                            <span class="tag" data-i18n="projects.tags.animation">Animation</span>
-                            <span class="tag" data-i18n="projects.tags.motion">Motion Design</span>
-                            <span class="tag" data-i18n="projects.tags.video">Video</span>
-                        </div>
-                        
-                        <button class="project-card__link project-view-btn" data-project="5">
-                            <span data-i18n="projects.viewCase">View Case Study</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section class="section section--skills" id="skills">
-        <div class="container">
-            <div class="section__header fade-in-up">
-                <h2 class="section__title">
-                    <span class="section__title-number">03</span>
-                    <span class="section__title-text" data-i18n="skills.title">Expertise & Skills</span>
-                </h2>
-                <p class="section__subtitle" data-i18n="skills.subtitle">Mastering digital tools with artistic vision</p>
-            </div>
-            
-            <div class="skills__grid">
-                <div class="skill-category fade-in-up" style="animation-delay: 0.1s">
-                    <h3 class="skill-category__title" data-i18n="skills.category1">Design Tools</h3>
-                    <div class="skill-chart">
-                        <svg width="120" height="120" viewBox="0 0 120 120">
-                            <circle class="chart-circle chart-bg" cx="60" cy="60" r="54" />
-                            <circle class="chart-circle chart-progress" cx="60" cy="60" r="54" 
-                                    data-value="95" />
-                        </svg>
-                        <span class="chart-value">95%</span>
-                    </div>
-                    <p class="skill-category__label" data-i18n="skills.tool1">Adobe Creative Suite</p>
-                </div>
-                
-                <div class="skill-category fade-in-up" style="animation-delay: 0.2s">
-                    <h3 class="skill-category__title" data-i18n="skills.category2">Web Development</h3>
-                    <div class="skill-chart">
-                        <svg width="120" height="120" viewBox="0 0 120 120">
-                            <circle class="chart-circle chart-bg" cx="60" cy="60" r="54" />
-                            <circle class="chart-circle chart-progress" cx="60" cy="60" r="54" 
-                                    data-value="88" />
-                        </svg>
-                        <span class="chart-value">88%</span>
-                    </div>
-                    <p class="skill-category__label" data-i18n="skills.tool2">Frontend Technologies</p>
-                </div>
-                
-                <div class="skill-category fade-in-up" style="animation-delay: 0.3s">
-                    <h3 class="skill-category__title" data-i18n="skills.category3">UI/UX Design</h3>
-                    <div class="skill-chart">
-                        <svg width="120" height="120" viewBox="0 0 120 120">
-                            <circle class="chart-circle chart-bg" cx="60" cy="60" r="54" />
-                            <circle class="chart-circle chart-progress" cx="60" cy="60" r="54" 
-                                    data-value="92" />
-                        </svg>
-                        <span class="chart-value">92%</span>
-                    </div>
-                    <p class="skill-category__label" data-i18n="skills.tool3">User Experience</p>
-                </div>
             </div>
         </div>
     </section>
@@ -350,14 +237,14 @@
         <div class="container">
             <div class="section__header fade-in-up">
                 <h2 class="section__title">
-                    <span class="section__title-number">04</span>
+                    <span class="section__title-number">03</span>
                     <span class="section__title-text" data-i18n="services.title">Design Services</span>
                 </h2>
                 <p class="section__subtitle" data-i18n="services.subtitle">Transforming visions into visual realities</p>
             </div>
             
             <div class="services__grid">
-                <div class="service-card glass-card fade-in-up" style="animation-delay: 0.1s">
+                <div class="service-card fade-in-up" style="animation-delay: 0.1s">
                     <div class="service-card__header">
                         <div class="service-card__icon">
                             <i class="fas fa-paint-brush"></i>
@@ -372,7 +259,7 @@
                     </div>
                 </div>
                 
-                <div class="service-card service-card--highlight glass-card fade-in-up" style="animation-delay: 0.2s">
+                <div class="service-card service-card--highlight fade-in-up" style="animation-delay: 0.2s">
                     <div class="service-card__header">
                         <div class="service-card__icon">
                             <i class="fas fa-palette"></i>
@@ -387,7 +274,7 @@
                     </div>
                 </div>
                 
-                <div class="service-card glass-card fade-in-up" style="animation-delay: 0.3s">
+                <div class="service-card fade-in-up" style="animation-delay: 0.3s">
                     <div class="service-card__header">
                         <div class="service-card__icon">
                             <i class="fas fa-camera-retro"></i>
@@ -410,7 +297,7 @@
         <div class="container">
             <div class="section__header fade-in-up">
                 <h2 class="section__title">
-                    <span class="section__title-number">05</span>
+                    <span class="section__title-number">04</span>
                     <span class="section__title-text" data-i18n="gallery.title">Visual Gallery</span>
                 </h2>
                 <p class="section__subtitle" data-i18n="gallery.subtitle">A curated collection of artistic expressions</p>
@@ -468,80 +355,12 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="section section--testimonials" id="testimonials">
-        <div class="container">
-            <div class="section__header fade-in-up">
-                <h2 class="section__title">
-                    <span class="section__title-number">06</span>
-                    <span class="section__title-text" data-i18n="testimonials.title">Client Stories</span>
-                </h2>
-                <p class="section__subtitle" data-i18n="testimonials.subtitle">What partners say about our collaboration</p>
-            </div>
-            
-            <div class="testimonial-carousel">
-                <div class="testimonial-track">
-                    <div class="testimonial-slide">
-                        <div class="testimonial-card glass-card">
-                            <div class="testimonial__quote">
-                                <i class="fas fa-quote-left"></i>
-                            </div>
-                            <p class="testimonial__text" data-i18n="testimonials.text1">
-                                "Aseel transformed our brand identity completely. The attention to detail and creative vision exceeded all expectations."
-                            </p>
-                            <div class="testimonial__author">
-                                <span class="testimonial__name" data-i18n="testimonials.author1">Sarah Johnson</span>
-                                <span class="testimonial__role" data-i18n="testimonials.role1">Marketing Director, TechCorp</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-slide">
-                        <div class="testimonial-card glass-card">
-                            <div class="testimonial__quote">
-                                <i class="fas fa-quote-left"></i>
-                            </div>
-                            <p class="testimonial__text" data-i18n="testimonials.text2">
-                                "Working with Aseel was a game-changer. The designs not only looked stunning but also improved our user engagement by 40%."
-                            </p>
-                            <div class="testimonial__author">
-                                <span class="testimonial__name" data-i18n="testimonials.author2">Ahmed Al-Mansoor</span>
-                                <span class="testimonial__role" data-i18n="testimonials.role2">CEO, Artisan Studios</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-slide">
-                        <div class="testimonial-card glass-card">
-                            <div class="testimonial__quote">
-                                <i class="fas fa-quote-left"></i>
-                            </div>
-                            <p class="testimonial__text" data-i18n="testimonials.text3">
-                                "The innovative approach and professional execution made this project a huge success. Highly recommended!"
-                            </p>
-                            <div class="testimonial__author">
-                                <span class="testimonial__name" data-i18n="testimonials.author3">Elena Rodriguez</span>
-                                <span class="testimonial__role" data-i18n="testimonials.role3">Creative Lead, Global Brands</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="carousel-nav">
-                    <div class="carousel-dot active"></div>
-                    <div class="carousel-dot"></div>
-                    <div class="carousel-dot"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Contact Section -->
     <section class="section section--contact" id="contact">
         <div class="container">
             <div class="section__header fade-in-up">
                 <h2 class="section__title">
-                    <span class="section__title-number">07</span>
+                    <span class="section__title-number">05</span>
                     <span class="section__title-text" data-i18n="contact.title">Let's Connect</span>
                 </h2>
                 <p class="section__subtitle" data-i18n="contact.subtitle">Ready to bring your vision to life?</p>
@@ -588,20 +407,20 @@
                 </div>
                 
                 <div class="contact__form fade-in-right">
-                    <form id="contactForm" class="dynamic-form">
+                    <form id="contactForm">
                         <div class="form-group">
                             <input type="text" id="name" name="name" required placeholder=" ">
-                            <label for="name" class="form-floating-label" data-i18n="contact.form.name">Your Name</label>
+                            <label for="name" data-i18n="contact.form.name">Your Name</label>
                         </div>
                         
                         <div class="form-group">
                             <input type="email" id="email" name="email" required placeholder=" ">
-                            <label for="email" class="form-floating-label" data-i18n="contact.form.email">Email Address</label>
+                            <label for="email" data-i18n="contact.form.email">Email Address</label>
                         </div>
                         
                         <div class="form-group">
                             <textarea id="message" name="message" rows="4" required placeholder=" "></textarea>
-                            <label for="message" class="form-floating-label" data-i18n="contact.form.message">Project Details</label>
+                            <label for="message" data-i18n="contact.form.message">Project Details</label>
                         </div>
                         
                         <button type="submit" class="btn btn--primary btn--full">
@@ -680,63 +499,6 @@
                         </a>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Video Player Modal -->
-    <div class="modal" id="videoPlayerModal" style="display: none;">
-        <div class="modal__overlay"></div>
-        <div class="modal__content">
-            <button class="modal__close" id="videoPlayerClose">
-                <i class="fas fa-times"></i>
-            </button>
-            
-            <div class="modal__body" style="padding: 0;">
-                <video id="videoPlayer" controls autoplay style="width: 100%; border-radius: var(--radius-lg);">
-                    <source src="" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-        </div>
-    </div>
-
-    <!-- Story Mode Project -->
-    <div class="story-container" id="projectStory" style="display: none;">
-        <div class="story-nav">
-            <button class="story-close" id="storyClose">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="story-nav-dots"></div>
-            <div class="story-nav-progress"></div>
-        </div>
-        
-        <div class="story-section">
-            <h2 class="story-title" id="storyTitle">Project Story</h2>
-            <p class="story-intro" id="storyIntro">A detailed journey through the creative process</p>
-        </div>
-        
-        <div class="story-section">
-            <h3 class="story-heading">Concept & Research</h3>
-            <p class="story-text">Initial research phase where we explored market trends and user needs.</p>
-            <div class="story-media">
-                <!-- سيتم إضافة المحتوى ديناميكيًا -->
-            </div>
-        </div>
-        
-        <div class="story-section">
-            <h3 class="story-heading">Design Development</h3>
-            <p class="story-text">Iterative design process with multiple revisions and refinements.</p>
-            <div class="story-media">
-                <!-- سيتم إضافة المحتوى ديناميكيًا -->
-            </div>
-        </div>
-        
-        <div class="story-section">
-            <h3 class="story-heading">Final Execution</h3>
-            <p class="story-text">The final product and its impact on the target audience.</p>
-            <div class="story-media">
-                <!-- سيتم إضافة المحتوى ديناميكيًا -->
             </div>
         </div>
     </div>
