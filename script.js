@@ -1,5 +1,5 @@
 // ===========================================
-// Main Application - مع أنيميشنات خفيفة
+// Main Application - بورتفوليو Sketchbook فني
 // ===========================================
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -12,16 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initProjectModal();
     initContactForm();
     initScrollProgress();
-    
-    // الدوال الجديدة
-    initCustomCursor();
-    initCanvasAnimation();
-    initMasonryGrid();
-    initSkillCharts();
-    initSmartFilter();
-    initTestimonialCarousel();
-    initVideoPreviews();
-    initStoryMode();
+    initSketchbookEffects();
 });
 
 // ===========================================
@@ -43,7 +34,7 @@ function initNavigation() {
             
             // إضافة أنيميشن للقائمة
             if (navMenu.classList.contains('active')) {
-                navMenu.style.animation = 'slideInRight 0.3s ease-out';
+                navMenu.style.animation = 'fadeIn 0.3s ease-out';
             }
         });
     }
@@ -215,8 +206,10 @@ function initLanguageSwitcher() {
         // تحديث الخط للعربية
         if (lang === 'ar') {
             document.documentElement.style.setProperty('--font-body', "'Noto Sans Arabic', sans-serif");
+            document.documentElement.style.setProperty('--font-handwritten', "'Noto Sans Arabic', sans-serif");
         } else {
             document.documentElement.style.setProperty('--font-body', "'Inter', sans-serif");
+            document.documentElement.style.setProperty('--font-handwritten', "'Caveat', cursive");
         }
         
         // إضافة أنيميشن لتغيير اللغة
@@ -248,6 +241,12 @@ function initScrollAnimations() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
+                
+                // إضافة أنيميشن خاصة للعناصر الفنية
+                if (entry.target.classList.contains('project-card') || 
+                    entry.target.classList.contains('service-card')) {
+                    entry.target.style.animation = 'sketchAppear 0.5s ease-out forwards';
+                }
                 
                 // إزالة المراقبة بعد الظهور
                 observer.unobserve(entry.target);
@@ -286,12 +285,27 @@ function initHoverEffects() {
     
     cards.forEach(card => {
         card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-8px)';
-            this.style.boxShadow = '0 20px 40px rgba(198, 166, 103, 0.15)';
+            if (this.classList.contains('project-card')) {
+                this.style.transform = 'translateY(-8px) rotate(-1deg)';
+            } else if (this.classList.contains('gallery-item')) {
+                this.style.transform = 'rotate(0deg) scale(1.05)';
+            } else {
+                this.style.transform = 'translateY(-8px)';
+            }
+            this.style.boxShadow = '0 20px 40px rgba(156, 124, 90, 0.15)';
         });
         
         card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
+            if (this.classList.contains('project-card')) {
+                this.style.transform = 'translateY(0) rotate(0)';
+            } else if (this.classList.contains('gallery-item')) {
+                const rotation = this.classList.contains('gallery-item') && 
+                               Array.from(document.querySelectorAll('.gallery-item')).indexOf(this) % 2 === 0 ? 
+                               '-1deg' : '1deg';
+                this.style.transform = `rotate(${rotation})`;
+            } else {
+                this.style.transform = 'translateY(0)';
+            }
             this.style.boxShadow = '';
         });
     });
@@ -301,11 +315,17 @@ function initHoverEffects() {
     
     buttons.forEach(button => {
         button.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-3px)';
+            if (this.classList.contains('btn--primary')) {
+                this.style.transform = 'translateY(-3px) rotate(-1deg)';
+            } else if (this.classList.contains('btn--outline')) {
+                this.style.transform = 'translateY(-3px) rotate(1deg)';
+            } else {
+                this.style.transform = 'translateY(-3px)';
+            }
         });
         
         button.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
+            this.style.transform = 'translateY(0) rotate(0)';
         });
     });
     
@@ -314,12 +334,55 @@ function initHoverEffects() {
     
     socialLinks.forEach(link => {
         link.addEventListener('mouseenter', function() {
-            this.style.animation = 'float 2s ease-in-out infinite';
+            this.style.transform = 'translateY(-5px) scale(1.1)';
         });
         
         link.addEventListener('mouseleave', function() {
-            this.style.animation = '';
+            this.style.transform = 'translateY(0) scale(1)';
         });
+    });
+}
+
+// ===========================================
+// Sketchbook Effects
+// ===========================================
+
+function initSketchbookEffects() {
+    // Sketchbook hover effects
+    const cards = document.querySelectorAll('.project-card, .service-card');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px) rotate(-1deg)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) rotate(0)';
+        });
+    });
+    
+    // Add drawing effect to signature
+    const signature = document.querySelector('.signature__name');
+    if (signature) {
+        signature.addEventListener('mouseenter', function() {
+            this.style.animation = 'drawLine 2s ease forwards';
+            setTimeout(() => {
+                this.style.animation = '';
+            }, 2000);
+        });
+    }
+    
+    // Paper texture effect on scroll
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * -0.5;
+        document.body.style.backgroundPosition = `0px ${rate}px`;
+    });
+    
+    // Random rotation for gallery items
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    galleryItems.forEach((item, index) => {
+        const rotation = index % 2 === 0 ? '-1deg' : '1deg';
+        item.style.setProperty('--rotation', rotation);
     });
 }
 
@@ -357,22 +420,6 @@ function initProjectModal() {
             description: 'Comprehensive advertising campaign with professional photography. The campaign successfully positioned the brand as a premium lifestyle choice through strategic visual storytelling.',
             tags: ['Advertising', 'Photography', 'Marketing', 'Campaign Strategy'],
             imageClass: 'project-card__image--3'
-        },
-        4: {
-            category: 'Packaging',
-            title: 'Organic Skincare Line',
-            year: '2024',
-            description: 'Sustainable packaging design with natural elements and eco-friendly materials. The design reflects the brand\'s commitment to nature and sustainability while maintaining luxury appeal.',
-            tags: ['Packaging Design', 'Sustainability', 'Illustration', 'Brand Strategy'],
-            imageClass: 'project-card__image--4'
-        },
-        5: {
-            category: 'Motion Design',
-            title: 'Animated Brand Story',
-            year: '2024',
-            description: 'Motion graphics and animation for brand storytelling campaign. The animation brings the brand\'s values to life through fluid movement and emotional storytelling.',
-            tags: ['Animation', 'Motion Design', 'Video Production', 'Storytelling'],
-            imageClass: 'project-card__image--5'
         }
     };
     
@@ -487,7 +534,6 @@ function initContactForm() {
                 label.style.top = '-0.5rem';
                 label.style.fontSize = '0.875rem';
                 label.style.color = 'var(--color-accent-primary)';
-                label.style.animation = 'fadeInScale 0.2s ease';
             });
             
             input.addEventListener('blur', function() {
@@ -555,414 +601,6 @@ function initScrollProgress() {
 }
 
 // ===========================================
-// Custom Cursor - مؤشر مخصص
-// ===========================================
-
-function initCustomCursor() {
-    const cursor = document.createElement('div');
-    cursor.className = 'custom-cursor';
-    document.body.appendChild(cursor);
-
-    const cursorFollower = document.createElement('div');
-    cursorFollower.className = 'cursor-follower';
-    document.body.appendChild(cursorFollower);
-
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-
-        setTimeout(() => {
-            cursorFollower.style.left = e.clientX + 'px';
-            cursorFollower.style.top = e.clientY + 'px';
-        }, 100);
-    });
-
-    // تغيير شكل المؤشر عند المرور على العناصر التفاعلية
-    const interactiveElements = document.querySelectorAll('a, button, .project-card, .service-card');
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursor.style.transform = 'scale(1.5)';
-            cursorFollower.style.transform = 'scale(1.5)';
-            cursor.style.borderColor = 'var(--color-accent-secondary)';
-        });
-        el.addEventListener('mouseleave', () => {
-            cursor.style.transform = 'scale(1)';
-            cursorFollower.style.transform = 'scale(1)';
-            cursor.style.borderColor = 'var(--color-accent-primary)';
-        });
-    });
-}
-
-// ===========================================
-// Canvas Background Animation - خلفية متحركة
-// ===========================================
-
-function initCanvasAnimation() {
-    const canvas = document.createElement('canvas');
-    canvas.className = 'canvas-bg';
-    document.body.appendChild(canvas);
-
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    let animationId;
-
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        initParticles();
-    }
-
-    function initParticles() {
-        particles = [];
-        const particleCount = Math.floor((canvas.width * canvas.height) / 10000);
-        
-        for (let i = 0; i < particleCount; i++) {
-            particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                size: Math.random() * 2 + 0.5,
-                speedX: Math.random() * 0.5 - 0.25,
-                speedY: Math.random() * 0.5 - 0.25,
-                color: `rgba(${Math.floor(Math.random() * 100 + 155)}, ${Math.floor(Math.random() * 100 + 155)}, ${Math.floor(Math.random() * 100 + 155)}, 0.1)`
-            });
-        }
-    }
-
-    function animateParticles() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        particles.forEach(particle => {
-            particle.x += particle.speedX;
-            particle.y += particle.speedY;
-            
-            // ارتداد من الحواف
-            if (particle.x < 0 || particle.x > canvas.width) particle.speedX *= -1;
-            if (particle.y < 0 || particle.y > canvas.height) particle.speedY *= -1;
-            
-            // رسم الجسيمات
-            ctx.beginPath();
-            ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-            ctx.fillStyle = particle.color;
-            ctx.fill();
-            
-            // رسم خطوط بين الجسيمات القريبة
-            particles.forEach(otherParticle => {
-                const dx = particle.x - otherParticle.x;
-                const dy = particle.y - otherParticle.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                
-                if (distance < 100) {
-                    ctx.beginPath();
-                    ctx.strokeStyle = `rgba(198, 166, 103, ${0.1 * (1 - distance / 100)})`;
-                    ctx.lineWidth = 0.5;
-                    ctx.moveTo(particle.x, particle.y);
-                    ctx.lineTo(otherParticle.x, otherParticle.y);
-                    ctx.stroke();
-                }
-            });
-        });
-        
-        animationId = requestAnimationFrame(animateParticles);
-    }
-
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-    animateParticles();
-    
-    // تنظيف عند إغلاق الصفحة
-    window.addEventListener('beforeunload', () => {
-        cancelAnimationFrame(animationId);
-    });
-}
-
-// ===========================================
-// Masonry Grid Layout - تخطيط شبكة ميسونري
-// ===========================================
-
-function initMasonryGrid() {
-    const masonryGrids = document.querySelectorAll('.masonry-grid');
-    
-    masonryGrids.forEach(grid => {
-        const items = Array.from(grid.children);
-        
-        // إعادة ترتيب العناصر عشوائيًا لشكل ميسونري
-        items.sort(() => Math.random() - 0.5);
-        
-        // إزالة جميع العناصر
-        while (grid.firstChild) {
-            grid.removeChild(grid.firstChild);
-        }
-        
-        // إعادة إضافة العناصر بترتيب جديد
-        items.forEach(item => {
-            // إضافة ارتفاعات مختلفة للعناصر
-            const randomHeight = Math.random() * 200 + 200;
-            item.style.height = `${randomHeight}px`;
-            grid.appendChild(item);
-        });
-    });
-}
-
-// ===========================================
-// Skill Charts - مخططات المهارات
-// ===========================================
-
-function initSkillCharts() {
-    const charts = document.querySelectorAll('.skill-chart');
-    
-    charts.forEach(chart => {
-        const progress = chart.querySelector('.chart-progress');
-        const valueElement = chart.querySelector('.chart-value');
-        const targetValue = parseInt(progress.getAttribute('data-value'));
-        let currentValue = 0;
-        
-        const radius = 54;
-        const circumference = 2 * Math.PI * radius;
-        
-        // تعيين القيمة الأولية
-        progress.style.strokeDasharray = circumference;
-        progress.style.strokeDashoffset = circumference;
-        
-        // رسم المخطط تدريجيًا
-        const drawChart = () => {
-            if (currentValue < targetValue) {
-                currentValue++;
-                valueElement.textContent = currentValue + '%';
-                
-                const offset = circumference - (currentValue / 100) * circumference;
-                progress.style.strokeDashoffset = offset;
-                
-                requestAnimationFrame(drawChart);
-            }
-        };
-        
-        // بدء الرسم عندما يكون العنصر مرئيًا
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    setTimeout(drawChart, 300);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        observer.observe(chart);
-    });
-}
-
-// ===========================================
-// Smart Filter - الفلتر الذكي
-// ===========================================
-
-function initSmartFilter() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const filterItems = document.querySelectorAll('.filter-item');
-    
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // إزالة النشاط من جميع الأزرار
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            // إضافة النشاط للزر المحدد
-            this.classList.add('active');
-            
-            const filterValue = this.getAttribute('data-filter');
-            
-            // تطبيق الفلتر
-            filterItems.forEach(item => {
-                const itemCategory = item.getAttribute('data-category');
-                
-                if (filterValue === 'all' || filterValue === itemCategory) {
-                    item.style.opacity = '1';
-                    item.style.transform = 'scale(1)';
-                    item.style.display = 'block';
-                    
-                    // إضافة تأثير ظهور
-                    item.style.animation = 'fadeInScale 0.5s ease';
-                } else {
-                    item.style.opacity = '0';
-                    item.style.transform = 'scale(0.8)';
-                    
-                    // إخفاء العنصر بعد الانتهاء من التأثير
-                    setTimeout(() => {
-                        item.style.display = 'none';
-                    }, 300);
-                }
-            });
-        });
-    });
-}
-
-// ===========================================
-// Testimonial Carousel - كاروسيل الشهادات
-// ===========================================
-
-function initTestimonialCarousel() {
-    const carousels = document.querySelectorAll('.testimonial-carousel');
-    
-    carousels.forEach(carousel => {
-        const track = carousel.querySelector('.testimonial-track');
-        const slides = Array.from(track.children);
-        const dots = carousel.querySelectorAll('.carousel-dot');
-        
-        let currentSlide = 0;
-        const slideWidth = slides[0].getBoundingClientRect().width;
-        
-        // تعيين عرض المسار
-        track.style.width = `${slideWidth * slides.length}px`;
-        
-        // تحديث الوضع
-        const updateCarousel = () => {
-            track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
-            
-            // تحديث النقاط
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlide);
-            });
-        };
-        
-        // النقاط التنقل
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                currentSlide = index;
-                updateCarousel();
-            });
-        });
-        
-        // التمرير التلقائي
-        let autoSlide = setInterval(() => {
-            currentSlide = (currentSlide + 1) % slides.length;
-            updateCarousel();
-        }, 5000);
-        
-        // إيقاف التمرير التلقائي عند التمرير يدويًا
-        carousel.addEventListener('mouseenter', () => {
-            clearInterval(autoSlide);
-        });
-        
-        carousel.addEventListener('mouseleave', () => {
-            autoSlide = setInterval(() => {
-                currentSlide = (currentSlide + 1) % slides.length;
-                updateCarousel();
-            }, 5000);
-        });
-    });
-}
-
-// ===========================================
-// Video Preview - معاينة الفيديو
-// ===========================================
-
-function initVideoPreviews() {
-    const videoPreviews = document.querySelectorAll('.video-preview');
-    
-    videoPreviews.forEach(preview => {
-        preview.addEventListener('click', function() {
-            const videoSrc = this.getAttribute('data-video');
-            
-            // عرض مشغل الفيديو
-            const videoModal = document.getElementById('videoPlayerModal');
-            const videoPlayer = document.getElementById('videoPlayer');
-            const videoClose = document.getElementById('videoPlayerClose');
-            
-            videoPlayer.src = videoSrc;
-            videoModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-            
-            // إغلاق المشغل
-            const closeVideo = () => {
-                videoModal.style.display = 'none';
-                videoPlayer.pause();
-                videoPlayer.currentTime = 0;
-                document.body.style.overflow = '';
-            };
-            
-            videoClose.addEventListener('click', closeVideo);
-            videoModal.querySelector('.modal__overlay').addEventListener('click', closeVideo);
-            
-            // إغلاق بمفتاح Escape
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && videoModal.style.display === 'flex') {
-                    closeVideo();
-                }
-            });
-        });
-    });
-}
-
-// ===========================================
-// Story Mode Navigation - تنقل وضع القصة
-// ===========================================
-
-function initStoryMode() {
-    const storySections = document.querySelectorAll('.story-section');
-    const storyNav = document.querySelector('.story-nav');
-    const storyClose = document.getElementById('storyClose');
-    
-    if (storySections.length > 0 && storyClose) {
-        // إغلاق وضع القصة
-        storyClose.addEventListener('click', () => {
-            document.getElementById('projectStory').style.display = 'none';
-            document.body.style.overflow = '';
-        });
-        
-        // مراقبة التمرير في وضع القصة
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    
-                    // تحديث التنقل
-                    const index = Array.from(storySections).indexOf(entry.target);
-                    updateStoryNav(index);
-                }
-            });
-        }, { threshold: 0.3 });
-        
-        storySections.forEach(section => observer.observe(section));
-        
-        // إنشاء نقاط التنقل
-        const dotsContainer = document.querySelector('.story-nav-dots');
-        storySections.forEach((_, index) => {
-            const dot = document.createElement('div');
-            dot.className = 'story-nav-dot';
-            if (index === 0) dot.classList.add('active');
-            dot.setAttribute('data-index', index);
-            dotsContainer.appendChild(dot);
-            
-            dot.addEventListener('click', () => {
-                scrollToStorySection(index);
-            });
-        });
-    }
-}
-
-function scrollToStorySection(index) {
-    const storySections = document.querySelectorAll('.story-section');
-    const targetSection = storySections[index];
-    
-    if (targetSection) {
-        targetSection.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
-    }
-}
-
-function updateStoryNav(currentIndex) {
-    const dots = document.querySelectorAll('.story-nav-dot');
-    const progress = document.querySelector('.story-nav-progress');
-    
-    dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentIndex);
-    });
-    
-    if (progress) {
-        const progressPercent = (currentIndex / (dots.length - 1)) * 100;
-        progress.style.width = `${progressPercent}%`;
-    }
-}
-
-// ===========================================
 // Translations
 // ===========================================
 
@@ -972,10 +610,8 @@ const translations = {
         'nav.home': 'Home',
         'nav.about': 'About',
         'nav.work': 'Work',
-        'nav.skills': 'Skills',
         'nav.services': 'Services',
         'nav.gallery': 'Gallery',
-        'nav.testimonials': 'Testimonials',
         'nav.contact': 'Contact',
         'lang.en': 'EN',
         'lang.ar': 'AR',
@@ -994,10 +630,6 @@ const translations = {
         'about.designerTitle': 'Digital Designer',
         'projects.title': 'Featured Work',
         'projects.subtitle': 'Selected projects showcasing design excellence',
-        'projects.filter.all': 'All',
-        'projects.filter.branding': 'Branding',
-        'projects.filter.web': 'Web',
-        'projects.filter.advertising': 'Advertising',
         'projects.project1.category': 'Brand Identity',
         'projects.project1.title': 'Luxury Fashion House',
         'projects.project1.description': 'Complete visual identity for a high-end fashion brand blending heritage with modernity',
@@ -1007,12 +639,6 @@ const translations = {
         'projects.project3.category': 'Advertising',
         'projects.project3.title': 'Premium Beverage Campaign',
         'projects.project3.description': 'Comprehensive advertising campaign with professional photography',
-        'projects.project4.category': 'Packaging',
-        'projects.project4.title': 'Organic Skincare Line',
-        'projects.project4.description': 'Sustainable packaging design with natural elements and eco-friendly materials',
-        'projects.project5.category': 'Motion Design',
-        'projects.project5.title': 'Animated Brand Story',
-        'projects.project5.description': 'Motion graphics and animation for brand storytelling campaign',
         'projects.tags.logo': 'Logo Design',
         'projects.tags.identity': 'Visual Identity',
         'projects.tags.typography': 'Typography',
@@ -1022,21 +648,7 @@ const translations = {
         'projects.tags.advertising': 'Advertising',
         'projects.tags.photography': 'Photography',
         'projects.tags.marketing': 'Marketing',
-        'projects.tags.packaging': 'Packaging',
-        'projects.tags.sustainability': 'Sustainability',
-        'projects.tags.illustration': 'Illustration',
-        'projects.tags.animation': 'Animation',
-        'projects.tags.motion': 'Motion Design',
-        'projects.tags.video': 'Video',
         'projects.viewCase': 'View Case Study',
-        'skills.title': 'Expertise & Skills',
-        'skills.subtitle': 'Mastering digital tools with artistic vision',
-        'skills.category1': 'Design Tools',
-        'skills.category2': 'Web Development',
-        'skills.category3': 'UI/UX Design',
-        'skills.tool1': 'Adobe Creative Suite',
-        'skills.tool2': 'Frontend Technologies',
-        'skills.tool3': 'User Experience',
         'services.title': 'Design Services',
         'services.subtitle': 'Transforming visions into visual realities',
         'services.service1.title': 'Web Design',
@@ -1053,17 +665,6 @@ const translations = {
         'gallery.item4': 'Digital Coloring',
         'gallery.item5': 'Geometric Design',
         'gallery.item6': 'Cinematic Art',
-        'testimonials.title': 'Client Stories',
-        'testimonials.subtitle': 'What partners say about our collaboration',
-        'testimonials.text1': '"Aseel transformed our brand identity completely. The attention to detail and creative vision exceeded all expectations."',
-        'testimonials.author1': 'Sarah Johnson',
-        'testimonials.role1': 'Marketing Director, TechCorp',
-        'testimonials.text2': '"Working with Aseel was a game-changer. The designs not only looked stunning but also improved our user engagement by 40%."',
-        'testimonials.author2': 'Ahmed Al-Mansoor',
-        'testimonials.role2': 'CEO, Artisan Studios',
-        'testimonials.text3': '"The innovative approach and professional execution made this project a huge success. Highly recommended!"',
-        'testimonials.author3': 'Elena Rodriguez',
-        'testimonials.role3': 'Creative Lead, Global Brands',
         'contact.title': 'Let\'s Connect',
         'contact.subtitle': 'Ready to bring your vision to life?',
         'contact.heading': 'Get in Touch',
@@ -1087,10 +688,8 @@ const translations = {
         'nav.home': 'الرئيسية',
         'nav.about': 'عنّي',
         'nav.work': 'أعمالي',
-        'nav.skills': 'مهاراتي',
         'nav.services': 'خدماتي',
         'nav.gallery': 'المعرض',
-        'nav.testimonials': 'شهادات العملاء',
         'nav.contact': 'اتصل بي',
         'lang.en': 'EN',
         'lang.ar': 'AR',
@@ -1109,10 +708,6 @@ const translations = {
         'about.designerTitle': 'مصمم رقمي',
         'projects.title': 'أعمال مميزة',
         'projects.subtitle': 'مشاريع مختارة تعرض التميز في التصميم',
-        'projects.filter.all': 'الكل',
-        'projects.filter.branding': 'هوية العلامة',
-        'projects.filter.web': 'ويب',
-        'projects.filter.advertising': 'إعلانات',
         'projects.project1.category': 'الهوية البصرية',
         'projects.project1.title': 'دار أزياء فاخرة',
         'projects.project1.description': 'هوية بصرية كاملة لعلامة أزياء فاخرة تجمع بين التراث والحداثة',
@@ -1122,12 +717,6 @@ const translations = {
         'projects.project3.category': 'إعلانات',
         'projects.project3.title': 'حملة مشروبات متميزة',
         'projects.project3.description': 'حملة إعلانية شاملة مع تصوير احترافي',
-        'projects.project4.category': 'التعبئة والتغليف',
-        'projects.project4.title': 'خط عناية بالبشرة عضوي',
-        'projects.project4.description': 'تصميم تغليف مستدام بعناصر طبيعية ومواد صديقة للبيئة',
-        'projects.project5.category': 'تصميم الحركة',
-        'projects.project5.title': 'قصة علامة تجارية متحركة',
-        'projects.project5.description': 'جرافيكس متحركة ورسوم متحركة لحملة سرد القصص للعلامة التجارية',
         'projects.tags.logo': 'تصميم الشعار',
         'projects.tags.identity': 'الهوية البصرية',
         'projects.tags.typography': 'الخطوط',
@@ -1137,21 +726,7 @@ const translations = {
         'projects.tags.advertising': 'إعلان',
         'projects.tags.photography': 'تصوير',
         'projects.tags.marketing': 'تسويق',
-        'projects.tags.packaging': 'تعبئة وتغليف',
-        'projects.tags.sustainability': 'استدامة',
-        'projects.tags.illustration': 'رسم توضيحي',
-        'projects.tags.animation': 'رسوم متحركة',
-        'projects.tags.motion': 'تصميم الحركة',
-        'projects.tags.video': 'فيديو',
         'projects.viewCase': 'عرض دراسة الحالة',
-        'skills.title': 'المهارات والخبرات',
-        'skills.subtitle': 'إتقان الأدوات الرقمية برؤية فنية',
-        'skills.category1': 'أدوات التصميم',
-        'skills.category2': 'تطوير الويب',
-        'skills.category3': 'تصميم واجهة المستخدم',
-        'skills.tool1': 'أدوبي كرييتيف سويت',
-        'skills.tool2': 'تقنيات الواجهة الأمامية',
-        'skills.tool3': 'تجربة المستخدم',
         'services.title': 'خدمات التصميم',
         'services.subtitle': 'تحويل الرؤى إلى واقع بصري',
         'services.service1.title': 'تصميم الويب',
@@ -1168,17 +743,6 @@ const translations = {
         'gallery.item4': 'تلوين رقمي',
         'gallery.item5': 'تصميم هندسي',
         'gallery.item6': 'فن سينمائي',
-        'testimonials.title': 'قصص العملاء',
-        'testimonials.subtitle': 'ماذا يقول الشركاء عن تعاوننا',
-        'testimonials.text1': '"قامت أسيل بتحويل هوية علامتنا التجارية بالكامل. تجاوزت الاهتمام بالتفاصيل والرؤية الإبداعية كل التوقعات."',
-        'testimonials.author1': 'سارة جونسون',
-        'testimonials.role1': 'مديرة التسويق، تك كورب',
-        'testimonials.text2': '"كان العمل مع أسيل نقطة تحول. لم تبدو التصاميم مذهلة فحسب، بل حسنت تفاعل المستخدمين بنسبة 40٪."',
-        'testimonials.author2': 'أحمد المنصور',
-        'testimonials.role2': 'الرئيس التنفيذي، أرتيزان ستوديوز',
-        'testimonials.text3': '"جعل النهج المبتكر والتنفيذ المحترف هذا المشروع نجاحًا كبيرًا. موصى به بشدة!"',
-        'testimonials.author3': 'إيلينا رودريجيز',
-        'testimonials.role3': 'المشرفة الإبداعية، العلامات التجارية العالمية',
         'contact.title': 'لنتواصل',
         'contact.subtitle': 'مستعد لتحويل رؤيتك إلى واقع؟',
         'contact.heading': 'تواصل معي',
