@@ -1,5 +1,5 @@
 // ===========================================
-// Main Application - بورتفوليو Sketchbook فني
+// Main Application - بورتفوليو الفن التجريدي
 // ===========================================
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initProjectModal();
     initContactForm();
     initScrollProgress();
-    initSketchbookEffects();
+    initAbstractEffects();
 });
 
 // ===========================================
@@ -137,7 +137,7 @@ function initThemeSwitcher() {
     const themeIcon = themeToggle.querySelector('.theme-toggle__icon');
     
     // الحصول على الثيم المحفوظ أو استخدام الافتراضي
-    const savedTheme = localStorage.getItem('aseel-theme') || 'dark';
+    const savedTheme = localStorage.getItem('elyra-theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
     updateThemeIcon(savedTheme);
     
@@ -152,7 +152,7 @@ function initThemeSwitcher() {
         // تحديث الثيم بعد تأخير بسيط للأنيميشن
         setTimeout(() => {
             document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('aseel-theme', newTheme);
+            localStorage.setItem('elyra-theme', newTheme);
             updateThemeIcon(newTheme);
             this.style.animation = '';
         }, 250);
@@ -178,7 +178,7 @@ function initLanguageSwitcher() {
     const langTexts = document.querySelectorAll('.language-toggle__text');
     
     // الحصول على اللغة المحفوظة أو استخدام الافتراضي
-    const savedLang = localStorage.getItem('aseel-lang') || 'en';
+    const savedLang = localStorage.getItem('elyra-lang') || 'en';
     setLanguage(savedLang);
     updateLangToggle(savedLang);
     
@@ -193,7 +193,7 @@ function initLanguageSwitcher() {
         setTimeout(() => {
             setLanguage(newLang);
             updateLangToggle(newLang);
-            localStorage.setItem('aseel-lang', newLang);
+            localStorage.setItem('elyra-lang', newLang);
             this.style.animation = '';
         }, 250);
     });
@@ -206,10 +206,10 @@ function initLanguageSwitcher() {
         // تحديث الخط للعربية
         if (lang === 'ar') {
             document.documentElement.style.setProperty('--font-body', "'Noto Sans Arabic', sans-serif");
-            document.documentElement.style.setProperty('--font-handwritten', "'Noto Sans Arabic', sans-serif");
+            document.documentElement.style.setProperty('--font-heading', "'Noto Sans Arabic', sans-serif");
         } else {
             document.documentElement.style.setProperty('--font-body', "'Inter', sans-serif");
-            document.documentElement.style.setProperty('--font-handwritten', "'Caveat', cursive");
+            document.documentElement.style.setProperty('--font-heading', "'Playfair Display', serif");
         }
         
         // إضافة أنيميشن لتغيير اللغة
@@ -241,12 +241,6 @@ function initScrollAnimations() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                
-                // إضافة أنيميشن خاصة للعناصر الفنية
-                if (entry.target.classList.contains('project-card') || 
-                    entry.target.classList.contains('service-card')) {
-                    entry.target.style.animation = 'sketchAppear 0.5s ease-out forwards';
-                }
                 
                 // إزالة المراقبة بعد الظهور
                 observer.unobserve(entry.target);
@@ -285,27 +279,12 @@ function initHoverEffects() {
     
     cards.forEach(card => {
         card.addEventListener('mouseenter', function() {
-            if (this.classList.contains('project-card')) {
-                this.style.transform = 'translateY(-8px) rotate(-1deg)';
-            } else if (this.classList.contains('gallery-item')) {
-                this.style.transform = 'rotate(0deg) scale(1.05)';
-            } else {
-                this.style.transform = 'translateY(-8px)';
-            }
-            this.style.boxShadow = '0 20px 40px rgba(156, 124, 90, 0.15)';
+            this.style.transform = 'translateY(-8px)';
+            this.style.boxShadow = '0 20px 40px rgba(168, 187, 163, 0.15)';
         });
         
         card.addEventListener('mouseleave', function() {
-            if (this.classList.contains('project-card')) {
-                this.style.transform = 'translateY(0) rotate(0)';
-            } else if (this.classList.contains('gallery-item')) {
-                const rotation = this.classList.contains('gallery-item') && 
-                               Array.from(document.querySelectorAll('.gallery-item')).indexOf(this) % 2 === 0 ? 
-                               '-1deg' : '1deg';
-                this.style.transform = `rotate(${rotation})`;
-            } else {
-                this.style.transform = 'translateY(0)';
-            }
+            this.style.transform = 'translateY(0)';
             this.style.boxShadow = '';
         });
     });
@@ -315,17 +294,11 @@ function initHoverEffects() {
     
     buttons.forEach(button => {
         button.addEventListener('mouseenter', function() {
-            if (this.classList.contains('btn--primary')) {
-                this.style.transform = 'translateY(-3px) rotate(-1deg)';
-            } else if (this.classList.contains('btn--outline')) {
-                this.style.transform = 'translateY(-3px) rotate(1deg)';
-            } else {
-                this.style.transform = 'translateY(-3px)';
-            }
+            this.style.transform = 'translateY(-3px)';
         });
         
         button.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) rotate(0)';
+            this.style.transform = 'translateY(0)';
         });
     });
     
@@ -334,56 +307,40 @@ function initHoverEffects() {
     
     socialLinks.forEach(link => {
         link.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px) scale(1.1)';
+            this.style.transform = 'translateY(-5px)';
         });
         
         link.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
+            this.style.transform = 'translateY(0)';
         });
     });
 }
 
 // ===========================================
-// Sketchbook Effects
+// Abstract Effects
 // ===========================================
 
-function initSketchbookEffects() {
-    // Sketchbook hover effects
-    const cards = document.querySelectorAll('.project-card, .service-card');
-    cards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-8px) rotate(-1deg)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) rotate(0)';
-        });
+function initAbstractEffects() {
+    // تحريك العناصر التجريدية
+    const abstractElements = document.querySelectorAll('.abstract-element');
+    abstractElements.forEach((element, index) => {
+        element.style.animationDelay = `${index * -3}s`;
     });
     
-    // Add drawing effect to signature
-    const signature = document.querySelector('.signature__name');
-    if (signature) {
-        signature.addEventListener('mouseenter', function() {
-            this.style.animation = 'drawLine 2s ease forwards';
-            setTimeout(() => {
-                this.style.animation = '';
-            }, 2000);
-        });
-    }
-    
-    // Paper texture effect on scroll
+    // تأثير النسيج على التمرير
     window.addEventListener('scroll', function() {
         const scrolled = window.pageYOffset;
-        const rate = scrolled * -0.5;
+        const rate = scrolled * -0.3;
         document.body.style.backgroundPosition = `0px ${rate}px`;
     });
     
-    // Random rotation for gallery items
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    galleryItems.forEach((item, index) => {
-        const rotation = index % 2 === 0 ? '-1deg' : '1deg';
-        item.style.setProperty('--rotation', rotation);
-    });
+    // تأثيرات عشوائية للعناصر التجريدية
+    setInterval(() => {
+        abstractElements.forEach(element => {
+            const randomOpacity = 0.05 + Math.random() * 0.1;
+            element.style.opacity = randomOpacity;
+        });
+    }, 3000);
 }
 
 // ===========================================
@@ -398,27 +355,27 @@ function initProjectModal() {
     // بيانات المشاريع
     const projects = {
         1: {
-            category: 'Brand Identity',
-            title: 'Luxury Fashion House',
+            category: 'Digital Series',
+            title: 'Ethereal Forms',
             year: '2024',
-            description: 'Complete visual identity for a high-end fashion brand blending heritage with modernity. The project involved creating a comprehensive brand system that works across digital and physical touchpoints.',
-            tags: ['Logo Design', 'Visual Identity', 'Typography', 'Brand Guidelines'],
+            description: 'A study in fluid abstraction and organic digital textures exploring the space between form and emptiness. This series examines the delicate balance of negative space and subtle color transitions.',
+            tags: ['Digital Painting', 'Texture Mapping', 'Color Theory', 'Abstract Composition'],
             imageClass: 'project-card__image--1'
         },
         2: {
-            category: 'Web Design',
-            title: 'Interactive Art Gallery',
+            category: 'Gallery Installation',
+            title: 'Silent Dialogue',
             year: '2024',
-            description: 'Digital platform for art exhibition with immersive user experience. The design focuses on creating a seamless journey through virtual exhibitions while maintaining the artistic integrity of each piece.',
-            tags: ['UI/UX Design', 'Interaction', 'Digital Art', 'Web Development'],
+            description: 'Interactive digital installation exploring space and perception through abstract forms. Viewers engage with shifting perspectives and changing light conditions.',
+            tags: ['Interactive Art', 'Digital Projection', 'Spatial Design', 'Light Art'],
             imageClass: 'project-card__image--2'
         },
         3: {
-            category: 'Advertising',
-            title: 'Premium Beverage Campaign',
+            category: 'Private Collection',
+            title: 'Whispering Canvas',
             year: '2023',
-            description: 'Comprehensive advertising campaign with professional photography. The campaign successfully positioned the brand as a premium lifestyle choice through strategic visual storytelling.',
-            tags: ['Advertising', 'Photography', 'Marketing', 'Campaign Strategy'],
+            description: 'Large-scale digital pieces created for private residences, focusing on creating meditative spaces through abstract art that evolves with changing light throughout the day.',
+            tags: ['Large Format', 'Site Specific', 'Light Interaction', 'Meditative Art'],
             imageClass: 'project-card__image--3'
         }
     };
@@ -449,8 +406,7 @@ function initProjectModal() {
         if (!project) return;
         
         // تحديث محتوى المودال
-        document.getElementById('modalCategory').textContent = 
-            currentLang === 'ar' ? 'الهوية البصرية' : project.category;
+        document.getElementById('modalCategory').textContent = project.category;
         document.getElementById('modalTitle').textContent = project.title;
         document.getElementById('modalYear').textContent = project.year;
         document.getElementById('modalDescription').textContent = project.description;
@@ -506,7 +462,7 @@ function initContactForm() {
             // محاكاة الإرسال (في الواقع ستقوم بإرسال البيانات لخادم)
             setTimeout(() => {
                 // عرض رسالة النجاح
-                alert('Thank you for your message! I will get back to you soon.');
+                alert('Thank you for your interest in a commission! I will review your vision and get back to you within 48 hours.');
                 this.reset();
                 submitBtn.style.animation = '';
                 
@@ -606,159 +562,163 @@ function initScrollProgress() {
 
 const translations = {
     en: {
-        'nav.designer': 'Digital Designer',
+        'nav.designer': 'Abstract Artist',
         'nav.home': 'Home',
-        'nav.about': 'About',
-        'nav.work': 'Work',
+        'nav.about': 'Artistry',
+        'nav.work': 'Works',
         'nav.services': 'Services',
         'nav.gallery': 'Gallery',
         'nav.contact': 'Contact',
         'lang.en': 'EN',
         'lang.ar': 'AR',
-        'hero.subtitle': 'Digital Artistry',
-        'hero.title': 'Graphic & Digital Designer',
-        'hero.description': 'Crafting visual identities that blend minimalism, modern aesthetics, and emotional storytelling.',
-        'hero.viewPortfolio': 'View Portfolio',
-        'hero.startProject': 'Start a Project',
-        'hero.explore': 'Explore',
-        'about.title': 'Creative Philosophy',
-        'about.subtitle': 'Where art meets purpose in digital form',
-        'about.imageText': 'Visual Storyteller',
-        'about.heading': 'Design with Intention',
-        'about.description1': 'I specialize in transforming abstract concepts into compelling visual experiences that resonate with audiences. My approach combines artistic sensibility with strategic thinking.',
-        'about.description2': 'With over 5 years of experience in digital design, I\'ve collaborated with brands worldwide to build distinctive visual identities and memorable user experiences.',
-        'about.designerTitle': 'Digital Designer',
-        'projects.title': 'Featured Work',
-        'projects.subtitle': 'Selected projects showcasing design excellence',
-        'projects.project1.category': 'Brand Identity',
-        'projects.project1.title': 'Luxury Fashion House',
-        'projects.project1.description': 'Complete visual identity for a high-end fashion brand blending heritage with modernity',
-        'projects.project2.category': 'Web Design',
-        'projects.project2.title': 'Interactive Art Gallery',
-        'projects.project2.description': 'Digital platform for art exhibition with immersive user experience',
-        'projects.project3.category': 'Advertising',
-        'projects.project3.title': 'Premium Beverage Campaign',
-        'projects.project3.description': 'Comprehensive advertising campaign with professional photography',
-        'projects.tags.logo': 'Logo Design',
-        'projects.tags.identity': 'Visual Identity',
-        'projects.tags.typography': 'Typography',
-        'projects.tags.uiux': 'UI/UX Design',
-        'projects.tags.interaction': 'Interaction',
-        'projects.tags.digitalArt': 'Digital Art',
-        'projects.tags.advertising': 'Advertising',
-        'projects.tags.photography': 'Photography',
-        'projects.tags.marketing': 'Marketing',
-        'projects.viewCase': 'View Case Study',
-        'services.title': 'Design Services',
-        'services.subtitle': 'Transforming visions into visual realities',
-        'services.service1.title': 'Web Design',
-        'services.service1.description': 'Contemporary website designs that marry aesthetics with functionality, focusing on user experience and performance.',
-        'services.service2.title': 'Brand Identity',
-        'services.service2.description': 'Complete visual identity systems that express brand values and create memorable impressions.',
-        'services.service3.title': 'Digital Art',
-        'services.service3.description': 'Engaging visual content for social media that enhances brand presence and follows modern trends.',
-        'gallery.title': 'Visual Gallery',
-        'gallery.subtitle': 'A curated collection of artistic expressions',
-        'gallery.item1': 'Abstract Design',
-        'gallery.item2': 'Digital Print',
-        'gallery.item3': 'Calligraphy Art',
-        'gallery.item4': 'Digital Coloring',
-        'gallery.item5': 'Geometric Design',
-        'gallery.item6': 'Cinematic Art',
-        'contact.title': 'Let\'s Connect',
-        'contact.subtitle': 'Ready to bring your vision to life?',
-        'contact.heading': 'Get in Touch',
-        'contact.description': 'Have a project in mind? I\'d love to hear about it. Let\'s discuss how we can transform your vision into reality.',
+        'hero.subtitle': 'Abstract Artistry',
+        'hero.title': 'Abstract Digital Artist',
+        'hero.description': 'Crafting serene visual experiences that blend minimalism, abstract forms, and emotional depth.',
+        'hero.viewPortfolio': 'View Artworks',
+        'hero.startProject': 'Commission Art',
+        'hero.explore': 'Discover',
+        'about.title': 'Artistic Vision',
+        'about.subtitle': 'Where abstraction meets emotion in digital form',
+        'about.imageText': 'Visual Poet',
+        'about.heading': 'Art with Intention',
+        'about.description1': 'I specialize in creating abstract digital art that evokes emotion and invites contemplation. My work explores the balance between form and emptiness, color and space.',
+        'about.description2': 'With over 6 years in digital artistry, I\'ve collaborated with galleries and collectors worldwide to create pieces that transform spaces and inspire moments of reflection.',
+        'about.designerTitle': 'Abstract Artist',
+        'projects.title': 'Selected Works',
+        'projects.subtitle': 'Curated pieces showcasing abstract expression',
+        'projects.project1.category': 'Digital Series',
+        'projects.project1.title': 'Ethereal Forms',
+        'projects.project1.description': 'A study in fluid abstraction and organic digital textures',
+        'projects.project2.category': 'Gallery Installation',
+        'projects.project2.title': 'Silent Dialogue',
+        'projects.project2.description': 'Interactive digital installation exploring space and perception',
+        'projects.project3.category': 'Private Collection',
+        'projects.project3.title': 'Whispering Canvas',
+        'projects.project3.description': 'Large-scale digital pieces for private residences',
+        'projects.tags.abstract': 'Abstract',
+        'projects.tags.digital': 'Digital',
+        'projects.tags.texture': 'Texture',
+        'projects.tags.installation': 'Installation',
+        'projects.tags.interactive': 'Interactive',
+        'projects.tags.space': 'Space',
+        'projects.tags.collection': 'Collection',
+        'projects.tags.large': 'Large Scale',
+        'projects.tags.canvas': 'Canvas',
+        'projects.viewCase': 'View Series',
+        'services.title': 'Art Services',
+        'services.subtitle': 'Transforming spaces through abstract expression',
+        'services.service1.title': 'Commissioned Art',
+        'services.service1.description': 'Bespoke abstract pieces created specifically for your space, considering light, texture, and emotional resonance.',
+        'services.service2.title': 'Digital Installations',
+        'services.service2.description': 'Immersive digital experiences for galleries, corporate spaces, and private collections.',
+        'services.service3.title': 'Art Direction',
+        'services.service3.description': 'Curating and directing artistic projects that blend digital innovation with timeless aesthetic principles.',
+        'gallery.title': 'Abstract Gallery',
+        'gallery.subtitle': 'A meditation on form, color, and space',
+        'gallery.item1': 'Fluid Forms',
+        'gallery.item2': 'Subtle Gradients',
+        'gallery.item3': 'Organic Textures',
+        'gallery.item4': 'Geometric Balance',
+        'gallery.item5': 'Minimalist Space',
+        'gallery.item6': 'Emotional Color',
+        'contact.title': 'Let\'s Create',
+        'contact.subtitle': 'Ready to transform your space with art?',
+        'contact.heading': 'Commission Art',
+        'contact.description': 'Interested in a custom piece? I\'d love to discuss your vision and create something truly unique for your space.',
         'contact.emailTitle': 'Email',
         'contact.phoneTitle': 'Phone',
-        'contact.locationTitle': 'Location',
-        'contact.location': 'Available Worldwide',
+        'contact.locationTitle': 'Studio',
+        'contact.location': 'Global Commissions',
+        'contact.availabilityTitle': 'Availability',
+        'contact.availability': 'Limited Commissions Open',
         'contact.form.name': 'Your Name',
         'contact.form.email': 'Email Address',
-        'contact.form.message': 'Project Details',
-        'contact.form.submit': 'Send Message',
-        'contact.socialTitle': 'Follow My Work',
-        'modal.overview': 'Project Overview',
-        'modal.services': 'Services Provided',
-        'modal.startProject': 'Start a Similar Project',
+        'contact.form.message': 'Project Vision',
+        'contact.form.submit': 'Discuss Commission',
+        'contact.socialTitle': 'Follow the Journey',
+        'modal.overview': 'Artistic Statement',
+        'modal.techniques': 'Techniques Used',
+        'modal.startProject': 'Commission Similar',
         'footer.rights': 'All rights reserved'
     },
     ar: {
-        'nav.designer': 'مصمم رقمي',
+        'nav.designer': 'فنانة تجريدية',
         'nav.home': 'الرئيسية',
-        'nav.about': 'عنّي',
-        'nav.work': 'أعمالي',
-        'nav.services': 'خدماتي',
+        'nav.about': 'الفن',
+        'nav.work': 'الأعمال',
+        'nav.services': 'الخدمات',
         'nav.gallery': 'المعرض',
-        'nav.contact': 'اتصل بي',
+        'nav.contact': 'اتصل',
         'lang.en': 'EN',
         'lang.ar': 'AR',
-        'hero.subtitle': 'فنون رقمية',
-        'hero.title': 'مصمم جرافيك ورقمي',
-        'hero.description': 'أصمم هويات بصرية تجمع بين البساطة والجمال المعاصر وسرد القصص العاطفية.',
+        'hero.subtitle': 'فن تجريدي',
+        'hero.title': 'فنانة رقمية تجريدية',
+        'hero.description': 'أصمم تجارب بصرية هادئة تجمع بين البساطة والأشكال التجريدية والعمق العاطفي.',
         'hero.viewPortfolio': 'عرض الأعمال',
-        'hero.startProject': 'ابدأ مشروع',
+        'hero.startProject': 'طلب عمل فني',
         'hero.explore': 'استكشف',
-        'about.title': 'الفلسفة الإبداعية',
-        'about.subtitle': 'حيث يلتقي الفن بالغرض في الشكل الرقمي',
-        'about.imageText': 'راوي قصص بصري',
-        'about.heading': 'تصميم بقصد',
-        'about.description1': 'أتخصص في تحويل المفاهيم المجردة إلى تجارب بصرية مؤثرة تلقى صدى لدى الجمهور. يجمع أسلوبي بين الحس الفني والتفكير الاستراتيجي.',
-        'about.description2': 'مع أكثر من 5 سنوات من الخبرة في التصميم الرقمي، تعاونت مع علامات تجارية عالمية لبناء هويات بصرية مميزة وتجارب مستخدم لا تنسى.',
-        'about.designerTitle': 'مصمم رقمي',
-        'projects.title': 'أعمال مميزة',
-        'projects.subtitle': 'مشاريع مختارة تعرض التميز في التصميم',
-        'projects.project1.category': 'الهوية البصرية',
-        'projects.project1.title': 'دار أزياء فاخرة',
-        'projects.project1.description': 'هوية بصرية كاملة لعلامة أزياء فاخرة تجمع بين التراث والحداثة',
-        'projects.project2.category': 'تصميم الويب',
-        'projects.project2.title': 'معرض فني تفاعلي',
-        'projects.project2.description': 'منصة رقمية لمعرض فني مع تجربة مستخدم غامرة',
-        'projects.project3.category': 'إعلانات',
-        'projects.project3.title': 'حملة مشروبات متميزة',
-        'projects.project3.description': 'حملة إعلانية شاملة مع تصوير احترافي',
-        'projects.tags.logo': 'تصميم الشعار',
-        'projects.tags.identity': 'الهوية البصرية',
-        'projects.tags.typography': 'الخطوط',
-        'projects.tags.uiux': 'تصميم واجهة المستخدم',
-        'projects.tags.interaction': 'تفاعلية',
-        'projects.tags.digitalArt': 'فن رقمي',
-        'projects.tags.advertising': 'إعلان',
-        'projects.tags.photography': 'تصوير',
-        'projects.tags.marketing': 'تسويق',
-        'projects.viewCase': 'عرض دراسة الحالة',
-        'services.title': 'خدمات التصميم',
-        'services.subtitle': 'تحويل الرؤى إلى واقع بصري',
-        'services.service1.title': 'تصميم الويب',
-        'services.service1.description': 'تصاميم مواقع ويب معاصرة تجمع بين الجمالية والوظيفة، مع التركيز على تجربة المستخدم والأداء.',
-        'services.service2.title': 'الهوية البصرية',
-        'services.service2.description': 'أنظمة هوية بصرية كاملة تعبر عن قيم العلامة التجارية وتخلق انطباعات لا تنسى.',
-        'services.service3.title': 'الفن الرقمي',
-        'services.service3.description': 'محتوى بصري جذاب لوسائل التواصل الاجتماعي يعزز حضور العلامة التجارية ويواكب الاتجاهات الحديثة.',
-        'gallery.title': 'المعرض البصري',
-        'gallery.subtitle': 'مجموعة مختارة من التعبيرات الفنية',
-        'gallery.item1': 'تصميم تجريدي',
-        'gallery.item2': 'طباعة رقمية',
-        'gallery.item3': 'فن الخط العربي',
-        'gallery.item4': 'تلوين رقمي',
-        'gallery.item5': 'تصميم هندسي',
-        'gallery.item6': 'فن سينمائي',
-        'contact.title': 'لنتواصل',
-        'contact.subtitle': 'مستعد لتحويل رؤيتك إلى واقع؟',
-        'contact.heading': 'تواصل معي',
-        'contact.description': 'هل لديك مشروع في ذهنك؟ يسعدني سماع أفكارك. لنتناقش حول كيفية تحويل رؤيتك إلى واقع.',
+        'about.title': 'الرؤية الفنية',
+        'about.subtitle': 'حيث يلتقي التجريد بالعاطفة في الشكل الرقمي',
+        'about.imageText': 'شاعرة بصرية',
+        'about.heading': 'فن بقصد',
+        'about.description1': 'أتخصص في إنشاء فن رقمي تجريدي يثير المشاعر ويدعو للتأمل. يستكشف عملي التوازن بين الشكل والفراغ، اللون والفضاء.',
+        'about.description2': 'مع أكثر من 6 سنوات في الفن الرقمي، تعاونت مع معارض وجامعي تحف حول العالم لإنشاء قطع فنية تحول المساحات وتلهم لحظات تأمل.',
+        'about.designerTitle': 'فنانة تجريدية',
+        'projects.title': 'أعمال مختارة',
+        'projects.subtitle': 'قطع فنية مختارة تعرض التعبير التجريدي',
+        'projects.project1.category': 'سلسلة رقمية',
+        'projects.project1.title': 'أشكال خيالية',
+        'projects.project1.description': 'دراسة في التجريد السائل والأنسجة الرقمية العضوية',
+        'projects.project2.category': 'تركيب معرض',
+        'projects.project2.title': 'حوار صامت',
+        'projects.project2.description': 'تركيب رقمي تفاعلي يستكشف الفضاء والإدراك',
+        'projects.project3.category': 'مجموعة خاصة',
+        'projects.project3.title': 'لوحات همسية',
+        'projects.project3.description': 'قطع رقمية كبيرة الحجم للمساكن الخاصة',
+        'projects.tags.abstract': 'تجريدي',
+        'projects.tags.digital': 'رقمي',
+        'projects.tags.texture': 'نسيج',
+        'projects.tags.installation': 'تركيب',
+        'projects.tags.interactive': 'تفاعلي',
+        'projects.tags.space': 'فضاء',
+        'projects.tags.collection': 'مجموعة',
+        'projects.tags.large': 'كبير الحجم',
+        'projects.tags.canvas': 'لوحة',
+        'projects.viewCase': 'عرض السلسلة',
+        'services.title': 'خدمات فنية',
+        'services.subtitle': 'تحويل المساحات عبر التعبير التجريدي',
+        'services.service1.title': 'أعمال فنية مطلوبة',
+        'services.service1.description': 'قطع تجريدية مصممة خصيصاً لمساحتك، مع مراعاة الضوء والنسيج والرنين العاطفي.',
+        'services.service2.title': 'التركيبات الرقمية',
+        'services.service2.description': 'تجارب رقمية غامرة للمعارض والمساحات المؤسسية والمجموعات الخاصة.',
+        'services.service3.title': 'الإخراج الفني',
+        'services.service3.description': 'تنظيم وتوجيه المشاريع الفنية التي تدمج بين الابتكار الرقمي والمبادئ الجمالية الخالدة.',
+        'gallery.title': 'المعرض التجريدي',
+        'gallery.subtitle': 'تأمل في الشكل واللون والفضاء',
+        'gallery.item1': 'أشكال سائلة',
+        'gallery.item2': 'تدرجات لونية خفية',
+        'gallery.item3': 'أنسجة عضوية',
+        'gallery.item4': 'توازن هندسي',
+        'gallery.item5': 'فضاء بسيط',
+        'gallery.item6': 'لون عاطفي',
+        'contact.title': 'لنخلق معاً',
+        'contact.subtitle': 'مستعد لتحويل مساحتك بالفن؟',
+        'contact.heading': 'طلب عمل فني',
+        'contact.description': 'مهتم بقطعة مخصصة؟ يسعدني مناقشة رؤيتك وإنشاء شيء فريد حقاً لمساحتك.',
         'contact.emailTitle': 'البريد الإلكتروني',
         'contact.phoneTitle': 'الهاتف',
-        'contact.locationTitle': 'الموقع',
-        'contact.location': 'متاح عالمياً',
+        'contact.locationTitle': 'الاستوديو',
+        'contact.location': 'طلبات عالمية',
+        'contact.availabilityTitle': 'التوافر',
+        'contact.availability': 'طلبات محدودة متاحة',
         'contact.form.name': 'اسمك',
         'contact.form.email': 'البريد الإلكتروني',
-        'contact.form.message': 'تفاصيل المشروع',
-        'contact.form.submit': 'إرسال الرسالة',
-        'contact.socialTitle': 'تابع أعمالي',
-        'modal.overview': 'نظرة عامة على المشروع',
-        'modal.services': 'الخدمات المقدمة',
-        'modal.startProject': 'ابدأ مشروعاً مماثلاً',
+        'contact.form.message': 'رؤية المشروع',
+        'contact.form.submit': 'مناقشة الطلب',
+        'contact.socialTitle': 'تابع الرحلة',
+        'modal.overview': 'بيان فني',
+        'modal.techniques': 'التقنيات المستخدمة',
+        'modal.startProject': 'طلب عمل مماثل',
         'footer.rights': 'جميع الحقوق محفوظة'
     }
 };
