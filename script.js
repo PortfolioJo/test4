@@ -137,7 +137,7 @@ function initThemeSwitcher() {
     const themeIcon = themeToggle.querySelector('.theme-toggle__icon');
     
     // الحصول على الثيم المحفوظ أو استخدام الافتراضي
-    const savedTheme = localStorage.getItem('nuroq-theme') || 'dark';
+    const savedTheme = localStorage.getItem('mubdi-theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
     updateThemeIcon(savedTheme);
     
@@ -152,7 +152,7 @@ function initThemeSwitcher() {
         // تحديث الثيم بعد تأخير بسيط للأنيميشن
         setTimeout(() => {
             document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('nuroq-theme', newTheme);
+            localStorage.setItem('mubdi-theme', newTheme);
             updateThemeIcon(newTheme);
             this.style.animation = '';
         }, 250);
@@ -178,7 +178,7 @@ function initLanguageSwitcher() {
     const langTexts = document.querySelectorAll('.language-toggle__text');
     
     // الحصول على اللغة المحفوظة أو استخدام الافتراضي
-    const savedLang = localStorage.getItem('nuroq-lang') || 'ar';
+    const savedLang = localStorage.getItem('mubdi-lang') || 'ar';
     setLanguage(savedLang);
     updateLangToggle(savedLang);
     
@@ -193,7 +193,7 @@ function initLanguageSwitcher() {
         setTimeout(() => {
             setLanguage(newLang);
             updateLangToggle(newLang);
-            localStorage.setItem('nuroq-lang', newLang);
+            localStorage.setItem('mubdi-lang', newLang);
             this.style.animation = '';
         }, 250);
     });
@@ -207,12 +207,12 @@ function initLanguageSwitcher() {
         const pageDescription = document.querySelector('meta[name="description"]');
         
         if (lang === 'ar') {
-            pageTitle.textContent = 'نُورُق | مصمم جرافيك رقمي - فنية بصرية وهوية تجارية';
-            pageDescription.content = 'نُورُق - مصمم جرافيك رقمي متخصص في الهوية البصرية، تصميم الويب، والإخراج الفني. أصمم تجارب رقمية أنيقة.';
+            pageTitle.textContent = 'مُبْدِع | صانع محتوى إبداعي - إستراتيجية المحتوى والإنتاج الرقمي';
+            pageDescription.content = 'مُبْدِع - صانع محتوى متخصص في إستراتيجيات المحتوى، إنتاج الفيديو، والتسويق الرقمي. أبدع قصصاً رقمية مؤثرة.';
             document.documentElement.style.setProperty('--font-body', "'Noto Sans Arabic', sans-serif");
         } else {
-            pageTitle.textContent = 'Nuroq | Digital Graphic Designer - Visual Artistry & Brand Identity';
-            pageDescription.content = 'Nuroq - Digital Graphic Designer specializing in visual identity, web design, and artistic direction. Creating elegant digital experiences.';
+            pageTitle.textContent = 'Mubdi | Creative Content Creator - Content Strategy & Digital Production';
+            pageDescription.content = 'Mubdi - Creative content creator specializing in content strategies, video production, and digital marketing. I create impactful digital stories.';
             document.documentElement.style.setProperty('--font-body', "'Inter', sans-serif");
         }
         
@@ -286,7 +286,7 @@ function initHoverEffects() {
     cards.forEach(card => {
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-8px)';
-            this.style.boxShadow = '0 20px 40px rgba(100, 255, 218, 0.15)';
+            this.style.boxShadow = '0 20px 40px rgba(255, 107, 157, 0.15)';
         });
         
         card.addEventListener('mouseleave', function() {
@@ -334,27 +334,27 @@ function initProjectModal() {
     // بيانات المشاريع
     const projects = {
         1: {
-            category: 'Brand Identity',
-            title: 'Luxury Fashion House',
+            category: 'Video Campaign',
+            title: 'Interactive Educational Series',
             year: '2024',
-            description: 'Complete visual identity for a high-end fashion brand blending heritage with modernity. The project involved creating a comprehensive brand system that works across digital and physical touchpoints.',
-            tags: ['Logo Design', 'Visual Identity', 'Typography', 'Brand Guidelines'],
+            description: 'Educational video campaign for a tech brand combining entertainment with learning. The project involved creating engaging content that simplifies complex topics.',
+            tags: ['Video Production', 'Script Writing', 'Editing', 'Educational Content'],
             imageClass: 'project-card__image--1'
         },
         2: {
-            category: 'Web Design',
-            title: 'Interactive Art Gallery',
+            category: 'Content Strategy',
+            title: 'Annual Content Plan',
             year: '2024',
-            description: 'Digital platform for art exhibition with immersive user experience. The design focuses on creating a seamless journey through virtual exhibitions while maintaining the artistic integrity of each piece.',
-            tags: ['UI/UX Design', 'Interaction', 'Digital Art', 'Web Development'],
+            description: 'Comprehensive content strategy for a fashion brand with quarterly implementation plans. The strategy focused on brand storytelling and audience engagement.',
+            tags: ['Strategy', 'Social Media', 'Planning', 'Content Calendar'],
             imageClass: 'project-card__image--2'
         },
         3: {
-            category: 'Advertising',
-            title: 'Premium Beverage Campaign',
+            category: 'Podcast',
+            title: 'Weekly Podcast Program',
             year: '2023',
-            description: 'Comprehensive advertising campaign with professional photography. The campaign successfully positioned the brand as a premium lifestyle choice through strategic visual storytelling.',
-            tags: ['Advertising', 'Photography', 'Marketing', 'Campaign Strategy'],
+            description: 'Production and hosting of a weekly podcast covering entrepreneurship and innovation topics. The show gained significant audience engagement and positive feedback.',
+            tags: ['Podcast Production', 'Audio Engineering', 'Hosting', 'Interviewing'],
             imageClass: 'project-card__image--3'
         }
     };
@@ -432,36 +432,36 @@ function initProjectModal() {
     
     function getArabicCategory(category) {
         const categories = {
-            'Brand Identity': 'الهوية البصرية',
-            'Web Design': 'تصميم الويب',
-            'Advertising': 'إعلانات'
+            'Video Campaign': 'حملة فيديوهات',
+            'Content Strategy': 'إستراتيجية محتوى',
+            'Podcast': 'بودكاست'
         };
         return categories[category] || category;
     }
     
     function getArabicDescription(projectId) {
         const descriptions = {
-            1: 'هوية بصرية كاملة لعلامة أزياء فاخرة تجمع بين التراث والحداثة. تضمن المشروع إنشاء نظام علامة تجارية شامل يعمل عبر نقاط الاتصال الرقمية والمادية.',
-            2: 'منصة رقمية لمعرض فني مع تجربة مستخدم غامرة. يركز التصميم على إنشاء رحلة سلسة عبر المعارض الافتراضية مع الحفاظ على النزاهة الفنية لكل قطعة.',
-            3: 'حملة إعلانية شاملة مع تصوير احترافي. نجحت الحملة في وضع العلامة التجارية كخيار نمط حياة متميز من خلال سرد القصص البصرية الاستراتيجية.'
+            1: 'حملة فيديوهات تعليمية لعلامة تقنية تجمع بين الترفيه والتعلم. تضمن المشروع إنشاء محتوى جذاب يبسط المواضيع المعقدة.',
+            2: 'إستراتيجية محتوى متكاملة لعلامة أزياء مع خطط تنفيذ ربع سنوية. ركزت الإستراتيجية على سرد القصص والتفاعل مع الجمهور.',
+            3: 'إنتاج وتقديم بودكاست أسبوعي يغطي مواضيع الريادة والابتكار. حصل البرنامج على تفاعل كبير من الجمهور وردود فعل إيجابية.'
         };
         return descriptions[projectId] || '';
     }
     
     function getArabicTag(tag) {
         const tags = {
-            'Logo Design': 'تصميم الشعار',
-            'Visual Identity': 'الهوية البصرية',
-            'Typography': 'الخطوط',
-            'Brand Guidelines': 'إرشادات العلامة التجارية',
-            'UI/UX Design': 'تصميم واجهة المستخدم',
-            'Interaction': 'تفاعلية',
-            'Digital Art': 'فن رقمي',
-            'Web Development': 'تطوير الويب',
-            'Advertising': 'إعلان',
-            'Photography': 'تصوير',
-            'Marketing': 'تسويق',
-            'Campaign Strategy': 'استراتيجية الحملة'
+            'Video Production': 'إنتاج فيديو',
+            'Script Writing': 'كتابة النص',
+            'Editing': 'مونتاج',
+            'Educational Content': 'محتوى تعليمي',
+            'Strategy': 'إستراتيجية',
+            'Social Media': 'وسائل التواصل',
+            'Planning': 'تخطيط',
+            'Content Calendar': 'تقويم المحتوى',
+            'Podcast Production': 'إنتاج بودكاست',
+            'Audio Engineering': 'مهندس صوت',
+            'Hosting': 'تقديم',
+            'Interviewing': 'إجراء مقابلات'
         };
         return tags[tag] || tag;
     }
@@ -491,8 +491,8 @@ function initContactForm() {
                 // عرض رسالة النجاح
                 const currentLang = document.documentElement.getAttribute('lang') || 'ar';
                 const message = currentLang === 'ar' 
-                    ? 'شكراً لك على رسالتك! سنتواصل معك قريباً.'
-                    : 'Thank you for your message! We will get back to you soon.';
+                    ? 'شكراً لك على رسالتك! سأتصل بك قريباً لمناقشة مشروعك.'
+                    : 'Thank you for your message! I will contact you soon to discuss your project.';
                 
                 alert(message);
                 this.reset();
@@ -595,156 +595,156 @@ function initScrollProgress() {
 
 const translations = {
     en: {
-        'nav.designer': 'Digital Designer',
+        'nav.creator': 'Content Creator',
         'nav.home': 'Home',
-        'nav.about': 'About',
-        'nav.work': 'Work',
-        'nav.services': 'Services',
-        'nav.gallery': 'Gallery',
-        'nav.contact': 'Contact',
+        'nav.about': 'About Me',
+        'nav.work': 'My Work',
+        'nav.services': 'My Services',
+        'nav.gallery': 'Content Gallery',
+        'nav.contact': 'Contact Me',
         'lang.en': 'EN',
         'lang.ar': 'AR',
-        'hero.subtitle': 'Digital Artistry',
-        'hero.title': 'Graphic & Digital Designer',
-        'hero.description': 'Crafting visual identities that blend minimalism, modern aesthetics, and emotional storytelling.',
-        'hero.viewPortfolio': 'View Portfolio',
+        'hero.subtitle': 'Digital Creativity',
+        'hero.title': 'Creative Content Creator',
+        'hero.description': 'I create digital stories that combine visual creativity, impactful messaging, and thoughtful marketing strategy.',
+        'hero.viewPortfolio': 'View My Work',
         'hero.startProject': 'Start a Project',
         'hero.explore': 'Explore',
-        'about.title': 'Creative Philosophy',
-        'about.subtitle': 'Where art meets purpose in digital form',
+        'about.title': 'My Creative Philosophy',
+        'about.subtitle': 'Where story meets strategy in the digital world',
         'about.imageText': 'Visual Storyteller',
-        'about.heading': 'Design with Intention',
-        'about.description1': 'We specialize in transforming abstract concepts into compelling visual experiences that resonate with audiences. Our approach combines artistic sensibility with strategic thinking.',
-        'about.description2': 'With over 5 years of experience in digital design, we have collaborated with brands worldwide to build distinctive visual identities and memorable user experiences.',
-        'about.designerTitle': 'Digital Designer',
+        'about.heading': 'Creativity with Purpose',
+        'about.description1': 'I specialize in transforming ideas into impactful digital stories that touch hearts and achieve business goals. I blend visual creativity with marketing strategy.',
+        'about.description2': 'With over 5 years of experience in content creation, I have collaborated with diverse brands to build distinctive digital presence and create memorable content experiences.',
+        'about.creatorTitle': 'Creative Content Creator',
         'projects.title': 'Featured Work',
-        'projects.subtitle': 'Selected projects showcasing design excellence',
-        'projects.project1.category': 'Brand Identity',
-        'projects.project1.title': 'Luxury Fashion House',
-        'projects.project1.description': 'Complete visual identity for a high-end fashion brand blending heritage with modernity',
-        'projects.project2.category': 'Web Design',
-        'projects.project2.title': 'Interactive Art Gallery',
-        'projects.project2.description': 'Digital platform for art exhibition with immersive user experience',
-        'projects.project3.category': 'Advertising',
-        'projects.project3.title': 'Premium Beverage Campaign',
-        'projects.project3.description': 'Comprehensive advertising campaign with professional photography',
-        'projects.tags.logo': 'Logo Design',
-        'projects.tags.identity': 'Visual Identity',
-        'projects.tags.typography': 'Typography',
-        'projects.tags.uiux': 'UI/UX Design',
-        'projects.tags.interaction': 'Interaction',
-        'projects.tags.digitalArt': 'Digital Art',
-        'projects.tags.advertising': 'Advertising',
-        'projects.tags.photography': 'Photography',
-        'projects.tags.marketing': 'Marketing',
+        'projects.subtitle': 'Selected projects showcasing my content creation excellence',
+        'projects.project1.category': 'Video Campaign',
+        'projects.project1.title': 'Interactive Educational Series',
+        'projects.project1.description': 'Educational video campaign for a tech brand combining entertainment with learning',
+        'projects.project2.category': 'Content Strategy',
+        'projects.project2.title': 'Annual Content Plan',
+        'projects.project2.description': 'Comprehensive content strategy for a fashion brand with quarterly implementation plans',
+        'projects.project3.category': 'Podcast',
+        'projects.project3.title': 'Weekly Podcast Program',
+        'projects.project3.description': 'Production and hosting of a weekly podcast covering entrepreneurship and innovation topics',
+        'projects.tags.video': 'Video Production',
+        'projects.tags.script': 'Script Writing',
+        'projects.tags.editing': 'Editing',
+        'projects.tags.strategy': 'Strategy',
+        'projects.tags.social': 'Social Media',
+        'projects.tags.planning': 'Planning',
+        'projects.tags.podcast': 'Podcast Production',
+        'projects.tags.audio': 'Audio Engineering',
+        'projects.tags.hosting': 'Hosting',
         'projects.viewCase': 'View Case Study',
-        'services.title': 'Design Services',
-        'services.subtitle': 'Transforming visions into visual realities',
-        'services.service1.title': 'Web Design',
-        'services.service1.description': 'Contemporary website designs that marry aesthetics with functionality, focusing on user experience and performance.',
-        'services.service2.title': 'Brand Identity',
-        'services.service2.description': 'Complete visual identity systems that express brand values and create memorable impressions.',
-        'services.service3.title': 'Digital Art',
-        'services.service3.description': 'Engaging visual content for social media that enhances brand presence and follows modern trends.',
-        'gallery.title': 'Visual Gallery',
-        'gallery.subtitle': 'A curated collection of artistic expressions',
-        'gallery.item1': 'Abstract Design',
-        'gallery.item2': 'Digital Print',
-        'gallery.item3': 'Calligraphy Art',
-        'gallery.item4': 'Digital Coloring',
-        'gallery.item5': 'Geometric Design',
-        'gallery.item6': 'Cinematic Art',
-        'contact.title': 'Let\'s Connect',
-        'contact.subtitle': 'Ready to bring your vision to life?',
-        'contact.heading': 'Get in Touch',
-        'contact.description': 'Have a project in mind? We\'d love to hear about it. Let\'s discuss how we can transform your vision into reality.',
+        'services.title': 'Content Creation Services',
+        'services.subtitle': 'Transforming ideas into impactful content',
+        'services.service1.title': 'Video Production',
+        'services.service1.description': 'Professional video production for digital media, from planning and filming to editing and final direction.',
+        'services.service2.title': 'Content Strategy',
+        'services.service2.description': 'Developing strategic content plans that achieve brand objectives and align with target audience needs.',
+        'services.service3.title': 'Podcast Production',
+        'services.service3.description': 'Professional audio program production including recording, editing, distribution, and promotion on podcast platforms.',
+        'gallery.title': 'Content Gallery',
+        'gallery.subtitle': 'A curated selection of my creative work',
+        'gallery.item1': 'Educational Video',
+        'gallery.item2': 'Professional Reels',
+        'gallery.item3': 'Motion Graphics',
+        'gallery.item4': 'Event Coverage',
+        'gallery.item5': 'Video Interviews',
+        'gallery.item6': 'Interactive Content',
+        'contact.title': 'Let\'s Start a Project',
+        'contact.subtitle': 'Ready to transform your ideas into impactful content?',
+        'contact.heading': 'Contact Me',
+        'contact.description': 'Have a content idea? I\'d love to hear about it. Let\'s discuss how we can turn your vision into tangible reality.',
         'contact.emailTitle': 'Email',
         'contact.phoneTitle': 'Phone',
         'contact.locationTitle': 'Location',
-        'contact.location': 'Available Worldwide',
+        'contact.location': 'Available Remotely',
         'contact.form.name': 'Your Name',
         'contact.form.email': 'Email Address',
         'contact.form.message': 'Project Details',
         'contact.form.submit': 'Send Message',
-        'contact.socialTitle': 'Follow Our Work',
+        'contact.socialTitle': 'Follow My Work',
         'modal.overview': 'Project Overview',
         'modal.services': 'Services Provided',
         'modal.startProject': 'Start a Similar Project',
         'footer.rights': 'All rights reserved'
     },
     ar: {
-        'nav.designer': 'مصمم رقمي',
+        'nav.creator': 'صانع محتوى',
         'nav.home': 'الرئيسية',
-        'nav.about': 'من نحن',
-        'nav.work': 'أعمالنا',
-        'nav.services': 'خدماتنا',
-        'nav.gallery': 'المعرض',
-        'nav.contact': 'اتصل بنا',
+        'nav.about': 'من أنا',
+        'nav.work': 'أعمالي',
+        'nav.services': 'خدماتي',
+        'nav.gallery': 'معرض المحتوى',
+        'nav.contact': 'تواصل معي',
         'lang.en': 'EN',
         'lang.ar': 'AR',
-        'hero.subtitle': 'فنون رقمية',
-        'hero.title': 'مصمم جرافيك ورقمي',
-        'hero.description': 'أصمم هويات بصرية تجمع بين البساطة والجمال المعاصر وسرد القصص العاطفية.',
-        'hero.viewPortfolio': 'عرض الأعمال',
+        'hero.subtitle': 'إبداع رقمي',
+        'hero.title': 'صانع محتوى إبداعي',
+        'hero.description': 'أبدع قصصاً رقمية تجمع بين الإبداع البصري، الرسالة المؤثرة، واستراتيجية تسويقية مدروسة.',
+        'hero.viewPortfolio': 'عرض أعمالي',
         'hero.startProject': 'ابدأ مشروع',
         'hero.explore': 'استكشف',
-        'about.title': 'الفلسفة الإبداعية',
-        'about.subtitle': 'حيث يلتقي الفن بالغرض في الشكل الرقمي',
-        'about.imageText': 'راوي قصص بصري',
-        'about.heading': 'تصميم بقصد',
-        'about.description1': 'أتخصص في تحويل المفاهيم المجردة إلى تجارب بصرية مؤثرة تلقى صدى لدى الجمهور. يجمع أسلوبي بين الحس الفني والتفكير الاستراتيجي.',
-        'about.description2': 'مع أكثر من 5 سنوات من الخبرة في التصميم الرقمي، تعاونت مع علامات تجارية عالمية لبناء هويات بصرية مميزة وتجارب مستخدم لا تنسى.',
-        'about.designerTitle': 'مصمم رقمي',
+        'about.title': 'فلسفتي الإبداعية',
+        'about.subtitle': 'حيث تلتقي القصة بالاستراتيجية في العالم الرقمي',
+        'about.imageText': 'راوي قصص مرئي',
+        'about.heading': 'إبداع بغاية',
+        'about.description1': 'أتخصص في تحويل الأفكار إلى قصص رقمية مؤثرة تلامس قلوب الجمهور وتحقق أهداف العمل. أدمج بين الإبداع البصري والاستراتيجية التسويقية.',
+        'about.description2': 'مع أكثر من 5 سنوات من الخبرة في صناعة المحتوى، تعاونت مع علامات تجارية متنوعة لبناء حضور رقمي مميز وخلق تجارب محتوى لا تنسى.',
+        'about.creatorTitle': 'صانع محتوى إبداعي',
         'projects.title': 'أعمال مميزة',
-        'projects.subtitle': 'مشاريع مختارة تعرض التميز في التصميم',
-        'projects.project1.category': 'الهوية البصرية',
-        'projects.project1.title': 'دار أزياء فاخرة',
-        'projects.project1.description': 'هوية بصرية كاملة لعلامة أزياء فاخرة تجمع بين التراث والحداثة',
-        'projects.project2.category': 'تصميم الويب',
-        'projects.project2.title': 'معرض فني تفاعلي',
-        'projects.project2.description': 'منصة رقمية لمعرض فني مع تجربة مستخدم غامرة',
-        'projects.project3.category': 'إعلانات',
-        'projects.project3.title': 'حملة مشروبات متميزة',
-        'projects.project3.description': 'حملة إعلانية شاملة مع تصوير احترافي',
-        'projects.tags.logo': 'تصميم الشعار',
-        'projects.tags.identity': 'الهوية البصرية',
-        'projects.tags.typography': 'الخطوط',
-        'projects.tags.uiux': 'تصميم واجهة المستخدم',
-        'projects.tags.interaction': 'تفاعلية',
-        'projects.tags.digitalArt': 'فن رقمي',
-        'projects.tags.advertising': 'إعلان',
-        'projects.tags.photography': 'تصوير',
-        'projects.tags.marketing': 'تسويق',
+        'projects.subtitle': 'مشاريع مختارة تعرض تميزي في صناعة المحتوى',
+        'projects.project1.category': 'حملة فيديوهات',
+        'projects.project1.title': 'سلسلة تعليمية تفاعلية',
+        'projects.project1.description': 'حملة فيديوهات تعليمية لعلامة تقنية تجمع بين الترفيه والتعلم',
+        'projects.project2.category': 'إستراتيجية محتوى',
+        'projects.project2.title': 'خطة محتوى سنوية',
+        'projects.project2.description': 'إستراتيجية محتوى متكاملة لعلامة أزياء مع خطة تنفيذ ربع سنوية',
+        'projects.project3.category': 'بودكاست',
+        'projects.project3.title': 'برنامج بودكاست أسبوعي',
+        'projects.project3.description': 'إنتاج وتقديم بودكاست أسبوعي يغطي مواضيع الريادة والابتكار',
+        'projects.tags.video': 'إنتاج فيديو',
+        'projects.tags.script': 'كتابة النص',
+        'projects.tags.editing': 'مونتاج',
+        'projects.tags.strategy': 'إستراتيجية',
+        'projects.tags.social': 'وسائل التواصل',
+        'projects.tags.planning': 'تخطيط',
+        'projects.tags.podcast': 'إنتاج بودكاست',
+        'projects.tags.audio': 'مهندس صوت',
+        'projects.tags.hosting': 'تقديم',
         'projects.viewCase': 'عرض دراسة الحالة',
-        'services.title': 'خدمات التصميم',
-        'services.subtitle': 'تحويل الرؤى إلى واقع بصري',
-        'services.service1.title': 'تصميم الويب',
-        'services.service1.description': 'تصاميم مواقع ويب معاصرة تجمع بين الجمالية والوظيفة، مع التركيز على تجربة المستخدم والأداء.',
-        'services.service2.title': 'الهوية البصرية',
-        'services.service2.description': 'أنظمة هوية بصرية كاملة تعبر عن قيم العلامة التجارية وتخلق انطباعات لا تنسى.',
-        'services.service3.title': 'الفن الرقمي',
-        'services.service3.description': 'محتوى بصري جذاب لوسائل التواصل الاجتماعي يعزز حضور العلامة التجارية ويواكب الاتجاهات الحديثة.',
-        'gallery.title': 'المعرض البصري',
-        'gallery.subtitle': 'مجموعة مختارة من التعبيرات الفنية',
-        'gallery.item1': 'تصميم تجريدي',
-        'gallery.item2': 'طباعة رقمية',
-        'gallery.item3': 'فن الخط العربي',
-        'gallery.item4': 'تلوين رقمي',
-        'gallery.item5': 'تصميم هندسي',
-        'gallery.item6': 'فن سينمائي',
-        'contact.title': 'لنتواصل',
-        'contact.subtitle': 'مستعد لتحويل رؤيتك إلى واقع؟',
-        'contact.heading': 'تواصل معنا',
-        'contact.description': 'هل لديك مشروع في ذهنك؟ يسعدنا سماع أفكارك. لنتناقش حول كيفية تحويل رؤيتك إلى واقع.',
+        'services.title': 'خدمات صناعة المحتوى',
+        'services.subtitle': 'تحويل الأفكار إلى محتوى مؤثر',
+        'services.service1.title': 'إنتاج الفيديو',
+        'services.service1.description': 'إنتاج فيديوهات احترافية للوسائط الرقمية، من التخطيط والتصوير إلى المونتاج والإخراج النهائي.',
+        'services.service2.title': 'إستراتيجية محتوى',
+        'services.service2.description': 'تطوير خطط محتوى استراتيجية تحقق أهداف العلامة التجارية وتتوافق مع احتياجات الجمهور المستهدف.',
+        'services.service3.title': 'إنتاج بودكاست',
+        'services.service3.description': 'إنتاج برامج صوتية احترافية تشمل التسجيل، المونتاج، التوزيع، والترويج على منصات البودكاست.',
+        'gallery.title': 'معرض المحتوى',
+        'gallery.subtitle': 'مجموعة مختارة من أعمالي الإبداعية',
+        'gallery.item1': 'فيديو تعليمي',
+        'gallery.item2': 'رييلز احترافية',
+        'gallery.item3': 'جرافيكس متحرك',
+        'gallery.item4': 'تغطية فعاليات',
+        'gallery.item5': 'مقابلات مرئية',
+        'gallery.item6': 'محتوى تفاعلي',
+        'contact.title': 'لنبدأ مشروعاً',
+        'contact.subtitle': 'مستعد لتحويل أفكارك إلى محتوى مؤثر؟',
+        'contact.heading': 'تواصل معي',
+        'contact.description': 'هل لديك فكرة لمحتوى؟ يسعدني سماع أفكارك. لنتناقش حول كيفية تحويل رؤيتك إلى واقع ملموس.',
         'contact.emailTitle': 'البريد الإلكتروني',
         'contact.phoneTitle': 'الهاتف',
         'contact.locationTitle': 'الموقع',
-        'contact.location': 'متاح عالمياً',
+        'contact.location': 'متاح للعمل عن بعد',
         'contact.form.name': 'اسمك',
         'contact.form.email': 'البريد الإلكتروني',
         'contact.form.message': 'تفاصيل المشروع',
         'contact.form.submit': 'إرسال الرسالة',
-        'contact.socialTitle': 'تابع أعمالنا',
+        'contact.socialTitle': 'تابع أعمالي',
         'modal.overview': 'نظرة عامة على المشروع',
         'modal.services': 'الخدمات المقدمة',
         'modal.startProject': 'ابدأ مشروعاً مماثلاً',
