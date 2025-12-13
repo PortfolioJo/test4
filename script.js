@@ -1,5 +1,5 @@
 // ===========================================
-// Main Application - بورتفوليو صانعة محتوى
+// Main Application - مع أنيميشنات خفيفة
 // ===========================================
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initCurrentYear();
     initScrollAnimations();
     initHoverEffects();
-    initTestimonialsSlider();
+    initProjectModal();
     initContactForm();
     initScrollProgress();
 });
@@ -33,7 +33,8 @@ function initNavigation() {
             
             // إضافة أنيميشن للقائمة
             if (navMenu.classList.contains('active')) {
-                navMenu.style.animation = 'fadeIn 0.3s ease-out';
+                const isRTL = document.documentElement.dir === 'rtl';
+                navMenu.style.animation = isRTL ? 'slideInLeft 0.3s ease-out' : 'slideInRight 0.3s ease-out';
             }
         });
     }
@@ -136,7 +137,7 @@ function initThemeSwitcher() {
     const themeIcon = themeToggle.querySelector('.theme-toggle__icon');
     
     // الحصول على الثيم المحفوظ أو استخدام الافتراضي
-    const savedTheme = localStorage.getItem('aseel-theme') || 'light';
+    const savedTheme = localStorage.getItem('nuroq-theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
     updateThemeIcon(savedTheme);
     
@@ -151,7 +152,7 @@ function initThemeSwitcher() {
         // تحديث الثيم بعد تأخير بسيط للأنيميشن
         setTimeout(() => {
             document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('aseel-theme', newTheme);
+            localStorage.setItem('nuroq-theme', newTheme);
             updateThemeIcon(newTheme);
             this.style.animation = '';
         }, 250);
@@ -177,13 +178,13 @@ function initLanguageSwitcher() {
     const langTexts = document.querySelectorAll('.language-toggle__text');
     
     // الحصول على اللغة المحفوظة أو استخدام الافتراضي
-    const savedLang = localStorage.getItem('aseel-lang') || 'en';
+    const savedLang = localStorage.getItem('nuroq-lang') || 'ar';
     setLanguage(savedLang);
     updateLangToggle(savedLang);
     
     // تبديل اللغة مع أنيميشن
     langToggle.addEventListener('click', function() {
-        const currentLang = document.documentElement.getAttribute('lang') || 'en';
+        const currentLang = document.documentElement.getAttribute('lang') || 'ar';
         const newLang = currentLang === 'en' ? 'ar' : 'en';
         
         // إضافة أنيميشن للزر
@@ -192,7 +193,7 @@ function initLanguageSwitcher() {
         setTimeout(() => {
             setLanguage(newLang);
             updateLangToggle(newLang);
-            localStorage.setItem('aseel-lang', newLang);
+            localStorage.setItem('nuroq-lang', newLang);
             this.style.animation = '';
         }, 250);
     });
@@ -200,16 +201,22 @@ function initLanguageSwitcher() {
     function setLanguage(lang) {
         document.documentElement.setAttribute('lang', lang);
         document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-        updateTexts(lang);
         
-        // تحديث الخط للعربية
+        // تحديث نص العنوان بناءً على اللغة
+        const pageTitle = document.querySelector('title');
+        const pageDescription = document.querySelector('meta[name="description"]');
+        
         if (lang === 'ar') {
+            pageTitle.textContent = 'نُورُق | مصمم جرافيك رقمي - فنية بصرية وهوية تجارية';
+            pageDescription.content = 'نُورُق - مصمم جرافيك رقمي متخصص في الهوية البصرية، تصميم الويب، والإخراج الفني. أصمم تجارب رقمية أنيقة.';
             document.documentElement.style.setProperty('--font-body', "'Noto Sans Arabic', sans-serif");
-            document.documentElement.style.setProperty('--font-heading', "'Noto Sans Arabic', sans-serif");
         } else {
+            pageTitle.textContent = 'Nuroq | Digital Graphic Designer - Visual Artistry & Brand Identity';
+            pageDescription.content = 'Nuroq - Digital Graphic Designer specializing in visual identity, web design, and artistic direction. Creating elegant digital experiences.';
             document.documentElement.style.setProperty('--font-body', "'Inter', sans-serif");
-            document.documentElement.style.setProperty('--font-heading', "'Playfair Display', serif");
         }
+        
+        updateTexts(lang);
         
         // إضافة أنيميشن لتغيير اللغة
         document.body.style.animation = 'fadeIn 0.3s ease';
@@ -274,12 +281,12 @@ function initScrollAnimations() {
 
 function initHoverEffects() {
     // تأثيرات Hover للبطاقات
-    const cards = document.querySelectorAll('.service-card, .portfolio-card, .testimonial-card');
+    const cards = document.querySelectorAll('.project-card, .service-card, .gallery-item');
     
     cards.forEach(card => {
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-8px)';
-            this.style.boxShadow = '0 20px 40px rgba(168, 187, 163, 0.15)';
+            this.style.boxShadow = '0 20px 40px rgba(100, 255, 218, 0.15)';
         });
         
         card.addEventListener('mouseleave', function() {
@@ -306,140 +313,157 @@ function initHoverEffects() {
     
     socialLinks.forEach(link => {
         link.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px)';
+            this.style.animation = 'float 2s ease-in-out infinite';
         });
         
         link.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
+            this.style.animation = '';
         });
     });
 }
 
 // ===========================================
-// Testimonials Slider
+// Project Modal
 // ===========================================
 
-function initTestimonialsSlider() {
-    const track = document.querySelector('.testimonials__track');
-    const dots = document.querySelectorAll('.testimonials__dot');
-    const prevBtn = document.querySelector('.testimonials__control--prev');
-    const nextBtn = document.querySelector('.testimonials__control--next');
+function initProjectModal() {
+    const modal = document.getElementById('projectModal');
+    const modalClose = document.getElementById('modalClose');
+    const projectViewBtns = document.querySelectorAll('.project-view-btn');
     
-    if (!track) return;
+    // بيانات المشاريع
+    const projects = {
+        1: {
+            category: 'Brand Identity',
+            title: 'Luxury Fashion House',
+            year: '2024',
+            description: 'Complete visual identity for a high-end fashion brand blending heritage with modernity. The project involved creating a comprehensive brand system that works across digital and physical touchpoints.',
+            tags: ['Logo Design', 'Visual Identity', 'Typography', 'Brand Guidelines'],
+            imageClass: 'project-card__image--1'
+        },
+        2: {
+            category: 'Web Design',
+            title: 'Interactive Art Gallery',
+            year: '2024',
+            description: 'Digital platform for art exhibition with immersive user experience. The design focuses on creating a seamless journey through virtual exhibitions while maintaining the artistic integrity of each piece.',
+            tags: ['UI/UX Design', 'Interaction', 'Digital Art', 'Web Development'],
+            imageClass: 'project-card__image--2'
+        },
+        3: {
+            category: 'Advertising',
+            title: 'Premium Beverage Campaign',
+            year: '2023',
+            description: 'Comprehensive advertising campaign with professional photography. The campaign successfully positioned the brand as a premium lifestyle choice through strategic visual storytelling.',
+            tags: ['Advertising', 'Photography', 'Marketing', 'Campaign Strategy'],
+            imageClass: 'project-card__image--3'
+        }
+    };
     
-    const cards = document.querySelectorAll('.testimonial-card');
-    const cardWidth = cards[0].offsetWidth + parseInt(getComputedStyle(track).gap);
-    let currentIndex = 0;
-    
-    function updateSlider() {
-        track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-        
-        // تحديث النقاط النشطة
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentIndex);
-        });
-    }
-    
-    // الأزرار السابقة والتالية
-    if (prevBtn) {
-        prevBtn.addEventListener('click', function() {
-            currentIndex = currentIndex > 0 ? currentIndex - 1 : cards.length - 1;
-            updateSlider();
-        });
-    }
-    
-    if (nextBtn) {
-        nextBtn.addEventListener('click', function() {
-            currentIndex = currentIndex < cards.length - 1 ? currentIndex + 1 : 0;
-            updateSlider();
-        });
-    }
-    
-    // النقاط
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', function() {
-            currentIndex = index;
-            updateSlider();
+    // فتح المودال عند النقر على زر المشروع
+    projectViewBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const projectId = this.getAttribute('data-project');
+            openProjectModal(projectId);
         });
     });
     
-    // التمرير التلقائي
-    let autoSlide = setInterval(() => {
-        currentIndex = currentIndex < cards.length - 1 ? currentIndex + 1 : 0;
-        updateSlider();
-    }, 5000);
+    // إغلاق المودال
+    modalClose.addEventListener('click', closeModal);
+    modal.querySelector('.modal__overlay').addEventListener('click', closeModal);
     
-    // إيقاف التمرير التلقائي عند التفاعل
-    const sliderContainer = track.parentElement;
-    sliderContainer.addEventListener('mouseenter', () => clearInterval(autoSlide));
-    sliderContainer.addEventListener('mouseleave', () => {
-        autoSlide = setInterval(() => {
-            currentIndex = currentIndex < cards.length - 1 ? currentIndex + 1 : 0;
-            updateSlider();
-        }, 5000);
+    // إغلاق المودال بمفتاح Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
     });
     
-    // دعم السحب على الهاتف
-    let isDragging = false;
-    let startPosition = 0;
-    let currentTranslate = 0;
-    let prevTranslate = 0;
-    
-    cards.forEach(card => {
-        // منع سلوك السحب الافتراضي للصور
-        card.addEventListener('dragstart', (e) => e.preventDefault());
-    });
-    
-    track.addEventListener('mousedown', startDrag);
-    track.addEventListener('touchstart', startDrag);
-    
-    function startDrag(event) {
-        isDragging = true;
-        startPosition = getPositionX(event);
-        track.style.cursor = 'grabbing';
+    function openProjectModal(projectId) {
+        const project = projects[projectId];
+        const currentLang = document.documentElement.getAttribute('lang') || 'ar';
         
-        // إيقاف التمرير التلقائي
-        clearInterval(autoSlide);
+        if (!project) return;
         
-        window.addEventListener('mousemove', drag);
-        window.addEventListener('touchmove', drag);
-        window.addEventListener('mouseup', endDrag);
-        window.addEventListener('touchend', endDrag);
+        // تحديث محتوى المودال
+        const modalCategory = document.getElementById('modalCategory');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+        
+        modalCategory.textContent = currentLang === 'ar' ? 
+            getArabicCategory(project.category) : project.category;
+        modalTitle.textContent = project.title;
+        document.getElementById('modalYear').textContent = project.year;
+        
+        // ترجمة الوصف بناءً على اللغة
+        if (currentLang === 'ar') {
+            modalDescription.textContent = getArabicDescription(projectId);
+        } else {
+            modalDescription.textContent = project.description;
+        }
+        
+        // تحديث الوسوم
+        const tagsContainer = document.getElementById('modalTags');
+        tagsContainer.innerHTML = '';
+        project.tags.forEach(tag => {
+            const tagElement = document.createElement('span');
+            tagElement.className = 'tag';
+            tagElement.textContent = currentLang === 'ar' ? 
+                getArabicTag(tag) : tag;
+            tagElement.style.animation = 'fadeInScale 0.3s ease backwards';
+            tagElement.style.animationDelay = `${Math.random() * 0.3}s`;
+            tagsContainer.appendChild(tagElement);
+        });
+        
+        // تحديث الصورة
+        const modalImage = document.getElementById('modalImage');
+        modalImage.className = 'modal__image';
+        modalImage.classList.add(project.imageClass);
+        
+        // عرض المودال
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
     }
     
-    function drag(event) {
-        if (!isDragging) return;
-        event.preventDefault();
-        
-        const currentPosition = getPositionX(event);
-        currentTranslate = prevTranslate + currentPosition - startPosition;
-        
-        // تحديث الموضع
-        track.style.transform = `translateX(${currentTranslate - (currentIndex * cardWidth)}px)`;
+    function closeModal() {
+        const modal = document.getElementById('projectModal');
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
     }
     
-    function endDrag() {
-        if (!isDragging) return;
-        isDragging = false;
-        track.style.cursor = 'grab';
-        
-        const movedBy = currentTranslate - prevTranslate;
-        
-        // إذا تم السحب بما يكفي، انتقل للشريحة التالية أو السابقة
-        if (movedBy < -100 && currentIndex < cards.length - 1) currentIndex++;
-        if (movedBy > 100 && currentIndex > 0) currentIndex--;
-        
-        updateSlider();
-        prevTranslate = currentIndex * -cardWidth;
-        
-        window.removeEventListener('mousemove', drag);
-        window.removeEventListener('touchmove', drag);
-        window.removeEventListener('mouseup', endDrag);
-        window.removeEventListener('touchend', endDrag);
+    function getArabicCategory(category) {
+        const categories = {
+            'Brand Identity': 'الهوية البصرية',
+            'Web Design': 'تصميم الويب',
+            'Advertising': 'إعلانات'
+        };
+        return categories[category] || category;
     }
     
-    function getPositionX(event) {
-        return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+    function getArabicDescription(projectId) {
+        const descriptions = {
+            1: 'هوية بصرية كاملة لعلامة أزياء فاخرة تجمع بين التراث والحداثة. تضمن المشروع إنشاء نظام علامة تجارية شامل يعمل عبر نقاط الاتصال الرقمية والمادية.',
+            2: 'منصة رقمية لمعرض فني مع تجربة مستخدم غامرة. يركز التصميم على إنشاء رحلة سلسة عبر المعارض الافتراضية مع الحفاظ على النزاهة الفنية لكل قطعة.',
+            3: 'حملة إعلانية شاملة مع تصوير احترافي. نجحت الحملة في وضع العلامة التجارية كخيار نمط حياة متميز من خلال سرد القصص البصرية الاستراتيجية.'
+        };
+        return descriptions[projectId] || '';
+    }
+    
+    function getArabicTag(tag) {
+        const tags = {
+            'Logo Design': 'تصميم الشعار',
+            'Visual Identity': 'الهوية البصرية',
+            'Typography': 'الخطوط',
+            'Brand Guidelines': 'إرشادات العلامة التجارية',
+            'UI/UX Design': 'تصميم واجهة المستخدم',
+            'Interaction': 'تفاعلية',
+            'Digital Art': 'فن رقمي',
+            'Web Development': 'تطوير الويب',
+            'Advertising': 'إعلان',
+            'Photography': 'تصوير',
+            'Marketing': 'تسويق',
+            'Campaign Strategy': 'استراتيجية الحملة'
+        };
+        return tags[tag] || tag;
     }
 }
 
@@ -465,7 +489,12 @@ function initContactForm() {
             // محاكاة الإرسال (في الواقع ستقوم بإرسال البيانات لخادم)
             setTimeout(() => {
                 // عرض رسالة النجاح
-                alert('Thank you for your message! I will get back to you within 24 hours.');
+                const currentLang = document.documentElement.getAttribute('lang') || 'ar';
+                const message = currentLang === 'ar' 
+                    ? 'شكراً لك على رسالتك! سنتواصل معك قريباً.'
+                    : 'Thank you for your message! We will get back to you soon.';
+                
+                alert(message);
                 this.reset();
                 submitBtn.style.animation = '';
                 
@@ -473,19 +502,11 @@ function initContactForm() {
                 const labels = this.querySelectorAll('label');
                 labels.forEach(label => {
                     const input = this.querySelector(`#${label.getAttribute('for')}`);
-                    if (input && !input.value && input.tagName !== 'SELECT') {
+                    if (input && !input.value) {
                         label.style.top = '0.75rem';
                         label.style.fontSize = '1rem';
                     }
                 });
-                
-                // إعادة تعيين التسميات للـ select
-                const select = this.querySelector('select');
-                const selectLabel = this.querySelector('label[for="service"]');
-                if (select && selectLabel) {
-                    selectLabel.style.top = '0.75rem';
-                    selectLabel.style.fontSize = '1rem';
-                }
             }, 1000);
         });
     }
@@ -493,7 +514,7 @@ function initContactForm() {
     // أنيميشن لتسميات النموذج
     const formGroups = document.querySelectorAll('.form-group');
     formGroups.forEach(group => {
-        const input = group.querySelector('input, select, textarea');
+        const input = group.querySelector('input, textarea');
         const label = group.querySelector('label');
         
         if (input && label) {
@@ -501,16 +522,11 @@ function initContactForm() {
                 label.style.top = '-0.5rem';
                 label.style.fontSize = '0.875rem';
                 label.style.color = 'var(--color-accent-primary)';
+                label.style.animation = 'fadeInScale 0.2s ease';
             });
             
             input.addEventListener('blur', function() {
-                if (this.tagName === 'SELECT') {
-                    if (!this.value) {
-                        label.style.top = '0.75rem';
-                        label.style.fontSize = '1rem';
-                        label.style.color = 'var(--color-text-tertiary)';
-                    }
-                } else if (!this.value) {
+                if (!this.value) {
                     label.style.top = '0.75rem';
                     label.style.fontSize = '1rem';
                     label.style.color = 'var(--color-text-tertiary)';
@@ -522,17 +538,6 @@ function initContactForm() {
                 label.style.top = '-0.5rem';
                 label.style.fontSize = '0.875rem';
                 label.style.color = 'var(--color-accent-primary)';
-            }
-            
-            // معالجة الـ select
-            if (input.tagName === 'SELECT') {
-                input.addEventListener('change', function() {
-                    if (this.value) {
-                        label.style.top = '-0.5rem';
-                        label.style.fontSize = '0.875rem';
-                        label.style.color = 'var(--color-accent-primary)';
-                    }
-                });
             }
         }
     });
@@ -590,197 +595,159 @@ function initScrollProgress() {
 
 const translations = {
     en: {
-        'nav.creator': 'Content Creator',
+        'nav.designer': 'Digital Designer',
         'nav.home': 'Home',
         'nav.about': 'About',
+        'nav.work': 'Work',
         'nav.services': 'Services',
-        'nav.portfolio': 'Portfolio',
-        'nav.testimonials': 'Testimonials',
+        'nav.gallery': 'Gallery',
         'nav.contact': 'Contact',
         'lang.en': 'EN',
         'lang.ar': 'AR',
-        'hero.subtitle': 'Digital Storytelling',
-        'hero.title': 'Content Creator',
-        'hero.description': 'Crafting compelling narratives and engaging content that connects brands with their audiences.',
-        'hero.viewWork': 'View My Work',
-        'hero.contactMe': 'Let\'s Collaborate',
-        'hero.explore': 'Learn More',
-        'about.title': 'About Me',
-        'about.subtitle': 'Crafting stories that resonate and engage',
-        'about.imageText': 'Content Creator',
-        'about.heading': 'My Story',
-        'about.description1': 'I\'m Aseel, a passionate content creator with over 5 years of experience in digital storytelling. I specialize in creating engaging content across multiple platforms that helps brands connect authentically with their audience.',
-        'about.description2': 'My journey began with a simple smartphone and a passion for storytelling. Today, I collaborate with brands and businesses to create compelling content strategies that drive engagement and build communities.',
-        'about.stats.projects': '150+',
-        'about.stats.projectsLabel': 'Projects',
-        'about.stats.clients': '50+',
-        'about.stats.clientsLabel': 'Happy Clients',
-        'about.stats.platforms': '8+',
-        'about.stats.platformsLabel': 'Platforms',
-        'services.title': 'Services',
-        'services.subtitle': 'How I can help you grow',
-        'services.service1.title': 'Video Content',
-        'services.service1.description': 'Engaging video content for social media, YouTube, and websites. From short-form reels to long-form documentaries.',
-        'services.service1.list1': 'Social Media Videos',
-        'services.service1.list2': 'YouTube Content',
-        'services.service1.list3': 'Explainer Videos',
-        'services.service2.title': 'Social Media',
-        'services.service2.description': 'Complete social media management and content creation across all major platforms.',
-        'services.service2.list1': 'Content Strategy',
-        'services.service2.list2': 'Platform Management',
-        'services.service2.list3': 'Engagement Growth',
-        'services.service3.title': 'Content Strategy',
-        'services.service3.description': 'Strategic planning and execution of content campaigns that drive results and build brand loyalty.',
-        'services.service3.list1': 'Brand Storytelling',
-        'services.service3.list2': 'Campaign Planning',
-        'services.service3.list3': 'Analytics & Reporting',
-        'portfolio.title': 'Portfolio',
-        'portfolio.subtitle': 'Recent projects and collaborations',
-        'portfolio.project1.category': 'Brand Campaign',
-        'portfolio.project1.title': 'Lifestyle Brand Series',
-        'portfolio.project1.description': 'Complete social media content strategy and video series for a wellness brand',
-        'portfolio.project2.category': 'Educational Series',
-        'portfolio.project2.title': 'Tech Tutorial Series',
-        'portfolio.project2.description': 'YouTube series explaining complex tech concepts in simple terms',
-        'portfolio.project3.category': 'Social Media',
-        'portfolio.project3.title': 'Fashion Brand Launch',
-        'portfolio.project3.description': 'Social media campaign for a sustainable fashion brand launch',
-        'portfolio.tags.video': 'Video',
-        'portfolio.tags.social': 'Social Media',
-        'portfolio.tags.strategy': 'Strategy',
-        'portfolio.tags.youtube': 'YouTube',
-        'portfolio.tags.education': 'Education',
-        'portfolio.tags.animation': 'Animation',
-        'portfolio.tags.campaign': 'Campaign',
-        'portfolio.tags.fashion': 'Fashion',
-        'portfolio.tags.instagram': 'Instagram',
-        'portfolio.seeMore': 'See More Projects',
-        'testimonials.title': 'Client Testimonials',
-        'testimonials.subtitle': 'What my clients say about working together',
-        'testimonials.testimonial1.text': '"Working with Aseel transformed our brand\'s online presence. Her content strategy increased our engagement by 200% in just three months. Professional, creative, and always delivers beyond expectations."',
-        'testimonials.testimonial1.name': 'Sarah Johnson',
-        'testimonials.testimonial1.role': 'Marketing Director, TechFlow',
-        'testimonials.testimonial2.text': '"Aseel\'s video content for our product launch was exceptional. She understood our brand perfectly and created content that resonated with our target audience. The results exceeded all our KPIs."',
-        'testimonials.testimonial2.name': 'Ahmed Hassan',
-        'testimonials.testimonial2.role': 'CEO, Bloom Cosmetics',
-        'testimonials.testimonial3.text': '"As a startup, we needed someone who could wear multiple hats. Aseel delivered amazing content across all our social platforms while staying true to our brand voice. She\'s more than a content creator - she\'s a partner."',
-        'testimonials.testimonial3.name': 'Layla Mohammed',
-        'testimonials.testimonial3.role': 'Founder, Nomad Coffee Co.',
-        'contact.title': 'Let\'s Work Together',
-        'contact.subtitle': 'Ready to create amazing content?',
-        'contact.heading': 'Get In Touch',
-        'contact.description': 'Have a project in mind? I\'d love to hear about it. Let\'s discuss how we can create content that tells your brand\'s story and connects with your audience.',
+        'hero.subtitle': 'Digital Artistry',
+        'hero.title': 'Graphic & Digital Designer',
+        'hero.description': 'Crafting visual identities that blend minimalism, modern aesthetics, and emotional storytelling.',
+        'hero.viewPortfolio': 'View Portfolio',
+        'hero.startProject': 'Start a Project',
+        'hero.explore': 'Explore',
+        'about.title': 'Creative Philosophy',
+        'about.subtitle': 'Where art meets purpose in digital form',
+        'about.imageText': 'Visual Storyteller',
+        'about.heading': 'Design with Intention',
+        'about.description1': 'We specialize in transforming abstract concepts into compelling visual experiences that resonate with audiences. Our approach combines artistic sensibility with strategic thinking.',
+        'about.description2': 'With over 5 years of experience in digital design, we have collaborated with brands worldwide to build distinctive visual identities and memorable user experiences.',
+        'about.designerTitle': 'Digital Designer',
+        'projects.title': 'Featured Work',
+        'projects.subtitle': 'Selected projects showcasing design excellence',
+        'projects.project1.category': 'Brand Identity',
+        'projects.project1.title': 'Luxury Fashion House',
+        'projects.project1.description': 'Complete visual identity for a high-end fashion brand blending heritage with modernity',
+        'projects.project2.category': 'Web Design',
+        'projects.project2.title': 'Interactive Art Gallery',
+        'projects.project2.description': 'Digital platform for art exhibition with immersive user experience',
+        'projects.project3.category': 'Advertising',
+        'projects.project3.title': 'Premium Beverage Campaign',
+        'projects.project3.description': 'Comprehensive advertising campaign with professional photography',
+        'projects.tags.logo': 'Logo Design',
+        'projects.tags.identity': 'Visual Identity',
+        'projects.tags.typography': 'Typography',
+        'projects.tags.uiux': 'UI/UX Design',
+        'projects.tags.interaction': 'Interaction',
+        'projects.tags.digitalArt': 'Digital Art',
+        'projects.tags.advertising': 'Advertising',
+        'projects.tags.photography': 'Photography',
+        'projects.tags.marketing': 'Marketing',
+        'projects.viewCase': 'View Case Study',
+        'services.title': 'Design Services',
+        'services.subtitle': 'Transforming visions into visual realities',
+        'services.service1.title': 'Web Design',
+        'services.service1.description': 'Contemporary website designs that marry aesthetics with functionality, focusing on user experience and performance.',
+        'services.service2.title': 'Brand Identity',
+        'services.service2.description': 'Complete visual identity systems that express brand values and create memorable impressions.',
+        'services.service3.title': 'Digital Art',
+        'services.service3.description': 'Engaging visual content for social media that enhances brand presence and follows modern trends.',
+        'gallery.title': 'Visual Gallery',
+        'gallery.subtitle': 'A curated collection of artistic expressions',
+        'gallery.item1': 'Abstract Design',
+        'gallery.item2': 'Digital Print',
+        'gallery.item3': 'Calligraphy Art',
+        'gallery.item4': 'Digital Coloring',
+        'gallery.item5': 'Geometric Design',
+        'gallery.item6': 'Cinematic Art',
+        'contact.title': 'Let\'s Connect',
+        'contact.subtitle': 'Ready to bring your vision to life?',
+        'contact.heading': 'Get in Touch',
+        'contact.description': 'Have a project in mind? We\'d love to hear about it. Let\'s discuss how we can transform your vision into reality.',
         'contact.emailTitle': 'Email',
         'contact.phoneTitle': 'Phone',
         'contact.locationTitle': 'Location',
-        'contact.location': 'Available for remote work worldwide',
+        'contact.location': 'Available Worldwide',
         'contact.form.name': 'Your Name',
         'contact.form.email': 'Email Address',
-        'contact.form.service': 'Service Needed',
-        'contact.form.options.video': 'Video Content',
-        'contact.form.options.social': 'Social Media',
-        'contact.form.options.strategy': 'Content Strategy',
-        'contact.form.options.other': 'Other',
         'contact.form.message': 'Project Details',
         'contact.form.submit': 'Send Message',
-        'contact.socialTitle': 'Follow My Content',
+        'contact.socialTitle': 'Follow Our Work',
+        'modal.overview': 'Project Overview',
+        'modal.services': 'Services Provided',
+        'modal.startProject': 'Start a Similar Project',
         'footer.rights': 'All rights reserved'
     },
     ar: {
-        'nav.creator': 'صانعة محتوى',
+        'nav.designer': 'مصمم رقمي',
         'nav.home': 'الرئيسية',
-        'nav.about': 'عنّي',
-        'nav.services': 'الخدمات',
-        'nav.portfolio': 'الأعمال',
-        'nav.testimonials': 'آراء العملاء',
-        'nav.contact': 'اتصل',
+        'nav.about': 'من نحن',
+        'nav.work': 'أعمالنا',
+        'nav.services': 'خدماتنا',
+        'nav.gallery': 'المعرض',
+        'nav.contact': 'اتصل بنا',
         'lang.en': 'EN',
         'lang.ar': 'AR',
-        'hero.subtitle': 'سرد قصص رقمي',
-        'hero.title': 'صانعة محتوى',
-        'hero.description': 'أصمم قصصًا مؤثرة ومحتوى جذابًا يربط العلامات التجارية بجماهيرها.',
-        'hero.viewWork': 'شاهد أعمالي',
-        'hero.contactMe': 'لنعمل معًا',
-        'hero.explore': 'اعرف المزيد',
-        'about.title': 'عنّي',
-        'about.subtitle': 'صياغة قصص تلقى صدى وتجذب',
-        'about.imageText': 'صانعة محتوى',
-        'about.heading': 'قصتي',
-        'about.description1': 'أنا أسيل، صانعة محتوى شغوفة بخبرة تزيد عن 5 سنوات في السرد القصصي الرقمي. أتخصص في إنشاء محتوى جذاب عبر منصات متعددة يساعد العلامات التجارية على التواصل بصدق مع جمهورها.',
-        'about.description2': 'بدأت رحلتي بهاتف ذكي بسيط وشغف بسرد القصص. اليوم، أتعاون مع العلامات التجارية والشركات لإنشاء استراتيجيات محتوى مقنعة تدفع المشاركة وتبني المجتمعات.',
-        'about.stats.projects': '١٥٠+',
-        'about.stats.projectsLabel': 'مشروع',
-        'about.stats.clients': '٥٠+',
-        'about.stats.clientsLabel': 'عميل سعيد',
-        'about.stats.platforms': '٨+',
-        'about.stats.platformsLabel': 'منصة',
-        'services.title': 'الخدمات',
-        'services.subtitle': 'كيف يمكنني مساعدتك على النمو',
-        'services.service1.title': 'محتوى فيديو',
-        'services.service1.description': 'محتوى فيديو جذاب لوسائل التواصل الاجتماعي ويوتيوب والمواقع الإلكترونية. من الريلز القصيرة إلى الأفلام الوثائقية الطويلة.',
-        'services.service1.list1': 'فيديوهات وسائل التواصل',
-        'services.service1.list2': 'محتوى يوتيوب',
-        'services.service1.list3': 'فيديوهات توضيحية',
-        'services.service2.title': 'وسائل التواصل الاجتماعي',
-        'services.service2.description': 'إدارة كاملة لوسائل التواصل الاجتماعي وإنشاء محتوى عبر جميع المنصات الرئيسية.',
-        'services.service2.list1': 'استراتيجية المحتوى',
-        'services.service2.list2': 'إدارة المنصات',
-        'services.service2.list3': 'نمو المشاركة',
-        'services.service3.title': 'استراتيجية المحتوى',
-        'services.service3.description': 'التخطيط الاستراتيجي وتنفيذ حملات المحتوى التي تحقق النتائج وتبني ولاء العلامة التجارية.',
-        'services.service3.list1': 'سرد قصص العلامة التجارية',
-        'services.service3.list2': 'تخطيط الحملات',
-        'services.service3.list3': 'التحليلات والتقارير',
-        'portfolio.title': 'الأعمال',
-        'portfolio.subtitle': 'المشاريع والتعاونات الحديثة',
-        'portfolio.project1.category': 'حملة علامة تجارية',
-        'portfolio.project1.title': 'سلسلة علامة أسلوب حياة',
-        'portfolio.project1.description': 'استراتيجية محتوى كاملة لوسائل التواصل الاجتماعي وسلسلة فيديو لعلامة تجارية للعافية',
-        'portfolio.project2.category': 'سلسلة تعليمية',
-        'portfolio.project2.title': 'سلسلة دروس تقنية',
-        'portfolio.project2.description': 'سلسلة يوتيوب تشرح مفاهيم تقنية معقدة بمصطلحات بسيطة',
-        'portfolio.project3.category': 'وسائل التواصل الاجتماعي',
-        'portfolio.project3.title': 'إطلاق علامة أزياء',
-        'portfolio.project3.description': 'حملة وسائل التواصل الاجتماعي لإطلاق علامة أزياء مستدامة',
-        'portfolio.tags.video': 'فيديو',
-        'portfolio.tags.social': 'وسائل تواصل',
-        'portfolio.tags.strategy': 'استراتيجية',
-        'portfolio.tags.youtube': 'يوتيوب',
-        'portfolio.tags.education': 'تعليم',
-        'portfolio.tags.animation': 'رسوم متحركة',
-        'portfolio.tags.campaign': 'حملة',
-        'portfolio.tags.fashion': 'أزياء',
-        'portfolio.tags.instagram': 'إنستغرام',
-        'portfolio.seeMore': 'شاهد المزيد من المشاريع',
-        'testimonials.title': 'آراء العملاء',
-        'testimonials.subtitle': 'ما يقوله عملائي عن العمل معًا',
-        'testimonials.testimonial1.text': '"عملت أسيل على تحويل وجود علامتنا التجارية عبر الإنترنت. زادت استراتيجيتها للمحتوى من مشاركتنا بنسبة 200٪ في ثلاثة أشهر فقط. محترفة، مبدعة، وتتجاوز التوقعات دائمًا."',
-        'testimonials.testimonial1.name': 'سارة جونسون',
-        'testimonials.testimonial1.role': 'مديرة التسويق، تك فلو',
-        'testimonials.testimonial2.text': '"كان محتوى الفيديو الذي قدمته أسيل لإطلاق منتجنا استثنائيًا. فهمت علامتنا التجارية تمامًا وأنشأت محتوى لقي صدى لدى جمهورنا المستهدف. تجاوزت النتائج جميع مؤشرات الأداء الرئيسية لدينا."',
-        'testimonials.testimonial2.name': 'أحمد حسن',
-        'testimonials.testimonial2.role': 'الرئيس التنفيذي، بلوم كوزمتكس',
-        'testimonials.testimonial3.text': '"كشركة ناشئة، كنا بحاجة إلى شخص يمكنه أداء عدة أدوار في وقت واحد. قدمت أسيل محتوى مذهلاً عبر جميع منصات التواصل الاجتماعي الخاصة بنا مع الحفاظ على صوت علامتنا التجارية. إنها أكثر من مجرد صانعة محتوى - إنها شريك."',
-        'testimonials.testimonial3.name': 'ليلى محمد',
-        'testimonials.testimonial3.role': 'المؤسسة، نوماد كوفي',
-        'contact.title': 'لنعمل معًا',
-        'contact.subtitle': 'مستعد لإنشاء محتوى رائع؟',
-        'contact.heading': 'تواصل معي',
-        'contact.description': 'هل لديك مشروع في ذهنك؟ يسعدني سماع أفكارك. لنتناقش حول كيفية إنشاء محتوى يحكي قصة علامتك التجارية ويتواصل مع جمهورك.',
+        'hero.subtitle': 'فنون رقمية',
+        'hero.title': 'مصمم جرافيك ورقمي',
+        'hero.description': 'أصمم هويات بصرية تجمع بين البساطة والجمال المعاصر وسرد القصص العاطفية.',
+        'hero.viewPortfolio': 'عرض الأعمال',
+        'hero.startProject': 'ابدأ مشروع',
+        'hero.explore': 'استكشف',
+        'about.title': 'الفلسفة الإبداعية',
+        'about.subtitle': 'حيث يلتقي الفن بالغرض في الشكل الرقمي',
+        'about.imageText': 'راوي قصص بصري',
+        'about.heading': 'تصميم بقصد',
+        'about.description1': 'أتخصص في تحويل المفاهيم المجردة إلى تجارب بصرية مؤثرة تلقى صدى لدى الجمهور. يجمع أسلوبي بين الحس الفني والتفكير الاستراتيجي.',
+        'about.description2': 'مع أكثر من 5 سنوات من الخبرة في التصميم الرقمي، تعاونت مع علامات تجارية عالمية لبناء هويات بصرية مميزة وتجارب مستخدم لا تنسى.',
+        'about.designerTitle': 'مصمم رقمي',
+        'projects.title': 'أعمال مميزة',
+        'projects.subtitle': 'مشاريع مختارة تعرض التميز في التصميم',
+        'projects.project1.category': 'الهوية البصرية',
+        'projects.project1.title': 'دار أزياء فاخرة',
+        'projects.project1.description': 'هوية بصرية كاملة لعلامة أزياء فاخرة تجمع بين التراث والحداثة',
+        'projects.project2.category': 'تصميم الويب',
+        'projects.project2.title': 'معرض فني تفاعلي',
+        'projects.project2.description': 'منصة رقمية لمعرض فني مع تجربة مستخدم غامرة',
+        'projects.project3.category': 'إعلانات',
+        'projects.project3.title': 'حملة مشروبات متميزة',
+        'projects.project3.description': 'حملة إعلانية شاملة مع تصوير احترافي',
+        'projects.tags.logo': 'تصميم الشعار',
+        'projects.tags.identity': 'الهوية البصرية',
+        'projects.tags.typography': 'الخطوط',
+        'projects.tags.uiux': 'تصميم واجهة المستخدم',
+        'projects.tags.interaction': 'تفاعلية',
+        'projects.tags.digitalArt': 'فن رقمي',
+        'projects.tags.advertising': 'إعلان',
+        'projects.tags.photography': 'تصوير',
+        'projects.tags.marketing': 'تسويق',
+        'projects.viewCase': 'عرض دراسة الحالة',
+        'services.title': 'خدمات التصميم',
+        'services.subtitle': 'تحويل الرؤى إلى واقع بصري',
+        'services.service1.title': 'تصميم الويب',
+        'services.service1.description': 'تصاميم مواقع ويب معاصرة تجمع بين الجمالية والوظيفة، مع التركيز على تجربة المستخدم والأداء.',
+        'services.service2.title': 'الهوية البصرية',
+        'services.service2.description': 'أنظمة هوية بصرية كاملة تعبر عن قيم العلامة التجارية وتخلق انطباعات لا تنسى.',
+        'services.service3.title': 'الفن الرقمي',
+        'services.service3.description': 'محتوى بصري جذاب لوسائل التواصل الاجتماعي يعزز حضور العلامة التجارية ويواكب الاتجاهات الحديثة.',
+        'gallery.title': 'المعرض البصري',
+        'gallery.subtitle': 'مجموعة مختارة من التعبيرات الفنية',
+        'gallery.item1': 'تصميم تجريدي',
+        'gallery.item2': 'طباعة رقمية',
+        'gallery.item3': 'فن الخط العربي',
+        'gallery.item4': 'تلوين رقمي',
+        'gallery.item5': 'تصميم هندسي',
+        'gallery.item6': 'فن سينمائي',
+        'contact.title': 'لنتواصل',
+        'contact.subtitle': 'مستعد لتحويل رؤيتك إلى واقع؟',
+        'contact.heading': 'تواصل معنا',
+        'contact.description': 'هل لديك مشروع في ذهنك؟ يسعدنا سماع أفكارك. لنتناقش حول كيفية تحويل رؤيتك إلى واقع.',
         'contact.emailTitle': 'البريد الإلكتروني',
         'contact.phoneTitle': 'الهاتف',
         'contact.locationTitle': 'الموقع',
-        'contact.location': 'متاحة للعمل عن بعد في جميع أنحاء العالم',
+        'contact.location': 'متاح عالمياً',
         'contact.form.name': 'اسمك',
         'contact.form.email': 'البريد الإلكتروني',
-        'contact.form.service': 'الخدمة المطلوبة',
-        'contact.form.options.video': 'محتوى فيديو',
-        'contact.form.options.social': 'وسائل التواصل الاجتماعي',
-        'contact.form.options.strategy': 'استراتيجية المحتوى',
-        'contact.form.options.other': 'أخرى',
         'contact.form.message': 'تفاصيل المشروع',
         'contact.form.submit': 'إرسال الرسالة',
-        'contact.socialTitle': 'تابع محتواي',
+        'contact.socialTitle': 'تابع أعمالنا',
+        'modal.overview': 'نظرة عامة على المشروع',
+        'modal.services': 'الخدمات المقدمة',
+        'modal.startProject': 'ابدأ مشروعاً مماثلاً',
         'footer.rights': 'جميع الحقوق محفوظة'
     }
 };
@@ -794,12 +761,19 @@ function updateTexts(lang) {
         }
     });
     
-    // تحديث خيارات الـ select
-    const selectOptions = document.querySelectorAll('option[data-i18n]');
-    selectOptions.forEach(option => {
-        const key = option.getAttribute('data-i18n');
-        if (translations[lang] && translations[lang][key]) {
-            option.textContent = translations[lang][key];
+    // تحديث اتجاه الأسهم في الأزرار
+    const buttons = document.querySelectorAll('.btn__icon, .project-card__link i');
+    buttons.forEach(button => {
+        if (lang === 'ar') {
+            if (button.classList.contains('fa-arrow-right')) {
+                button.classList.remove('fa-arrow-right');
+                button.classList.add('fa-arrow-left');
+            }
+        } else {
+            if (button.classList.contains('fa-arrow-left')) {
+                button.classList.remove('fa-arrow-left');
+                button.classList.add('fa-arrow-right');
+            }
         }
     });
 }
